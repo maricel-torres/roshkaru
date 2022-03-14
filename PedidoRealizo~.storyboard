@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ieb-RX-1aJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -40,6 +40,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+        </scene>
+        <!--Pedido Realizado-->
+        <scene sceneID="Qwh-AB-gRO">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-hmL-e4-4nE" id="hmL-e4-4nE" customClass="HechoViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PbP-uX-17z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-LU-gt3">
+                                <rect key="frame" x="192" y="741" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <segue destination="7gn-rr-k8b" kind="show" id="M2s-Df-zE0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HKx-mf-YeQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pedido Realizado" id="01e-S4-uP2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sVh-os-8bE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990" y="1681"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fmF-q2-m7Z">
@@ -144,14 +170,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aem-W4-qn7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1097" y="1681"/>
-        </scene>
-        <!--UIViewController-hmL-e4-4nE-->
-        <scene sceneID="E9B-Nl-hGy">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UIViewController-hmL-e4-4nE" storyboardName="PedidoRealizado" referencedIdentifier="UIViewController-hmL-e4-4nE" id="9uP-Xt-fZ6" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sdV-AG-UFd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1990" y="1681"/>
         </scene>
     </scenes>
     <resources>
