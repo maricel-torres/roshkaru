@@ -7,6 +7,11 @@
 
 import UIKit
 
+import Foundation
+
+
+
+
 class EatCalls {
     
     private static var BASEURL = "https://texo.thebirdmaker.com/eat"
@@ -18,10 +23,11 @@ class EatCalls {
     ///
     ///
     static func all_calls_example() {
-        
-      let at = "73f6ccb8-a4f0-4e71-86fc-9473df433280"
-//      start_login(phoneNumber: "0981123456", accessToken: at)
-//      input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
+                
+//      let at = "73f6ccb8-a4f0-4e71-86fc-9473df433280"
+        var at : String?
+        start_login(phoneNumber: "0981123456", accessToken: at)
+//        input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
 //      input_name(accessToken: at, name: "Kii Kuu")
 //      toggle_traits(accessToken: at, trait: .eater)
 //      set_location(accessToken: at, addressType: .delivery, latitude: 45.5555, longitude: 24.22222)
@@ -32,7 +38,7 @@ class EatCalls {
         let offerKey = "709d6809-459c-4c08-a754-0a8442fcbca1"
         let itemKey = "1bcea31c-7225-461e-913f-1978ae560c3f"
 
-        add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: cookKey, offerKey: offerKey, itemKey: itemKey, quantity: 1)
+//        add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: cookKey, offerKey: offerKey, itemKey: itemKey, quantity: 1)
         
     }
         
@@ -499,4 +505,5 @@ class EatCalls {
     
     
 }
+
 
