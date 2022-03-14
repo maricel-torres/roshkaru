@@ -103,6 +103,7 @@
 		65F15B7327DF8B08008B51F7 /* CargaTarjeta.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CargaTarjeta.storyboard; sourceTree = SOURCE_ROOT; };
 		65F15B7927DF8B32008B51F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Confirmacion.storyboard; sourceTree = "<group>"; };
 		65F15B8627DF8B97008B51F7 /* PedidoRealizado.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PedidoRealizado.storyboard; sourceTree = SOURCE_ROOT; };
+		65F15BA127DFDD9B008B51F7 /* RoshKaru-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RoshKaru-Bridging-Header.h"; sourceTree = "<group>"; };
 		66E8AF5A2A018D725C6C2C5F /* Pods-RoshKaru-RoshKaruUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoshKaru-RoshKaruUITests.release.xcconfig"; path = "Target Support Files/Pods-RoshKaru-RoshKaruUITests/Pods-RoshKaru-RoshKaruUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A17EDAFA27DBF76E00F28DC9 /* ejemplo_llamadas_backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ejemplo_llamadas_backend.swift; sourceTree = "<group>"; };
 		C75502652A5E94F1F7218E4C /* Pods-RoshKaruTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoshKaruTests.release.xcconfig"; path = "Target Support Files/Pods-RoshKaruTests/Pods-RoshKaruTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +193,7 @@
 				2A54986727DB9B4E0027B20F /* PrincipalTableViewController.swift */,
 				2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */,
 				A17EDAFA27DBF76E00F28DC9 /* ejemplo_llamadas_backend.swift */,
+				65F15BA127DFDD9B008B51F7 /* RoshKaru-Bridging-Header.h */,
 			);
 			path = RoshKaru;
 			sourceTree = "<group>";
@@ -310,6 +312,7 @@
 				TargetAttributes = {
 					2A54981F27DB8DF90027B20F = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1240;
 					};
 					2A54983527DB8DFB0027B20F = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -715,6 +718,7 @@
 			baseConfigurationReference = 1541DBFA0DB39EBB8A90B80A /* Pods-RoshKaru.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RoshKaru/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -723,6 +727,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Roshka.RoshKaru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RoshKaru/RoshKaru-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -733,6 +739,7 @@
 			baseConfigurationReference = 5B46FFA8C6467C38C6AD1010 /* Pods-RoshKaru.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RoshKaru/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -741,6 +748,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Roshka.RoshKaru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RoshKaru/RoshKaru-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
