@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class DireccionViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
@@ -17,6 +18,7 @@ class DireccionViewController: UIViewController {
     @IBOutlet weak var reference: UITextField!
     
     var accessToken:String?
+    private var hud: MBProgressHUD?
     
     override func viewDidLoad() {
         self.accessToken = "3rwr345r43tret5654y6egret65hn"
@@ -29,6 +31,7 @@ class DireccionViewController: UIViewController {
     // MARK: - Navigation
 
     @IBAction func sendData(_ sender: Any) {
+        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.set_address(accessToken: self.accessToken!,
                              addressType: .delivery,
                              streetName: self.streetName.text!,
@@ -73,6 +76,9 @@ class DireccionViewController: UIViewController {
         print(url.absoluteString)
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                self.hud?.hide(animated: true)
+            }
             if let error = error {
                 print(error);
             } else if let data = data {
