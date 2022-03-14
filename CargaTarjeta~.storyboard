@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ieb-RX-1aJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -41,6 +41,58 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
         </scene>
+        <!--Confirmacion-->
+        <scene sceneID="Pot-Je-LLs">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-PAm-L0-OLf" id="PAm-L0-OLf" customClass="ConfirmacionViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="icB-8a-kul">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMR-wr-4dT">
+                                <rect key="frame" x="148" y="721" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Confirmar Pedido"/>
+                                <connections>
+                                    <segue destination="hmL-e4-4nE" kind="show" id="zN5-kS-I5h"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Md5-kZ-5QW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Confirmacion" id="g9n-QB-hl0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jMs-o4-eVn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097" y="1681"/>
+        </scene>
+        <!--Pedido Realizado-->
+        <scene sceneID="Qwh-AB-gRO">
+            <objects>
+                <viewController id="hmL-e4-4nE" customClass="HechoViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PbP-uX-17z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-LU-gt3">
+                                <rect key="frame" x="192" y="741" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <segue destination="7gn-rr-k8b" kind="show" id="M2s-Df-zE0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HKx-mf-YeQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pedido Realizado" id="01e-S4-uP2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sVh-os-8bE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990" y="1681"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fmF-q2-m7Z">
             <objects>
@@ -58,6 +110,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kov-4c-bWi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--Carga Tarjeta Table View Controller-->
+        <scene sceneID="0MS-Go-iFo">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-UPL-Iu-3Wa" id="UPL-Iu-3Wa" customClass="CargaTarjetaTableViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wQU-Qa-LUL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre Propietario" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-xt-WYJ">
+                                <rect key="frame" x="159" y="135" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Numero tarjeta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q5A-U0-NmJ">
+                                <rect key="frame" x="159" y="236" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Numero tarjeta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFj-oy-fvd">
+                                <rect key="frame" x="159" y="331" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Codigo seguridad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gK2-rt-BTj">
+                                <rect key="frame" x="159" y="428" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWG-eT-K2T">
+                                <rect key="frame" x="175" y="593" width="64" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Siguiente"/>
+                                <connections>
+                                    <segue destination="PAm-L0-OLf" kind="show" id="fmp-Hy-Oai"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4gP-a7-CHD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5tB-fq-PDP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lB2-Z3-2op" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="1681"/>
         </scene>
         <!--Ubicacion-->
         <scene sceneID="avg-M1-cpx">
@@ -128,30 +230,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ogx-wI-5iu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="444.92753623188412" y="900.66964285714278"/>
-        </scene>
-        <!--UIViewController-UPL-Iu-3Wa-->
-        <scene sceneID="P6S-He-mqv">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UIViewController-UPL-Iu-3Wa" storyboardName="CargaTarjeta" referencedIdentifier="UIViewController-UPL-Iu-3Wa" id="74M-k9-5Yc" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FNT-b8-wK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="90" y="1681"/>
-        </scene>
-        <!--UIViewController-PAm-L0-OLf-->
-        <scene sceneID="SdC-r5-Wko">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UIViewController-PAm-L0-OLf" storyboardName="Confirmacion" referencedIdentifier="UIViewController-PAm-L0-OLf" id="RV0-0O-kUG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aem-W4-qn7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1097" y="1681"/>
-        </scene>
-        <!--UIViewController-hmL-e4-4nE-->
-        <scene sceneID="E9B-Nl-hGy">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UIViewController-hmL-e4-4nE" storyboardName="PedidoRealizado" referencedIdentifier="UIViewController-hmL-e4-4nE" id="9uP-Xt-fZ6" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sdV-AG-UFd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1990" y="1681"/>
         </scene>
     </scenes>
     <resources>
