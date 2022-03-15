@@ -9,19 +9,36 @@
 import UIKit
 import MBProgressHUD
 
+/// Pods materialComponets
+import MaterialComponents.MaterialTextControls_FilledTextAreas
+import MaterialComponents.MaterialTextControls_FilledTextFields
+import MaterialComponents.MaterialTextControls_OutlinedTextAreas
+import MaterialComponents.MaterialTextControls_OutlinedTextFields
+
 class LoginViewController: UIViewController {
     var json:String?
-    @IBOutlet weak var NumeroCelular: UITextField!
+    //@IBOutlet weak var NumeroCelular: UITextField!
     @IBOutlet weak var BtnSendNumber: UIButton!
     
     @IBOutlet weak var StackLogin: UIStackView!
-    
+    let NumeroCelular = MDCOutlinedTextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        StackLogin.spacing = 10
         BtnSendNumber.addTarget(self, action: #selector(SendNumber(_:)), for: .touchUpInside)
         
+        //let estimatedFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
+       // let NumeroCelular = MDCOutlinedTextField(frame: estimatedFrame)
+        NumeroCelular.label.text = "Phone number"
+        NumeroCelular.placeholder = "Ej: 09Xx-XXX-XXX"
+        NumeroCelular.leadingAssistiveLabel.text = "This is helper text"
+        NumeroCelular.sizeToFit()
+        NumeroCelular.setOutlineColor(.systemBlue, for: .normal)
+        NumeroCelular.setOutlineColor(.blue, for: .editing)
+        
+        //view.addSubview(textField)
+        StackLogin.addArrangedSubview(NumeroCelular)
+        StackLogin.addArrangedSubview(BtnSendNumber)
     }
     
     @IBAction func SendNumber(_ sender: Any) {
