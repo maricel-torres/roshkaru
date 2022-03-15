@@ -13,28 +13,30 @@ import CryptoKit
 
 class ValidacionViewController: UIViewController {
 
-    
     @IBOutlet weak var botonVerificar: UIButton!
     @IBOutlet weak var codigoVerificacion: UITextField!
-    // Variable que contendra el codigo que se envio al numero celular ingresado
-    var codigoIngresado: String?
+    
     // Variable que contendra el valor ingresado en el texfield
-    var codigo: String?
+    var codigoIngresado: String?
+
     var jsonVcLogin: String?
-    var jsonLogin: ItemJson?
+    // Variable que contendra el codigo que se envio al numero celular ingresado
+    var challenge: String?
     var accessToken: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.accessToken = "3rwr345r43tret5654y6egret65hn"
-
-        codigo = jsonLogin?.challenge
         
         botonVerificar.addTarget(self, action: #selector(verificarCodigo(_: )), for: .touchUpInside)
-        codigoIngresado = codigoVerificacion.text!
-        
+        codigoIngresado = codigoVerificacion.text!.sha1()
+        accessToken = GetAccessToken()
+        //input_sms(accessToken: accessToken!, input: codigoIngresado!)
 
     }
+    
+    func GetAccessToken() -> String? {
+         UserDefaults.standard.value(forKey: "accessToken") as? String
+     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         false
@@ -49,12 +51,12 @@ class ValidacionViewController: UIViewController {
     }
     
     @objc func verificarCodigo(_ sender: UIButton){
-        if codigoIngresado?.sha1() == codigo {
+        if codigoIngresado == self.challenge {
 //            si el sha1 del codigo ingresado es igual al del enviado por mensaje
             performSegue(withIdentifier: "datos", sender: sender)
         }else{
 //            sino recarga el view
-            print("codigo incorrecto!")
+            showError("Codigo incorrecto")
             self.view.reloadInputViews()
         }
     }
@@ -88,30 +90,7 @@ class ValidacionViewController: UIViewController {
         
     }
     
-    // Estructura creada para decodificar
-    struct ItemJson: Codable {
-        var challenge: String?
-        var key1: String?
-        var key2: Int?
-        var table: String?
-        var phoneNumber: String?
-    }
-    
-    
-    private func json2(_ string:String) -> [ItemJson] {
-        let jsonString = string
-        let listaJson = try? JSONDecoder().decode([ItemJson].self, from: jsonString.data(using: .utf8)!)
-        
-        if let listaJson = listaJson {
-            return listaJson
-        }else{
-            return []
-        }
-        
-    }
-
 }
-
 // Extension para obtener el Sha1 de un string
 extension String {
     func sha1() -> String {
@@ -124,3 +103,4 @@ extension String {
         return hexBytes.joined()
     }
 }
+
