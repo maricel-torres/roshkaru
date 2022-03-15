@@ -10,7 +10,8 @@ import UIKit
 
 class ValidacionViewController: UIViewController {
 
-    override func viewDidLoad() {
+    var jsonVcLogin:String?
+        override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

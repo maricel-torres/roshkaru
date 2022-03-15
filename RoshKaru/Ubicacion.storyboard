@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gCs-IV-dJl">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,35 +14,52 @@
             <objects>
                 <viewController id="gCs-IV-dJl" customClass="UbicacionViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="koJ-St-5K6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKu-rk-QVG">
-                                <rect key="frame" x="112" y="718" width="190" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Siguiente"/>
-                                <connections>
-                                    <segue destination="PIB-Oe-bW4" kind="show" id="6sy-eI-Y7e"/>
-                                </connections>
-                            </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vRy-6m-KH1">
-                                <rect key="frame" x="20" y="108" width="307" height="312"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vRy-6m-KH1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="616"/>
                             </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s4d-fV-FpS">
+                                <rect key="frame" x="175" y="760" width="64" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKu-rk-QVG">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
+                                        <state key="normal" title="Siguiente"/>
+                                        <connections>
+                                            <segue destination="PIB-Oe-bW4" kind="show" id="6sy-eI-Y7e"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wod-QU-hcT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Wod-QU-hcT" firstAttribute="bottom" secondItem="DKu-rk-QVG" secondAttribute="bottom" constant="72" id="Ddo-xM-d8w"/>
+                            <constraint firstItem="vRy-6m-KH1" firstAttribute="top" secondItem="Wod-QU-hcT" secondAttribute="top" id="QyC-Oh-Zed"/>
+                            <constraint firstItem="DKu-rk-QVG" firstAttribute="centerX" secondItem="Wod-QU-hcT" secondAttribute="centerX" id="YXX-0i-HpD"/>
+                            <constraint firstItem="Wod-QU-hcT" firstAttribute="bottom" secondItem="vRy-6m-KH1" secondAttribute="bottom" constant="202" id="ceY-bu-hIy"/>
+                            <constraint firstItem="vRy-6m-KH1" firstAttribute="leading" secondItem="Wod-QU-hcT" secondAttribute="leading" id="hJJ-n7-QVp"/>
+                            <constraint firstItem="Wod-QU-hcT" firstAttribute="trailing" secondItem="vRy-6m-KH1" secondAttribute="trailing" id="rnj-si-gH5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ubicacion" id="Uld-tn-lbx"/>
+                    <connections>
+                        <outlet property="buttomSgte" destination="DKu-rk-QVG" id="kHB-KY-p1W"/>
+                        <outlet property="mapView" destination="vRy-6m-KH1" id="fYf-6S-cgF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eWv-ru-f3G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3531.884057971015" y="913.39285714285711"/>
+            <point key="canvasLocation" x="2805.7971014492755" y="341.51785714285711"/>
         </scene>
         <!--UIViewController-8eh-XD-7Ia-->
         <scene sceneID="7CY-PF-kSt">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-8eh-XD-7Ia" id="PIB-Oe-bW4" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-8eh-XD-7Ia" id="PIB-Oe-bW4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="J5A-6y-1X3"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEF-y2-W4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2771" y="913"/>
