@@ -9,6 +9,8 @@
 import UIKit
 
 class DatosViewController: UIViewController {
+    
+    var sender:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()

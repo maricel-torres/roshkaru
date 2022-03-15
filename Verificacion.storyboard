@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Verificar"/>
                                 <connections>
-                                    <segue destination="kvj-Va-INO" kind="show" id="kL0-fF-oqV"/>
+                                    <segue destination="kvj-Va-INO" kind="show" identifier="datos" id="kL0-fF-oqV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -34,6 +34,10 @@
                         <viewLayoutGuide key="safeArea" id="mDH-KT-snp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Verificacion" id="jsD-ej-swB"/>
+                    <connections>
+                        <outlet property="botonVerificar" destination="Hkp-Lt-aL9" id="h76-X7-kZz"/>
+                        <outlet property="codigoVerificacion" destination="j0J-vk-nAp" id="DnM-MZ-sNX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvQ-Hh-z9Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
