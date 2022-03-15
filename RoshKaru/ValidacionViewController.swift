@@ -10,51 +10,83 @@ import UIKit
 import CommonCrypto
 import CryptoKit
 
-private extension UIColor {
-    static var firstColor: UIColor = .cyan
-    static var secondColor: UIColor = .white
-    
-//    static var firstColor: UIColor = .black
-//    static var secondColor: UIColor = .cyan
-    
-//    static var firstColor: UIColor = .orange
-//    static var secondColor: UIColor = .black
-    
-//    static var firstColor: UIColor = .green
-//    static var secondColor: UIColor = .black
-    
-//    static var firstColor: UIColor = .black
-//    static var secondColor: UIColor = .green
-}
 
 class ValidacionViewController: UIViewController {
 
     @IBOutlet weak var botonVerificar: UIButton!
     @IBOutlet weak var codigoVerificacion: UITextField!
     // Variable que contendra el codigo que se envio al numero celular ingresado
-    var codigo : String?
+    var codigoIngresado: String?
     // Variable que contendra el valor ingresado en el texfield
-    var jsonVcLogin : String?
+    var codigo: String?
+    var jsonVcLogin: String?
+    var jsonLogin: ItemJson?
+    var accessToken: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.accessToken = "3rwr345r43tret5654y6egret65hn"
+
+        codigo = jsonLogin?.challenge
         
-        self.view.backgroundColor = .firstColor
-        botonVerificar.backgroundColor = .secondColor
         botonVerificar.addTarget(self, action: #selector(verificarCodigo(_: )), for: .touchUpInside)
-        codigo = codigoVerificacion.text!
+        codigoIngresado = codigoVerificacion.text!
+        
 
     }
     
-    @objc func verificarCodigo(_ sender: UIButton){
-//        if codigoIngresado?.sha1() == codigo{
-//            performSegue(withIdentifier: "datos", sender: sender)
-//        }else{
-//            print("codigo incorrecto!")
-//            self.viewDidLoad()
-//        }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        false
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "datos" {
+            if let nextViewController = segue.destination as? DatosViewController {
+                nextViewController.sender = self.accessToken
+            }
+        }
+    }
+    
+    @objc func verificarCodigo(_ sender: UIButton){
+        if codigoIngresado?.sha1() == codigo {
+//            si el sha1 del codigo ingresado es igual al del enviado por mensaje
+            performSegue(withIdentifier: "datos", sender: sender)
+        }else{
+//            sino recarga el view
+            print("codigo incorrecto!")
+            self.view.reloadInputViews()
+        }
+    }
+    
+    func input_sms(accessToken:String, input: String ) {
+        let BASEURL = "https://texo.thebirdmaker.com/eat"
+        var urlComponents = URLComponents(string: "\(BASEURL)/input_sms")!
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken),
+            URLQueryItem(name: "input", value: input),
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                } else {
+                    print("# Success")
+                }
+                
+                
+            }
+        }.resume()
+        
+    }
+    
     // Estructura creada para decodificar
     struct ItemJson: Codable {
         var challenge: String?
@@ -76,16 +108,6 @@ class ValidacionViewController: UIViewController {
         }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

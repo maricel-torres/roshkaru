@@ -4,50 +4,42 @@
 //
 //  Created by fran on 2022-03-11.
 //
-
 import UIKit
 
-import Foundation
-
-
-
-
-class EatCalls {
+class EatCalls{
     
     private static var BASEURL = "https://texo.thebirdmaker.com/eat"
     
-    ///
-    /// Estas son todas las llamadas.
-    ///
-    ///
-    ///
-    ///
     static func all_calls_example() {
-                
+        
+
 //      let at = "73f6ccb8-a4f0-4e71-86fc-9473df433280"
-        var at : String?
-        start_login(phoneNumber: "0981123456", accessToken: at)
-//        input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
+//      start_login(phoneNumber: "0981123456", accessToken: at)
+        //input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
 //      input_name(accessToken: at, name: "Kii Kuu")
 //      toggle_traits(accessToken: at, trait: .eater)
 //      set_location(accessToken: at, addressType: .delivery, latitude: 45.5555, longitude: 24.22222)
-//        set_address(accessToken: at, addressType: .delivery, streetName: "Tte. Cusmanish", number: "833", neighborhood: "Las Mercedes", reference: "barrio cerrado de roshka")
+//      set_address(addressType: .delivery, streetName: "Tte. Cusmanish", number: "833", neighborhood: "Las Mercedes", reference: "barrio cerrado de roshka")
 //      weekly_plans_cooks(accessToken: at)
-        var cartKey: String? = nil
-        let cookKey = "48468369-1668-486f-b209-092af2ea283c"
-        let offerKey = "709d6809-459c-4c08-a754-0a8442fcbca1"
-        let itemKey = "1bcea31c-7225-461e-913f-1978ae560c3f"
-
-//        add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: cookKey, offerKey: offerKey, itemKey: itemKey, quantity: 1)
+//      /// TODO: add parameters
+//      add_item_to_cart(accessToken: at, cartKey: "", cookKey: "", offerKey: "", itemKey: "", quantity: 1)
         
     }
         
 //        start_login
 //        ===========
+//          Http Method: GET
 //
-//        @NotBlank
-//        private String phoneNumber;
+//          Inicia el login. El inicio se hace enviando un número de teléfono (phoneNumber)
+//
+//        Parametros:
+//
+//        @NotBlank String phoneNumber
+//            [Es el número te teléfono que hay que enviar]
 //        private String accessToken;
+//
+//        ** Cuando un parámetro tiene adelante @NotBlank significa que no es opcional)!
+//
         
     static func test_start_login() {
         start_login(phoneNumber: "0971305003", accessToken: nil)
@@ -87,8 +79,11 @@ class EatCalls {
 //
 //        @NotBlank
 //        private String accessToken;
+//          Esta variable es devuelta en session en la primera llamada.
+//          Hay que usar como parámtro en todas las demás llamadas para identificar al usuario actual.
 //        @NotBlank
 //        private String input;
+//          Es el SHA1 del texto que ingresa el usuario como sms que le ha llegado.
     
     static func test_input_sms() {
         input_sms(accessToken: "", input: "2342349238487236487sdfasdf")
@@ -132,6 +127,7 @@ class EatCalls {
 //
 //        @NotBlank
 //        private String name;
+//          El nombre ingresado por el usuario
     
     static func test_name() {
         input_name(accessToken: "", name: "alexis")
@@ -165,6 +161,7 @@ class EatCalls {
 //
 //        toggle_traits
 //        =============
+//          Agrega si no tiene (o substrae si ya tenía) el Trait (cook, eater) del usuario identificado por accessToken
 //
 //        @NotEmpty
 //        private List<Trait> traits = new ArrayList<>();
@@ -181,7 +178,7 @@ class EatCalls {
     
     static func toggle_traits(accessToken:String, trait: Trait) {
         
-        var urlComponents = URLComponents(string: "\(BASEURL)/toggle_traits")!
+        var urlComponents = URLComponents(string: "\(BASEURL)/start_login")!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken),
             URLQueryItem(name: "traits", value: trait.rawValue),
@@ -211,6 +208,9 @@ class EatCalls {
 //
 //        set_location
 //        ============
+//
+//        Establece el location del usuario para un cierto tipo de address (addressType).
+//        La llamada guarda la latitude y longitude del usuario identificado por accessToken, para la dirección de tipo AddressType
 //
 //        public enum AddressType {
 //            delivery, cook_site
@@ -258,26 +258,24 @@ class EatCalls {
 //
 //        set_address
 //        ===========
+//          Establece la dirección del usuario identificado por el parámetro accessToken (no especificado) con los parámetros mencionados más abajo. Todos los que están marcados con @NotNull o @NotBlank no son opcionales.
 //
-//        @NotNull
-//        private InputLocation.AddressType addressType;
-//        @NotBlank
-//        private String streetName;
-//        @NotBlank
-//        private String number;
-//        @NotBlank
-//        private String neighborhood;
+//
+//        @NotNull private InputLocation.AddressType addressType;
+//        @NotBlank private String streetName;
+//        @NotBlank private String number;
+//        @NotBlank private String neighborhood;
 //        private String reference;
     
     static func test_set_address() {
-        set_address(accessToken: "", addressType:.delivery, streetName: "Mcal Lopez", number: "984", neighborhood: "Villa Morra", reference: "Shopping")
+        set_address(addressType:.delivery, streetName: "Mcal Lopez", number: "984", neighborhood: "Villa Morra", reference: "Shopping")
     }
     
     enum AddressType: String {
         case delivery, cook_site
     }
 
-    static func set_address(accessToken: String, addressType:AddressType, streetName:String, number:String, neighborhood:String, reference:String?) {
+    static func set_address(addressType:AddressType, streetName:String, number:String, neighborhood:String, reference:String?) {
         
         var urlComponents = URLComponents(string: "\(BASEURL)/set_address")!
         var queryItems: [URLQueryItem] = [
@@ -285,8 +283,7 @@ class EatCalls {
             URLQueryItem(name: "streetName", value: streetName),
             URLQueryItem(name: "number", value: number),
             URLQueryItem(name: "neighborhood", value: neighborhood),
-            URLQueryItem(name: "accessToken", value: accessToken),
-            URLQueryItem(name: "replace", value: String(true)),
+            
         ]
         if let reference = reference {
             queryItems.append(URLQueryItem(name: "reference", value: reference))
@@ -315,39 +312,47 @@ class EatCalls {
     
 //        weekly_plans/cooks
 //        ==================
+//          Lista los cocineros y sus ofertas. accessToken identifica al usuario que está pidiendo la lista.
 //
 //        @RequestParam String accessToken
 //
     
-    static func test_weekly_plans () {
-        weekly_plans_cooks(accessToken: "")
-      }
-    
-    static func weekly_plans_cooks (accessToken:String) {
-        var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
-        let queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "accessToken", value: accessToken)
-        ]
-        urlComponents.queryItems = queryItems
-        let url = urlComponents.url!
-        print(url.absoluteString)
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print(error);
-            } else if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                } else {
-                    print("# Success")
-                }
-            }
-        }.resume()
-    }
+//    static func test_weekly_plans () {
+//        weekly_plans_cooks(accessToken: "")
+//      }
+//
+//    static func weekly_plans_cooks (accessToken:String) {
+//        var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
+//        let queryItems: [URLQueryItem] = [
+//            URLQueryItem(name: "accessToken", value: accessToken)
+//        ]
+//        urlComponents.queryItems = queryItems
+//        let url = urlComponents.url!
+//        print(url.absoluteString)
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print(error);
+//            } else if let data = data {
+//                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+//                if let json = json {
+//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//                    DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//                } else {
+//                    print("# Success")
+//                }
+//            }
+//        }.resume()
+//    }
     
 //        add_payment_method
 //        ==================
+//          Agregar método de pago. type es no opcional e identifica el tipo de medio de pago.
+//          Si el pago es tarjeta, los demás campos deben ser llenados.
+//          cardHolderName: Nombre en la tarjeta
+//          cardNumbers: número de la tarjeta
+//          cardExpirationMonth y cardExpirationYear: expresan la fecha de vencimiento de la tarjeta.
+//          cardSecurityCode: el código de seguridad de la tarjeta.
 //
 //        public enum Type {
 //            credit_card,
@@ -424,6 +429,7 @@ class EatCalls {
 //
 //        list_payment_methods
 //        ====================
+//          Lista los métodos de pago ya disponibles por el usuario.
 //
 //        @RequestParam String accessToken
     
@@ -458,6 +464,9 @@ class EatCalls {
 //
 //        add_item_to_cart
 //        ================
+//          Agrega un item a un Carro de compras. Si el parámetro `cartKey` está vacío, se creará primero un nuevo carro ante de agregar el item. Se retorna el Carro con sus items.
+//          cookKey + offerKey + itemKey: identifica el ítem que se está agregando.
+//          quantity: la cantidad de objetos de este tipo que se están agregando. Puede ser negativo, para restar items. Puede ser cero.
 //
 //        private String cartKey;
 //        @NotBlank
@@ -496,14 +505,67 @@ class EatCalls {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
                 } else {
                     print("# Success")
                 }
             }
         }.resume()
     }
-    
-    
+//    struct Item : Codable {
+//        var day : String
+//        var title: String
+//        var price: Int
+//        var currencyCode: String
+//        var key: String
+//        var dayPart: String
+//        var description: String
+//    }
+//    struct Offer : Codable{
+//        let key: String
+//        var items: [Item]
+//    }
+//    struct Cook : Codable{
+//        var offers: [Offer]
+//        var kitchenPhotoUrl: String?
+//        var key: String
+//        var description: String
+//        var photoUrl: String
+//        var name: String
+//        var kitchen: String
+//    }
+//    static func DecodeJson(_ jsonString: String) {
+//        let listaJson = try? JSONDecoder().decode([Cook].self, from: jsonString.data(using: .utf8)!)
+//        if let listaJson = listaJson {
+//            print(listaJson)
+//        }
+//    }
+//
+//}
+
 }
 
-
+// conversion a SHA1
+//import CommonCrypto
+//import CryptoKit
+//import Foundation
+//
+//private func hexString(_ iterator: Array<UInt8>.Iterator) -> String {
+//    return iterator.map { String(format: "%02x", $0) }.joined()
+//}
+//
+//extension Data {
+//
+//    public var sha1: String {
+//        if #available(iOS 13.0, *) {
+//            return hexString(Insecure.SHA1.hash(data: self).makeIterator())
+//        } else {
+//            var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+//            self.withUnsafeBytes { bytes in
+//                _ = CC_SHA1(bytes.baseAddress, CC_LONG(self.count), &digest)
+//            }
+//            return hexString(digest.makeIterator())
+//        }
+//    }
+//
+//}
