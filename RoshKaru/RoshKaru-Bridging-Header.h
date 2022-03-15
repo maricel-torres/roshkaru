@@ -3,3 +3,9 @@
 //
 
 #import <MBProgressHUD/MBProgressHUD.h>
+
+#import "MDCFilledTextArea.h"
+#import "MaterialTextControls+FilledTextAreas.h"
+#import "MaterialTextControls+FilledTextFields.h"
+#import "MaterialTextControls+OutlinedTextAreas.h"
+#import "MaterialTextControls+OutlinedTextFields.h"
