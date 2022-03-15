@@ -27,37 +27,40 @@ class ValidacionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        botonVerificar.addTarget(self, action: #selector(verificarCodigo(_: )), for: .touchUpInside)
-        codigoIngresado = codigoVerificacion.text!.sha1()
-        accessToken = GetAccessToken()
-        //input_sms(accessToken: accessToken!, input: codigoIngresado!)
-
     }
     
-    func GetAccessToken() -> String? {
-         UserDefaults.standard.value(forKey: "accessToken") as? String
-     }
+    @objc func verifyNumber(_ sender: UIButton){
+        if let codigo = codigoVerificacion.text {
+            self.input_sms(accessToken: accessToken!, input: codigo.sha1())
+        }
+    }
+    
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        false
+        makeCall()
+        return false
     }
 
+    private var hud: MBProgressHUD?
+    
+    private func makeCall() {
+        
+        let x: UITextField? = findFirst(self.view)
+        if let code = x?.text, code.trimmed.count > 0 {
+            self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+           hud?.hide(animated: true, afterDelay: 2)
+        } else {
+            self.codigoVerificacion.text = nil
+            showError("Por favor ingrese el codigo")
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "datos" {
             if let nextViewController = segue.destination as? DatosViewController {
                 nextViewController.sender = self.accessToken
             }
-        }
-    }
-    
-    @objc func verificarCodigo(_ sender: UIButton){
-        if codigoIngresado == self.challenge {
-//            si el sha1 del codigo ingresado es igual al del enviado por mensaje
-            performSegue(withIdentifier: "datos", sender: sender)
-        }else{
-//            sino recarga el view
-            showError("Codigo incorrecto")
-            self.view.reloadInputViews()
         }
     }
     
@@ -73,17 +76,39 @@ class ValidacionViewController: UIViewController {
         print(url.absoluteString)
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                self.hud?.hide(animated: true)
+            }
             if let error = error {
-                print(error);
+                print(error)
             } else if let data = data {
+                let httpResponse = response as? HTTPURLResponse
+                let status = httpResponse?.statusCode ?? 0
+                let statusCodeIsError = status > 299 || status < 200
                 
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                } else {
-                    print("# Success")
+                printDebugJson(data)
+                
+                if let ret: StartLoginRet = DecodableFromJson(data) {
+                    
+                    // guardar el access token en defaults
+                    UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
+                    UserDefaults.standard.synchronize()
+                    
+                    DispatchQueue.main.async {
+                        // ir al segue de datos
+                        self.accessToken = ret.session.accessToken
+                        self.challenge = ret.login.challenge
+                        self.performSegue(withIdentifier: "datos", sender: nil)
+                    }
+
+                } else if let error: ErrorRet = DecodableFromJson(data) {
+                    DispatchQueue.main.async {
+                        // mostrar error
+                        self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
+                    }
+                } else if statusCodeIsError {
+                    assert(false)
                 }
-                
                 
             }
         }.resume()
@@ -103,4 +128,3 @@ extension String {
         return hexBytes.joined()
     }
 }
-
