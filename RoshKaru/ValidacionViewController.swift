@@ -13,6 +13,7 @@ import CryptoKit
 
 class ValidacionViewController: UIViewController {
 
+    
     @IBOutlet weak var botonVerificar: UIButton!
     @IBOutlet weak var codigoVerificacion: UITextField!
     // Variable que contendra el codigo que se envio al numero celular ingresado
