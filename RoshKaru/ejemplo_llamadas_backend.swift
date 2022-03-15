@@ -7,12 +7,13 @@
 
 import UIKit
 
-class EatCalls {
+class EatCalls{
     
     private static var BASEURL = "https://texo.thebirdmaker.com/eat"
     
     static func all_calls_example() {
         
+
 //      let at = "73f6ccb8-a4f0-4e71-86fc-9473df433280"
 //      start_login(phoneNumber: "0981123456", accessToken: at)
         //input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
@@ -23,6 +24,7 @@ class EatCalls {
 //      weekly_plans_cooks(accessToken: at)
 //      /// TODO: add parameters
 //      add_item_to_cart(accessToken: at, cartKey: "", cookKey: "", offerKey: "", itemKey: "", quantity: 1)
+
         
     }
         
@@ -317,32 +319,33 @@ class EatCalls {
 //        @RequestParam String accessToken
 //
     
-    static func test_weekly_plans () {
-        weekly_plans_cooks(accessToken: "")
-      }
-    
-    static func weekly_plans_cooks (accessToken:String) {
-        var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
-        let queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "accessToken", value: accessToken)
-        ]
-        urlComponents.queryItems = queryItems
-        let url = urlComponents.url!
-        print(url.absoluteString)
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print(error);
-            } else if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                } else {
-                    print("# Success")
-                }
-            }
-        }.resume()
-    }
+//    static func test_weekly_plans () {
+//        weekly_plans_cooks(accessToken: "")
+//      }
+//
+//    static func weekly_plans_cooks (accessToken:String) {
+//        var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
+//        let queryItems: [URLQueryItem] = [
+//            URLQueryItem(name: "accessToken", value: accessToken)
+//        ]
+//        urlComponents.queryItems = queryItems
+//        let url = urlComponents.url!
+//        print(url.absoluteString)
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print(error);
+//            } else if let data = data {
+//                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+//                if let json = json {
+//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//                    DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//                } else {
+//                    print("# Success")
+//                }
+//            }
+//        }.resume()
+//    }
     
 //        add_payment_method
 //        ==================
@@ -504,14 +507,45 @@ class EatCalls {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
                 } else {
                     print("# Success")
                 }
             }
         }.resume()
     }
-    
-    
+//    struct Item : Codable {
+//        var day : String
+//        var title: String
+//        var price: Int
+//        var currencyCode: String
+//        var key: String
+//        var dayPart: String
+//        var description: String
+//    }
+//    struct Offer : Codable{
+//        let key: String
+//        var items: [Item]
+//    }
+//    struct Cook : Codable{
+//        var offers: [Offer]
+//        var kitchenPhotoUrl: String?
+//        var key: String
+//        var description: String
+//        var photoUrl: String
+//        var name: String
+//        var kitchen: String
+//    }
+//    static func DecodeJson(_ jsonString: String) {
+//        let listaJson = try? JSONDecoder().decode([Cook].self, from: jsonString.data(using: .utf8)!)
+//        if let listaJson = listaJson {
+//            print(listaJson)
+//        }
+//    }
+//    
+//}
+
+
 }
 
 // conversion a SHA1
@@ -539,3 +573,4 @@ class EatCalls {
 //    }
 //
 //}
+
