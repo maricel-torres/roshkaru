@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class DatosViewController: UIViewController {
     
     var accessToken: String?
-    private var hud: MBProgressHUD?
+
     @IBOutlet weak var name: UITextField!
     
     override func viewDidLoad() {
@@ -19,6 +20,24 @@ class DatosViewController: UIViewController {
 
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        makeCall()
+        return false
+    }
+    
+    private var hud: MBProgressHUD?
+    
+    private func makeCall() {
+        
+        let x: UITextField? = findFirst(self.view)
+        if let phone = x?.text, phone.trimmed.count > 0 {
+            self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            input_name(accessToken: accessToken!, name: name.text!)
+        } else {
+            showError("Por favor ingrese nombre")
+        }
+        
+    }
 
     @IBAction func sendName(_ sender: Any) {
         self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)

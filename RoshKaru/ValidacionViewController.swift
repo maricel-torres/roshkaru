@@ -27,13 +27,15 @@ class ValidacionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        codigoVerificacion.center = self.view.center
     }
     
     
     @IBAction func verifyCode(_ sender: Any) {
-        if let codigo = codigoVerificacion.text {
-            self.input_sms(accessToken: challenge!, input: codigo.sha1())
-        }
+//        if let codigo = codigoVerificacion.text {
+//            self.input_sms(accessToken: challenge!, input: codigo.sha1())
+//        }
+        self.input_sms(accessToken: accessToken!, input: codigoVerificacion.text!)
     }
     
     
@@ -95,9 +97,9 @@ class ValidacionViewController: UIViewController {
                     UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
                     UserDefaults.standard.synchronize()
                     
-                    DispatchQueue.main.async {
+                   DispatchQueue.main.async {
                         // ir al segue de datos
-                        self.performSegue(withIdentifier: "datos", sender: accessToken)
+                       self.performSegue(withIdentifier: "datos", sender: accessToken)
                     }
 
                 } else if let error: ErrorRet = DecodableFromJson(data) {
@@ -106,7 +108,8 @@ class ValidacionViewController: UIViewController {
                         self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
                         self.codigoVerificacion.text = nil
                     }
-                } else if statusCodeIsError {
+                }
+                    else if statusCodeIsError {
                     assert(false)
                 }
                 
