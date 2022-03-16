@@ -68,7 +68,7 @@ class ValidacionViewController: UIViewController {
     }
     
     func input_sms(accessToken:String, input: String ) {
-        let BASEURL = "https://texo.thebirdmaker.com/eat"
+        let BASEURL = "https://phoebe.roshka.com/eat"
         var urlComponents = URLComponents(string: "\(BASEURL)/input_sms")!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken),
@@ -90,17 +90,17 @@ class ValidacionViewController: UIViewController {
                 let statusCodeIsError = status < 200 || status > 299
                 
                 printDebugJson(data)
+                DispatchQueue.main.async {
+                     // ir al segue de datos
+//                    self.accessToken = ret.login.challenge
+                    self.performSegue(withIdentifier: "datos", sender: accessToken)
+                 }
                 
                 if let ret: StartLoginRet = DecodableFromJson(data) {
                     
                     // guardar el access token en defaults
                     UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
                     UserDefaults.standard.synchronize()
-                    
-                   DispatchQueue.main.async {
-                        // ir al segue de datos
-                       self.performSegue(withIdentifier: "datos", sender: accessToken)
-                    }
 
                 } else if let error: ErrorRet = DecodableFromJson(data) {
                     DispatchQueue.main.async {
@@ -108,9 +108,6 @@ class ValidacionViewController: UIViewController {
                         self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
                         self.codigoVerificacion.text = nil
                     }
-                }
-                    else if statusCodeIsError {
-                    assert(false)
                 }
                 
             }
