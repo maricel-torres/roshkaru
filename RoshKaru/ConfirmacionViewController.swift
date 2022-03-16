@@ -10,6 +10,8 @@ import UIKit
 
 class ConfirmacionViewController: UIViewController {
 
+    var accessToken: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import MaterialComponents.MaterialButtons
 
 class DireccionViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
@@ -21,11 +22,10 @@ class DireccionViewController: UIViewController {
     private var hud: MBProgressHUD?
     
     override func viewDidLoad() {
-        self.accessToken = "3rwr345r43tret5654y6egret65hn"
         super.viewDidLoad()
         stackViewPricipal.spacing = 20
         stackView.spacing = 10
-        
+        let button = MDCButton()
         
     }
     // MARK: - Navigation
@@ -86,10 +86,10 @@ class DireccionViewController: UIViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                } else {
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "principal", sender: self.accessToken!)
                     }
-                } else {
                     print("# Success")
                 }
                 

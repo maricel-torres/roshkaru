@@ -4,7 +4,6 @@
 //
 //  Created by fran on 2022-03-11.
 //
-
 import UIKit
 
 class EatCalls{
@@ -542,14 +541,13 @@ class EatCalls{
 //            print(listaJson)
 //        }
 //    }
+
 //    
 //}
-
 
 }
 
 // conversion a SHA1
-
 //import CommonCrypto
 //import CryptoKit
 //import Foundation
