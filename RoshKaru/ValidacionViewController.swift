@@ -27,12 +27,15 @@ class ValidacionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        codigoVerificacion.center = self.view.center
     }
     
-    @objc func verifyNumber(_ sender: UIButton){
-        if let codigo = codigoVerificacion.text {
-            self.input_sms(accessToken: accessToken!, input: codigo.sha1())
-        }
+    
+    @IBAction func verifyCode(_ sender: Any) {
+//        if let codigo = codigoVerificacion.text {
+//            self.input_sms(accessToken: challenge!, input: codigo.sha1())
+//        }
+        self.input_sms(accessToken: accessToken!, input: codigoVerificacion.text!)
     }
     
     
@@ -59,7 +62,7 @@ class ValidacionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "datos" {
             if let nextViewController = segue.destination as? DatosViewController {
-                nextViewController.sender = self.accessToken
+                nextViewController.accessToken = self.accessToken
             }
         }
     }
@@ -84,7 +87,7 @@ class ValidacionViewController: UIViewController {
             } else if let data = data {
                 let httpResponse = response as? HTTPURLResponse
                 let status = httpResponse?.statusCode ?? 0
-                let statusCodeIsError = status > 299 || status < 200
+                let statusCodeIsError = status < 200 || status > 299
                 
                 printDebugJson(data)
                 
@@ -94,19 +97,19 @@ class ValidacionViewController: UIViewController {
                     UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
                     UserDefaults.standard.synchronize()
                     
-                    DispatchQueue.main.async {
+                   DispatchQueue.main.async {
                         // ir al segue de datos
-                        self.accessToken = ret.session.accessToken
-                        self.challenge = ret.login.challenge
-                        self.performSegue(withIdentifier: "datos", sender: nil)
+                       self.performSegue(withIdentifier: "datos", sender: accessToken)
                     }
 
                 } else if let error: ErrorRet = DecodableFromJson(data) {
                     DispatchQueue.main.async {
                         // mostrar error
                         self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
+                        self.codigoVerificacion.text = nil
                     }
-                } else if statusCodeIsError {
+                }
+                    else if statusCodeIsError {
                     assert(false)
                 }
                 
