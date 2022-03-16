@@ -30,11 +30,13 @@ class DatosViewController: UIViewController {
     private func makeCall() {
         
         let x: UITextField? = findFirst(self.view)
-        if let phone = x?.text, phone.trimmed.count > 0 {
+        if let dato = x?.text, dato.trimmed.count > 0 {
             self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             input_name(accessToken: accessToken!, name: name.text!)
         } else {
             showError("Por favor ingrese nombre")
+            self.name.text = nil
+            self.hud?.isHidden = true
         }
         
     }
@@ -47,7 +49,7 @@ class DatosViewController: UIViewController {
     }
     
     func input_name(accessToken:String, name: String ) {
-        let BASEURL = "https://texo.thebirdmaker.com/eat"
+        let BASEURL = "https://phoebe.roshka.com/eat"
         var urlComponents = URLComponents(string: "\(BASEURL)/input_name")!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken),
@@ -63,19 +65,33 @@ class DatosViewController: UIViewController {
             }
             if let error = error {
                 print(error);
-            } else if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                } else {
-                    print("# Success")
+            }else if let data = data {
+                let httpResponse = response as? HTTPURLResponse
+                let status = httpResponse?.statusCode ?? 0
+                let statusCodeIsError = status < 200 || status > 299
+                
+                printDebugJson(data)
+                DispatchQueue.main.async {
+                     // ir al segue de registrar
+                    self.performSegue(withIdentifier: "registrar", sender: accessToken)
+                 }
+                
+                if let ret: StartLoginRet = DecodableFromJson(data) {
+                    
+                    // guardar el access token en defaults
+                    UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
+                    UserDefaults.standard.synchronize()
+
+                } else if let error: ErrorRet = DecodableFromJson(data) {
                     DispatchQueue.main.async {
-                        // ir al segue de registrar
-                        self.performSegue(withIdentifier: "registrar", sender: nil)
+                        // mostrar error
+                        self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
+                        self.name.text = nil
                     }
                 }
+                
             }
         }.resume()
+        
     }
-
 }

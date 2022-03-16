@@ -17,29 +17,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Codigo de verificacion" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j0J-vk-nAp">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingrese Codigo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j0J-vk-nAp">
                                 <rect key="frame" x="104" y="431" width="206" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkp-Lt-aL9">
-                                <rect key="frame" x="179" y="548" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkp-Lt-aL9">
+                                <rect key="frame" x="50" y="548" width="314" height="30"/>
                                 <state key="normal" title="Verificar"/>
                                 <connections>
                                     <action selector="verifyCode:" destination="fyJ-pV-uqz" eventType="touchUpInside" id="Fua-N0-Q6K"/>
                                     <segue destination="kvj-Va-INO" kind="show" identifier="datos" id="kL0-fF-oqV"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vlv-YT-bF6">
+                                <rect key="frame" x="70" y="114" width="274" height="178"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="178" id="b3F-p9-C6X"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mDH-KT-snp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="j0J-vk-nAp" firstAttribute="leading" secondItem="mDH-KT-snp" secondAttribute="leading" constant="104" id="1mZ-LZ-Rtn"/>
+                            <constraint firstItem="mDH-KT-snp" firstAttribute="trailing" secondItem="j0J-vk-nAp" secondAttribute="trailing" constant="104" id="29c-1z-H6Y"/>
+                            <constraint firstItem="Hkp-Lt-aL9" firstAttribute="leading" secondItem="mDH-KT-snp" secondAttribute="leading" constant="50" id="7Vs-SU-8UU"/>
+                            <constraint firstItem="Hkp-Lt-aL9" firstAttribute="top" secondItem="j0J-vk-nAp" secondAttribute="bottom" constant="83" id="8O8-ar-xjT"/>
+                            <constraint firstItem="vlv-YT-bF6" firstAttribute="top" secondItem="mDH-KT-snp" secondAttribute="top" constant="70" id="RHt-Jx-XIo"/>
+                            <constraint firstItem="vlv-YT-bF6" firstAttribute="centerX" secondItem="j0J-vk-nAp" secondAttribute="centerX" id="SQ3-52-eys"/>
+                            <constraint firstItem="Hkp-Lt-aL9" firstAttribute="centerX" secondItem="j0J-vk-nAp" secondAttribute="centerX" id="ajn-aG-H4w"/>
+                            <constraint firstItem="vlv-YT-bF6" firstAttribute="leading" secondItem="mDH-KT-snp" secondAttribute="leading" constant="70" id="bRV-fg-GU2"/>
+                            <constraint firstItem="mDH-KT-snp" firstAttribute="bottom" secondItem="Hkp-Lt-aL9" secondAttribute="bottom" constant="284" id="c0l-it-VFP"/>
+                            <constraint firstItem="mDH-KT-snp" firstAttribute="trailing" secondItem="Hkp-Lt-aL9" secondAttribute="trailing" constant="50" id="qbT-iW-SCT"/>
+                            <constraint firstItem="mDH-KT-snp" firstAttribute="trailing" secondItem="vlv-YT-bF6" secondAttribute="trailing" constant="70" id="zaI-Zz-DFV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Verificacion" id="jsD-ej-swB"/>
                     <connections>
                         <outlet property="botonVerificar" destination="Hkp-Lt-aL9" id="h76-X7-kZz"/>
                         <outlet property="codigoVerificacion" destination="j0J-vk-nAp" id="DnM-MZ-sNX"/>
+                        <outlet property="verifyImage" destination="vlv-YT-bF6" id="qI2-jB-wpt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvQ-Hh-z9Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
