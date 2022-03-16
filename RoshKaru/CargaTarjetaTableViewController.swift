@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class CargaTarjetaTableViewController: UIViewController {
 
@@ -25,15 +26,48 @@ class CargaTarjetaTableViewController: UIViewController {
     var fieldCSCTarjeta = UITextField()
     var labelInfo = UILabel()
     var bandaTarjetas = UIImageView()
+    var bottomLine = CALayer()
+    
+    private var hud: MBProgressHUD?
+    var accessToken: String?
+    var paymentType: PaymentType?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         labelInstruccion()
-        bandaMarcas()
         stack()
         estiloBoton()
+        self.accessToken = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
     }
     
+    
+    @IBAction func buttonAction(_ sender: Any) {
+        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.add_payment_method(type: .credit_card,
+                                cardHolderName: fieldNombreTarjeta.text,
+                                cardNumbers: fieldNumeroTarjeta.text,
+                                cardExpirationMonth: Int(fieldMesVencimientoTarjeta.text!),
+                                cardExpirationYear: Int(fieldAnhoVencimientoTarjeta.text!),
+                                cardSecurityCode: fieldCSCTarjeta.text)
+//        add_payment_method(type: .credit_card, cardHolderName: "Nicolas Cage", cardNumbers: "1233-1231-1243-4343", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "348" /*accessToken: self.accessToken*/)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "confirmacion" {
+            if let nextViewController = segue.destination as? ConfirmacionViewController {
+                nextViewController.accessToken = self.accessToken
+                
+            }
+        }
+    }
+    
+    //label titulo del screen
     func labelInstruccion () {
         view.addSubview(labelInfo)
         labelInfo.text = "Ingrese los datos de su tarjeta"
@@ -44,18 +78,20 @@ class CargaTarjetaTableViewController: UIViewController {
         
     }
     
+    //funcion para la imagen
     func bandaMarcas () {
         view.addSubview(bandaTarjetas)
         bandaTarjetas.image = UIImage(named: "banda tarjetas")
         bandaTarjetas.translatesAutoresizingMaskIntoConstraints = false
-        bandaTarjetas.topAnchor.constraint(equalTo: self.labelInfo.bottomAnchor, constant: 10).isActive = true
+        //bandaTarjetas.topAnchor.constraint(equalTo: self.labelInfo.bottomAnchor, constant: 10).isActive = true
+        bandaTarjetas.bottomAnchor.constraint(equalTo: self.stackStack.topAnchor, constant: -20).isActive = true
         bandaTarjetas.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         bandaTarjetas.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         bandaTarjetas.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
 
     }
     
-    //crecion y constraints del stack
+    //crecion del stack, constraints del stack y adicion de elementos
     func stack () {
         view.addSubview(stackStack)
         stackStack.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +107,7 @@ class CargaTarjetaTableViewController: UIViewController {
         stackStack.distribution = .fillEqually
         //stackStack.spacing = 5
         
+        bandaMarcas()
         nombreLabel()
        // stackStack.setCustomSpacing(2.0, after: labelNombreTarjeta)
         nombreField()
@@ -98,8 +135,8 @@ class CargaTarjetaTableViewController: UIViewController {
     func nombreField () {
         fieldNombreTarjeta.placeholder = "Nombre"
         fieldNombreTarjeta.layer.borderWidth = 0.5
-        fieldNombreTarjeta.layer.cornerRadius = 5
-        
+        fieldNombreTarjeta.layer.cornerRadius = 4
+        fieldNombreTarjeta.layer.borderColor = UIColor.gray.cgColor
         stackStack.addArrangedSubview(fieldNombreTarjeta)
     }
     
@@ -113,7 +150,8 @@ class CargaTarjetaTableViewController: UIViewController {
     func numeroField () {
         fieldNumeroTarjeta.placeholder = "XXXX-XXXX-XXXX-XXXX"
         fieldNumeroTarjeta.layer.borderWidth = 0.5
-        fieldNumeroTarjeta.layer.cornerRadius = 5
+        fieldNumeroTarjeta.layer.cornerRadius = 4
+        fieldNumeroTarjeta.layer.borderColor = UIColor.gray.cgColor
         stackStack.addArrangedSubview(fieldNumeroTarjeta)
     }
     
@@ -127,7 +165,8 @@ class CargaTarjetaTableViewController: UIViewController {
     func mesField () {
         fieldMesVencimientoTarjeta.placeholder = "MM"
         fieldMesVencimientoTarjeta.layer.borderWidth = 0.5
-        fieldMesVencimientoTarjeta.layer.cornerRadius = 5
+        fieldMesVencimientoTarjeta.layer.cornerRadius = 4
+        fieldMesVencimientoTarjeta.layer.borderColor = UIColor.gray.cgColor
         stackStack.addArrangedSubview(fieldMesVencimientoTarjeta)
     }
     
@@ -141,7 +180,8 @@ class CargaTarjetaTableViewController: UIViewController {
     func anhoField () {
         fieldAnhoVencimientoTarjeta.placeholder = "AA"
         fieldAnhoVencimientoTarjeta.layer.borderWidth = 0.5
-        fieldAnhoVencimientoTarjeta.layer.cornerRadius = 5
+        fieldAnhoVencimientoTarjeta.layer.cornerRadius = 4
+        fieldAnhoVencimientoTarjeta.layer.borderColor = UIColor.gray.cgColor
         stackStack.addArrangedSubview(fieldAnhoVencimientoTarjeta)
     }
     
@@ -155,7 +195,8 @@ class CargaTarjetaTableViewController: UIViewController {
     func cscField () {
         fieldCSCTarjeta.placeholder = "XXX"
         fieldCSCTarjeta.layer.borderWidth = 0.5
-        fieldCSCTarjeta.layer.cornerRadius = 5
+        fieldCSCTarjeta.layer.cornerRadius = 4
+        fieldCSCTarjeta.layer.borderColor = UIColor.gray.cgColor
         stackStack.addArrangedSubview(fieldCSCTarjeta)
     }
     
@@ -165,17 +206,91 @@ class CargaTarjetaTableViewController: UIViewController {
        
         cargaTarjetaSiguiente.translatesAutoresizingMaskIntoConstraints = false
         cargaTarjetaSiguiente.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        cargaTarjetaSiguiente.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
+        cargaTarjetaSiguiente.topAnchor.constraint(equalTo: self.stackStack.bottomAnchor, constant: 80).isActive = true
+        //cargaTarjetaSiguiente.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
         cargaTarjetaSiguiente.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         cargaTarjetaSiguiente.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
-        cargaTarjetaSiguiente.backgroundColor = .systemBlue
+        cargaTarjetaSiguiente.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        cargaTarjetaSiguiente.frame.size.height = 25
+        cargaTarjetaSiguiente.backgroundColor = .systemRed
         cargaTarjetaSiguiente.setTitleColor(.white, for: .normal)
-        cargaTarjetaSiguiente.layer.cornerRadius = 5
-        //allowResize?.isActive = true
-        //cargaTarjetaSiguiente.frame.size.height = 100
+        cargaTarjetaSiguiente.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        //cargaTarjetaSiguiente.backgroundColor = .setBackgroundColor(.blue, forState: .highlighted)
+        cargaTarjetaSiguiente.layer.cornerRadius = 22
+        
     }
     
-
+//    @objc func buttonAction(sender: UIButton!) {
+//        let alert = UIAlertController(title: "Aviso!", message: "Verifique datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//
+//        if fieldNombreTarjeta.text! == "arturo" {
+//            present(alert, animated: true)
+//        }
+    
+    enum PaymentType: String {
+        case credit_card
+        case cash
+    }
+        
+    func add_payment_method(type:PaymentType,
+                                    cardHolderName: String?,
+                                    cardNumbers: String?,
+                                    cardExpirationMonth: Int?,
+                                    cardExpirationYear: Int?,
+                                    cardSecurityCode: String?
+                                    /*accessToken: String?*/
+     ) {
+        
+         let BASEURL = "https://texo.thebirdmaker.com/eat"
+         var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
+         var queryItems: [URLQueryItem] = [
+             URLQueryItem(name: "type", value: type.rawValue),
+         ]
+         if let cardHolderName = cardHolderName {
+             queryItems.append(URLQueryItem(name: "cardHolderName", value: cardHolderName))
+         }
+         if let cardNumbers = cardNumbers {
+             queryItems.append(URLQueryItem(name: "cardNumbers", value: cardNumbers))
+         }
+         if let cardExpirationMonth = cardExpirationMonth {
+             queryItems.append(URLQueryItem(name: "cardExpirationMonth", value: String(cardExpirationMonth)))
+         }
+         if let cardExpirationYear = cardExpirationYear {
+             queryItems.append(URLQueryItem(name: "cardExpirationYear", value: String(cardExpirationYear)))
+         }
+         if let cardSecurityCode = cardSecurityCode {
+             queryItems.append(URLQueryItem(name: "cardSecurityCode", value: cardSecurityCode))
+            //queryItaccems.append(URLQueryItem(name: "replace", value: String(true)))
+         }
+//         if let accessToken = accessToken {
+//            queryItems.append(URLQueryItem(name: "accessToken", value: accessToken))
+//        }
+         
+         
+         urlComponents.queryItems = queryItems
+         let url = urlComponents.url!
+         print(url.absoluteString)
+         let request = URLRequest(url: url)
+         URLSession.shared.dataTask(with: request) { data, response, error in
+             if let error = error {
+                 print(error);
+             } else if let data = data {
+                 
+                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                 if let json = json {
+                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                 } else {
+                     print("# Success")
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "confirmacion", sender: self.accessToken)
+                    }
+                 }
+                 
+             }
+         }.resume()
+         
+     }
 
 
 }
