@@ -1,16 +1,20 @@
 PODS:
+  - GMStepper (2.2)
   - MBProgressHUD (1.2.0)
 
 DEPENDENCIES:
+  - GMStepper
   - MBProgressHUD (~> 1.2.0)
 
 SPEC REPOS:
   trunk:
+    - GMStepper
     - MBProgressHUD
 
 SPEC CHECKSUMS:
+  GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
 
-PODFILE CHECKSUM: c3c993dc4d0ca9d676f688e71f3a7500dba6311f
+PODFILE CHECKSUM: 2651c5f10efd3d63e7ebe6a8e23b14cad140b8a8
 
 COCOAPODS: 1.11.2

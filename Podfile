@@ -7,7 +7,8 @@ target 'RoshKaru' do
 
   # Pods for RoshKaru
   pod 'MBProgressHUD', '~> 1.2.0'
-  
+  pod 'GMStepper'
+
   target 'RoshKaruTests' do
     inherit! :search_paths
     # Pods for testing
