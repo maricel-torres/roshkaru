@@ -9,14 +9,26 @@
 import UIKit
 
 class QuieroViewController: UIViewController {
-
+    var accesstoken: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    
+    
+    @IBAction func quieroComer(_ sender: Any) {
+        performSegue(withIdentifier: "idubicacion", sender: accesstoken)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier ==  "idubicacion"{
+            if let nexviewcontroller  = segue.destination as? UbicacionViewController {
+                nexviewcontroller.accessToken = self.accesstoken
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 
