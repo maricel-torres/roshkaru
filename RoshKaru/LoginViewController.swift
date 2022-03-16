@@ -21,22 +21,29 @@ class LoginViewController: UIViewController {
     var accessToken:String?
     var challenge:String?
     //@IBOutlet weak var NumeroCelular: UITextField!
-    @IBOutlet weak var BtnSendNumber: UIButton!
+    @IBOutlet weak var BtnSendNumber: MDCButton!
     
     @IBOutlet weak var StackLogin: UIStackView!
     let NumeroCelular = MDCOutlinedTextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         BtnSendNumber.addTarget(self, action: #selector(SendNumber(_:)), for: .touchUpInside)
+        BtnSendNumber.accessibilityLabel = "Create"
+        BtnSendNumber.setTitle("ENVIAR", for: .normal)
+        BtnSendNumber.setTitleColor(.white, for: .normal)
+        BtnSendNumber.backgroundColor = .systemRed
+        BtnSendNumber.layer.cornerRadius = 18
         
         
-        NumeroCelular.label.text = "Phone number"
-        NumeroCelular.placeholder = "Ej: 09Xx-XXX-XXX"
-        //NumeroCelular.leadingAssistiveLabel.text = "This is helper text"
+        NumeroCelular.label.text = "Número de teléfono"
+        NumeroCelular.placeholder = "09X123456"
+        NumeroCelular.leadingAssistiveLabel.text = "Sin letras, guiones o espacios."
         NumeroCelular.sizeToFit()
-        NumeroCelular.setOutlineColor(.systemPurple, for: .normal)
-        NumeroCelular.setOutlineColor(.purple, for: .editing)
+        NumeroCelular.setOutlineColor(.systemRed, for: .normal)
+        NumeroCelular.setOutlineColor(.red, for: .editing)
         
         StackLogin.addArrangedSubview(NumeroCelular)
         StackLogin.addArrangedSubview(BtnSendNumber)
@@ -84,7 +91,7 @@ class LoginViewController: UIViewController {
 
 
     private func start_login(phoneNumber: String, accessToken:String? ) {
-        let BASEURL = "https://texo.thebirdmaker.com/eat"
+        let BASEURL = "https://phoebe.roshka.com/eat"
         var urlComponents = URLComponents(string: "\(BASEURL)/start_login")!
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "phoneNumber", value: phoneNumber),
