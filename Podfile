@@ -7,13 +7,14 @@ target 'RoshKaru' do
 
   # Pods for RoshKaru
   pod 'MBProgressHUD', '~> 1.2.0'
-  
+  pod 'GMStepper' 
   pod 'MaterialComponents/TextControls+FilledTextAreas'
   pod 'MaterialComponents/TextControls+FilledTextFields'
   pod 'MaterialComponents/TextControls+OutlinedTextAreas'
   pod 'MaterialComponents/TextControls+OutlinedTextFields'
   pod 'MaterialComponents/Buttons'
   
+
   target 'RoshKaruTests' do
     inherit! :search_paths
     # Pods for testing

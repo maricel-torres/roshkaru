@@ -1,4 +1,6 @@
 PODS:
+
+  - GMStepper (2.2)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/Buttons (124.2.0):
@@ -100,11 +102,14 @@ PODS:
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
+
   - MBProgressHUD (1.2.0)
   - MDFInternationalization (3.0.0)
   - MDFTextAccessibility (2.0.1)
 
 DEPENDENCIES:
+
+  - GMStepper
   - MaterialComponents/Buttons
   - "MaterialComponents/TextControls+FilledTextAreas"
   - "MaterialComponents/TextControls+FilledTextFields"
@@ -114,17 +119,23 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+
+    - GMStepper
     - MaterialComponents
     - MBProgressHUD
     - MDFInternationalization
     - MDFTextAccessibility
 
 SPEC CHECKSUMS:
+  GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
 
-PODFILE CHECKSUM: bbc641b6e0d7b46e5258d34c91e2eca893c22fe2
+
+PODFILE CHECKSUM: 2651c5f10efd3d63e7ebe6a8e23b14cad140b8a8
+
+
 
 COCOAPODS: 1.11.2

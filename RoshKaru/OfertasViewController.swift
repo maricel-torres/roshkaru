@@ -31,8 +31,14 @@ struct Cook : Codable{
     var name: String
     var kitchen: String
 }
+var totalAPagar: Int = 0
+
 
 class OfertasViewController: UITableViewController {
+    var index:Int?
+    var total : Int?
+    var pedido: Int?
+    
     var BASEURL = "https://texo.thebirdmaker.com/eat"
     var weklyPlans : [Cook]?
     var at = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
@@ -41,7 +47,8 @@ class OfertasViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
-        
+       print(pedido ?? 0)
+        print(total ?? 0)
         
     }
     public func weekly_plans_cooks (accessToken:String) {
@@ -72,22 +79,13 @@ class OfertasViewController: UITableViewController {
     }
     public func DecodeJson(_ jsonString: String)-> [Cook] {
         let listaJson = try? JSONDecoder().decode([Cook].self, from: jsonString.data(using: .utf8)!)
-        if let listaJson = listaJson {
-            print(listaJson)
-        }
+//        if let listaJson = listaJson {
+//            print(listaJson)
+//        }
         return listaJson!
     }
     
-    /*
-     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         ""
@@ -95,6 +93,7 @@ class OfertasViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         weklyPlans?[0].offers.count ?? 0
+        
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         weklyPlans?[0].offers[section].items.count ?? 0
@@ -102,16 +101,24 @@ class OfertasViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: "items", for: indexPath) as? OfertaCell
         celda?.item = weklyPlans?[0].offers[indexPath.section].items[indexPath.row]
-//        celda?.diaHora.text = weklyPlans?[0].offers[indexPath.section].items[indexPath.row].day
-//        celda?.titulo.text = weklyPlans?[0].offers[indexPath.section].items[indexPath.row].title
-//        celda?.precio.text = String(weklyPlans?[0].offers[indexPath.section].items[indexPath.row].price ?? 0)
-//        celda?.descripcion.text = weklyPlans?[0].offers[indexPath.section].items[indexPath.row].description
-        
-       // let label = celda.viewWithTag(1) as? UILabel
-       // label?.text = weklyPlans?[0].offers[indexPath.section].items[indexPath.row].day
         
          return celda!
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
+        self.performSegue(withIdentifier: "oferta", sender: indexPath)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+            if segue.identifier == "oferta" {
+                if let nextViewController = segue.destination as? Quantity {
+                    nextViewController.datos = weklyPlans![index!]
+                    nextViewController.indice = index
+                }
+            }
+        }
 }
 
 class OfertaCell: UITableViewCell {
@@ -141,9 +148,77 @@ class OfertaCell: UITableViewCell {
 
     @IBOutlet weak var descripcion: UILabel!
     
-    override func awakeFromNib() {
+    
+}
+class Quantity: UIViewController{
+
+    var datos : Cook?
+    var indice : Int?
+    var pedido : Int = 0
+    var pedidoChanged : Int = 0
+    var PagoChanged: Int = 0
+    @IBOutlet weak var StackView1: UIStackView!
+    
+    @IBOutlet weak var StackView2: UIStackView!
+    
+    @IBOutlet weak var StackView3: UIStackView!
+    
+    @IBOutlet weak var Titulo: UILabel!
+    
+    @IBOutlet weak var Precio: UILabel!
+    
+    @IBOutlet weak var AddButton: UIButton!
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        StackView1.spacing = 20
+        StackView2.spacing = 120
+        Titulo.text = datos?.offers[indice!].items[indice!].title
+        Precio.text = "Gs." + String(datos?.offers[indice!].items[indice!].price ?? 0)
+        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(datos?.offers[indice!].items[indice!].price ?? 0))", for: .normal)
         
         
     }
     
+    
+    
+    @IBAction func StepperValueChanged(_ sender: UIStepper) {
+        let value = Int(sender.value)
+        PagoChanged = value * (datos?.offers[indice!].items[indice!].price ?? 0)
+        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(totalAPagar))", for: .normal)
+        pedidoChanged = Int(sender.value)
+        print("PagoChanged: \(PagoChanged), PedidoChanged: \(pedidoChanged)")
+        
+    }
+    
+    
+    @IBAction func volverAPantallaOfertas(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "VolveraOfertas", sender: totalAPagar)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          // let total = String(describing: sender)
+        if(pedidoChanged != 0){
+            pedido = pedidoChanged + pedido
+            totalAPagar = totalAPagar + PagoChanged
+        } else{
+            pedido += 1
+        }
+        if(totalAPagar == 0){
+            totalAPagar = datos?.offers[indice!].items[indice!].price ?? 0
+        }else{
+            totalAPagar = totalAPagar + (datos?.offers[indice!].items[indice!].price ?? 0)
+            
+        }
+            if segue.identifier == "VolveraOfertas" {
+                if let destino = segue.destination as? OfertasViewController {
+                    destino.total = totalAPagar
+                    destino.pedido = pedido
+                  
+                }
+            }
+        }
+  
 }
