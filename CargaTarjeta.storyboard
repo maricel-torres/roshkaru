@@ -20,7 +20,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Siguiente"/>
                                 <connections>
-                                    <segue destination="pcM-g9-3bM" kind="show" id="fmp-Hy-Oai"/>
+                                    <action selector="buttonAction:" destination="UPL-Iu-3Wa" eventType="touchUpInside" id="FOm-7u-SX8"/>
+                                    <segue destination="pcM-g9-3bM" kind="show" identifier="confirmacion" id="fmp-Hy-Oai"/>
                                 </connections>
                             </button>
                         </subviews>
