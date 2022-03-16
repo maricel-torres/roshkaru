@@ -8,16 +8,28 @@
 
 import UIKit
 import MapKit
+import MaterialComponents.MaterialButtons
 
-class UbicacionViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
+class UbicacionViewController: UIViewController {
 
+
+    @IBOutlet weak var button: MDCButton!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var buttomSgte: UIButton!
     @IBOutlet weak var pinIcon: UIImageView!
+    @IBOutlet weak var stack: UIStackView!
     
     var accessToken:String?
     
     override func viewDidLoad() {
+        button.accessibilityLabel = "Create"
+        button.setTitle("Siguiente", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemRed
+        stack.addArrangedSubview(button)
+        button.layer.cornerRadius = 18
+        
+        
+        
         super.viewDidLoad()
         self.accessToken = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
         let latitude    = -25.281818845574698
