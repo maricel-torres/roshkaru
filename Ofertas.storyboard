@@ -101,7 +101,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mSs-0s-Q7F">
                                 <rect key="frame" x="20" y="20" width="374" height="50.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-dx-TZq">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-dx-TZq">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
@@ -217,6 +217,7 @@
                         <outlet property="StackView2" destination="S7h-cO-JRg" id="8TA-yq-Elo"/>
                         <outlet property="StackView3" destination="aqF-Ow-4i4" id="BOc-w2-bKG"/>
                         <outlet property="Titulo" destination="YzC-dx-TZq" id="ub3-OG-A55"/>
+                        <outlet property="stepper" destination="X1z-QV-PDm" id="ubG-pL-hhr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TgP-ha-OKt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

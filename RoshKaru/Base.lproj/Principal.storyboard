@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kXB-LF-vGI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Principal-->
+        <!--Principal Table View Controller-->
         <scene sceneID="ofW-8w-fIM">
             <objects>
                 <tableViewController storyboardIdentifier="UITableViewController-kXB-LF-vGI" id="kXB-LF-vGI" customClass="PrincipalTableViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,14 +17,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="principal-cell" id="7hl-5w-s8O">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="31" reuseIdentifier="principal-cell" rowHeight="202" id="7hl-5w-s8O" customClass="CookCell" customModule="RoshKaru" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="202"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7hl-5w-s8O" id="en1-8e-2kH">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7hl-5w-s8O" id="en1-8e-2kH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="202"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="694-o4-XQZ">
+                                            <rect key="frame" x="335" y="19" width="59" height="132"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLr-1u-g93">
+                                            <rect key="frame" x="33" y="19" width="182" height="132"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
+                                    <outlet property="avatarCook" destination="BLr-1u-g93" id="Y6O-n5-3Op"/>
+                                    <outlet property="nameCook" destination="694-o4-XQZ" id="CR3-CZ-8yI"/>
                                     <segue destination="BlN-A4-dkg" kind="show" id="r1q-QA-69D"/>
                                 </connections>
                             </tableViewCell>
@@ -34,11 +50,10 @@
                             <outlet property="delegate" destination="kXB-LF-vGI" id="him-oT-ZZo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Principal" id="NeY-ZJ-0eW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="it7-Cz-bmh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="347"/>
+            <point key="canvasLocation" x="-842.02898550724649" y="67.633928571428569"/>
         </scene>
         <!--UITableViewController-hvT-wT-mKn-->
         <scene sceneID="RoF-C8-Kqd">
