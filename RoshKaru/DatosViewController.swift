@@ -36,7 +36,6 @@ class DatosViewController: UIViewController {
         } else {
             showError("Por favor ingrese nombre")
             self.name.text = nil
-            self.hud?.isHidden = true
         }
         
     }
@@ -87,6 +86,7 @@ class DatosViewController: UIViewController {
                         // mostrar error
                         self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
                         self.name.text = nil
+                        self.hud?.isHidden = true
                     }
                 }
                 
