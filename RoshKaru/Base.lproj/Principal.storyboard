@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17701"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,34 +12,48 @@
         <scene sceneID="ofW-8w-fIM">
             <objects>
                 <tableViewController storyboardIdentifier="UITableViewController-kXB-LF-vGI" id="kXB-LF-vGI" customClass="PrincipalTableViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rq1-lP-Hl4">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rq1-lP-Hl4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="31" reuseIdentifier="principal-cell" rowHeight="202" id="7hl-5w-s8O" customClass="CookCell" customModule="RoshKaru" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="202"/>
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="31" shouldIndentWhileEditing="NO" reuseIdentifier="principal-cell" rowHeight="102" id="7hl-5w-s8O" customClass="CookCell" customModule="RoshKaru" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7hl-5w-s8O" id="en1-8e-2kH">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="202"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="694-o4-XQZ">
-                                            <rect key="frame" x="335" y="19" width="59" height="132"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <nil key="textColor"/>
+                                        <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="694-o4-XQZ">
+                                            <rect key="frame" x="113" y="16" width="281" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" systemColor="systemPinkColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLr-1u-g93">
-                                            <rect key="frame" x="33" y="19" width="182" height="132"/>
+                                            <rect key="frame" x="20" y="9" width="85" height="85"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sku-fg-cwe">
+                                            <rect key="frame" x="113" y="45" width="281" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="694-o4-XQZ" firstAttribute="top" secondItem="en1-8e-2kH" secondAttribute="top" constant="16" id="7zQ-az-t8x"/>
+                                        <constraint firstItem="Sku-fg-cwe" firstAttribute="leading" secondItem="694-o4-XQZ" secondAttribute="leading" id="CzC-ds-jcH"/>
+                                        <constraint firstItem="Sku-fg-cwe" firstAttribute="top" secondItem="694-o4-XQZ" secondAttribute="bottom" constant="5" id="K5F-OD-cWw"/>
+                                        <constraint firstAttribute="trailing" secondItem="694-o4-XQZ" secondAttribute="trailing" constant="20" symbolic="YES" id="La2-VC-zdg"/>
+                                        <constraint firstItem="694-o4-XQZ" firstAttribute="leading" secondItem="en1-8e-2kH" secondAttribute="leading" constant="113" id="heU-6O-6kv"/>
+                                        <constraint firstItem="Sku-fg-cwe" firstAttribute="trailing" secondItem="694-o4-XQZ" secondAttribute="trailing" id="rMg-fP-oiF"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
                                     <outlet property="avatarCook" destination="BLr-1u-g93" id="Y6O-n5-3Op"/>
+                                    <outlet property="detail" destination="Sku-fg-cwe" id="g3a-iN-EFa"/>
                                     <outlet property="nameCook" destination="694-o4-XQZ" id="CR3-CZ-8yI"/>
                                     <segue destination="BlN-A4-dkg" kind="show" id="r1q-QA-69D"/>
                                 </connections>
@@ -67,6 +81,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

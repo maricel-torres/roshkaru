@@ -63,7 +63,7 @@ class UbicacionViewController: UIViewController {
     }
 
     func set_location(accessToken:String, addressType: AddressType, latitude: Double, longitude: Double ) {
-        let BASEURL = "https://texo.thebirdmaker.com/eat"
+        let BASEURL = "https://phoebe.roshka.com/eat"
         var urlComponents = URLComponents(string: "\(BASEURL)/set_location")!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "addressType", value: addressType.rawValue),
