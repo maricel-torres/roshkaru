@@ -16,7 +16,7 @@ class PrincipalTableViewController: UITableViewController {
     
     private var hud: MBProgressHUD?
     override func viewDidLoad() {
-        self.accessToken = "3463746f-9d6a-4926-a7fc-a081fd97e09a"
+        //self.accessToken = "3463746f-9d6a-4926-a7fc-a081fd97e09a"
         weekly_plans_cooks(accessToken: self.accessToken!)
         super.viewDidLoad()
     }

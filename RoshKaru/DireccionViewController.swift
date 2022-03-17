@@ -19,7 +19,7 @@ class DireccionViewController: UIViewController {
     @IBOutlet weak var reference: UITextField!
     @IBOutlet weak var button: MDCButton!
     
-    var accessToken:String? = "e6a2b767-0a12-4958-aac2-ed11bc620212"
+    var accessToken:String?
     private var hud: MBProgressHUD?
     
     override func viewDidLoad() {
