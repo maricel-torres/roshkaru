@@ -31,7 +31,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Comer"/>
                                         <connections>
-                                            <action selector="quieroComer:" destination="R9G-ys-mhA" eventType="touchUpInside" id="Vun-Gw-8WN"/>
                                             <segue destination="1qQ-TJ-vda" kind="show" identifier="idubicacion" id="zef-ce-T3D"/>
                                         </connections>
                                     </button>

@@ -35,9 +35,9 @@ class QuieroViewController: UIViewController {
     
     
     
-    @IBAction func quieroComer(_ sender: Any) {
-        performSegue(withIdentifier: "idubicacion", sender: accesstoken)
-    }
+//    @IBAction func quieroComer(_ sender: Any) {
+//        performSegue(withIdentifier: "idubicacion", sender: accesstoken)
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "idubicacion"{
