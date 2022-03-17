@@ -9,12 +9,15 @@ import UIKit
 class EatCalls{
     
     private static var BASEURL = "https://phoebe.roshka.com/eat"
-    
+//    private static var BASEURL = "http://localhost:8080/eat"
     static func all_calls_example() {
         
 
-      //let at = "1442c366-a673-4b81-adbe-b022a4a1e93a"
-//      start_login(phoneNumber: "0981123456", accessToken: nil)
+        var at: String = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
+//      let at = "1442c366-a673-4b81-adbe-b022a4a1e93a"
+        //let at = "73f6ccb8-a4f0-4e71-86fc-9473df433280" // local
+        
+//      start_login(phoneNumber: "0971305003", accessToken: nil)
 //      input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
 //      input_name(accessToken: at, name: "Yesss")
 //      toggle_traits(accessToken: at, trait: .eater)
@@ -22,8 +25,22 @@ class EatCalls{
 //        set_address(accessToken: at, addressType: .delivery, streetName: "Tte. Cusmanish", number: "833", neighborhood: "Las Mercedes", reference: "barrio cerrado de roshka")
 //      weekly_plans_cooks(accessToken: at)
 //      /// TODO: add parameters
-      //var cartKey: String? = "7a625cfe-dbb3-4bf5-b8e3-4b384ba9658b"
-      //add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: "48468369-1668-486f-b209-092af2ea283c", offerKey: "709d6809-459c-4c08-a754-0a8442fcbca1", itemKey: "1bcea31c-7225-461e-913f-1978ae560c3f", quantity: 1)
+//      var cartKey: String? = "7a625cfe-dbb3-4bf5-b8e3-4b384ba9658b"
+        
+        var cartKey: String? = "55ecabfb-de70-492e-8c31-104775a86037"
+//      add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: "48468369-1668-486f-b209-092af2ea283c", offerKey: "709d6809-459c-4c08-a754-0a8442fcbca1", itemKey: "1bcea31c-7225-461e-913f-1978ae560c3f", quantity: 1)
+        
+//        add_payment_method(accessToken: at, type: .cash, cardHolderName: nil, cardNumbers: nil, cardExpirationMonth: nil, cardExpirationYear: nil, cardSecurityCode: nil)
+//        add_payment_method(accessToken: at, type: .credit_card, cardHolderName: "OK PUPX", cardNumbers: "1234-1234-5678-8765", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "123")
+        
+//        list_payment_methods(accessToken: at)
+        
+        
+//        close_cart(accessToken: at, cartKey: cartKey, confirm: false)
+//        close_cart(accessToken: at, cartKey: cartKey, confirm: true)
+        
+        let paymentMethodKey = "70e78dc3-4a64-4007-9123-7e898f817b46"
+        pay_cart(accessToken: at, cartKey: cartKey, paymentMethodKey: paymentMethodKey, total: 100000)
 
         
     }
@@ -111,7 +128,7 @@ class EatCalls{
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
                 
                 
@@ -153,7 +170,7 @@ class EatCalls{
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -198,7 +215,7 @@ class EatCalls{
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
                 
                 
@@ -250,7 +267,7 @@ class EatCalls{
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -308,7 +325,7 @@ class EatCalls{
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
                 
                 
@@ -346,7 +363,7 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
 //                    DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -375,7 +392,7 @@ class EatCalls{
 //        private cardSecurityCode: String?,
     
     static func test_add_payment_method() {
-        add_payment_method(type: .credit_card, cardHolderName: "Nicolas Cage", cardNumbers: "1233-1231-1243-4343", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "348")
+        add_payment_method(accessToken: "", type: .credit_card, cardHolderName: "Nicolas Cage", cardNumbers: "1233-1231-1243-4343", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "348")
     }
     
     enum PaymentType: String {
@@ -383,7 +400,8 @@ class EatCalls{
         case cash
     }
     
-    static func add_payment_method(type:PaymentType,
+    static func add_payment_method(accessToken: String,
+                                   type:PaymentType,
                                    cardHolderName: String?,
                                    cardNumbers: String?,
                                    cardExpirationMonth: Int?,
@@ -394,6 +412,7 @@ class EatCalls{
         var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "type", value: type.rawValue),
+            AccessTokenQueryItem(accessToken)
         ]
         if let cardHolderName = cardHolderName {
             queryItems.append(URLQueryItem(name: "cardHolderName", value: cardHolderName))
@@ -425,7 +444,7 @@ class EatCalls{
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
                 
             }
@@ -440,7 +459,7 @@ class EatCalls{
 //
 //        @RequestParam String accessToken
     
-    static func list_payment_methods() {
+    static func test_list_payment_methods() {
         list_payment_methods(accessToken: "")
     }
     
@@ -449,6 +468,7 @@ class EatCalls{
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken)
         ]
+        let debug = true
         urlComponents.queryItems = queryItems
         let url = urlComponents.url!
         print(url.absoluteString)
@@ -457,11 +477,12 @@ class EatCalls{
             if let error = error {
               print(error);
             } else if let data = data {
+                
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -514,11 +535,13 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
     }
+    
+    
     //close_cart
     //==========
     //var accessToken: String
@@ -534,8 +557,8 @@ class EatCalls{
         var urlComponents = URLComponents(string: "\(BASEURL)/close_cart")!
 
         var queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "accessToken", value: accessToken),
-            URLQueryItem(name: "cartKey", value: accessToken),
+            AccessTokenQueryItem(accessToken),
+            URLQueryItem(name: "cartKey", value: cartKey),
             URLQueryItem(name: "confirm", value: String(confirm))
         ]
         urlComponents.queryItems = queryItems
@@ -551,10 +574,18 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
+    }
+    
+    private static func successReally(_ data: Data) {
+        if let str = String(data: data, encoding: .utf8), str.count > 0  {
+            print("_WOOOPS_______________________________________________\n\(str)")
+        } else {
+            print("# Success")
+        }
     }
     
     
@@ -573,8 +604,8 @@ class EatCalls{
         var urlComponents = URLComponents(string: "\(BASEURL)/pay_cart")!
 
         var queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "accessToken", value: accessToken),
-            URLQueryItem(name: "cartKey", value: accessToken),
+            AccessTokenQueryItem(accessToken),
+            URLQueryItem(name: "cartKey", value: cartKey),
             URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
             URLQueryItem(name: "total", value: String(total!))
         ]
@@ -591,7 +622,7 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -623,7 +654,7 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -657,7 +688,7 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
@@ -677,7 +708,7 @@ class EatCalls{
             AccessTokenQueryItem(accessToken),
             URLQueryItem(name: "cartKey", value: cartKey),
             URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
-            URLQueryItem(name: "total", value: total),
+            URLQueryItem(name: "total", value: String(total)),
         ]
         urlComponents.queryItems = queryItems
         let url = urlComponents.url!
@@ -692,7 +723,7 @@ class EatCalls{
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     
                 } else {
-                    print("# Success")
+                    successReally(data)
                 }
             }
         }.resume()
