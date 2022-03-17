@@ -49,14 +49,13 @@ class OfertasViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
-
-
         
        print("total a pagar: \(totalAPagar)")
        print("toatal de pedidos: \(totalpedido)")
 
         
     }
+    
 
 // Agrega items al carrito
      func add_item_to_cart(accessToken:String, cartKey: String?, cookKey:String, offerKey: String, itemKey: String, quantity: Int ) {
@@ -187,6 +186,8 @@ class OfertasViewController: UITableViewController {
             }
         
     }
+    
+
 }
 
 class OfertaCell: UITableViewCell {
@@ -276,10 +277,9 @@ class Quantity: UIViewController{
         
         dismiss(animated: true, completion: nil)
         
-        
-        
-        
-        
     }
+    
+    
+
   
 }
