@@ -36,6 +36,12 @@ class ValidacionViewController: UIViewController {
         botonVerificar.sizeToFit()
         botonVerificar.layer.cornerRadius = 18
         
+//        codigoVerificacion.center = self.view.center
+//        codigoVerificacion.label.text = "Codigo Verificacion"
+//        codigoVerificacion.placeholder = "Ingrese Codigo"
+//        codigoVerificacion.sizeToFit()
+//        codigoVerificacion.setOutlineColor(.systemRed, for: .normal)
+//        codigoVerificacion.setOutlineColor(.red, for: .editing)
     }
     
     
