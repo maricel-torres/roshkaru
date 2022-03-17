@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     
     var accessToken:String?
     var challenge:String?
+    //@IBOutlet weak var NumeroCelular: UITextField!
     @IBOutlet weak var BtnSendNumber: MDCButton!
     
     @IBOutlet weak var StackLogin: UIStackView!
