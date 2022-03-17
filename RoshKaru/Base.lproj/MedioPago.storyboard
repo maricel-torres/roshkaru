@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XCO-QN-RFv">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkh-fm-uut">
-                                <rect key="frame" x="179" y="293" width="56" height="11"/>
+                                <rect key="frame" x="71" y="588" width="56" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Efectivo"/>
                                 <connections>
@@ -24,7 +24,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIA-oz-zmY">
-                                <rect key="frame" x="184" y="372" width="47" height="30"/>
+                                <rect key="frame" x="253" y="578" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Tarjeta"/>
                                 <connections>
@@ -32,8 +32,27 @@
                                     <segue destination="6Ma-8f-1Za" kind="show" identifier="tarjeta" id="mdq-hZ-q58"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pay" translatesAutoresizingMaskIntoConstraints="NO" id="r8K-Mv-T03">
+                                <rect key="frame" x="20" y="71" width="374" height="239"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Por favor seleccione su metodo de pago" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sot-zd-WSv">
+                                <rect key="frame" x="49" y="438" width="317" height="20"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="r8K-Mv-T03" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="10" id="Fu1-ZH-BzW"/>
+                            <constraint firstItem="Sot-zd-WSv" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="20" id="HZm-k1-rYs"/>
+                            <constraint firstItem="Sot-zd-WSv" firstAttribute="centerY" secondItem="aM4-Q6-ZIp" secondAttribute="centerY" id="S5l-Ba-H53"/>
+                            <constraint firstItem="r8K-Mv-T03" firstAttribute="top" secondItem="aM4-Q6-ZIp" secondAttribute="top" id="Zg2-cV-OG9"/>
+                            <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="r8K-Mv-T03" secondAttribute="trailing" constant="10" id="eWZ-Jb-Klg"/>
+                            <constraint firstItem="Sot-zd-WSv" firstAttribute="centerX" secondItem="aM4-Q6-ZIp" secondAttribute="centerX" id="gsi-CV-GJp"/>
+                            <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="Sot-zd-WSv" secondAttribute="trailing" constant="20" id="hfF-vX-07o"/>
+                            <constraint firstItem="Sot-zd-WSv" firstAttribute="top" secondItem="r8K-Mv-T03" secondAttribute="bottom" constant="10" id="olH-8g-3NN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aM4-Q6-ZIp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Medio de Pago" id="Fwr-TJ-0Ie"/>
@@ -59,4 +78,7 @@
             <point key="canvasLocation" x="90" y="1681"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pay" width="170.66667175292969" height="170.66667175292969"/>
+    </resources>
 </document>
