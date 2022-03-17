@@ -40,16 +40,34 @@ class OfertasViewController: UITableViewController {
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
     var at = "be73b556-4de1-402b-84b9-0f0a0977b5fb"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
+
         botonMagico()
      
         //orders(accessToken: at)
+        //self.tableView.contentInset = .init(top: 0, left: 0, bottom: -50, right: 0)
+//        let view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .green
+//        view.layer.zPosition = 1111
+//        self.tableView.addSubview(view)
+//        let to = self.tableView!
+//        NSLayoutConstraint.activate([
+//            view.trailingAnchor.constraint(equalTo: to.trailingAnchor),
+//            view.leadingAnchor.constraint(equalTo: to.leadingAnchor),
+//            view.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.bottomAnchor),
+//            view.heightAnchor.constraint(equalToConstant: 100)
+//        ])
+//        self.tableView.contentInset = .init(top: 0, left: 0, bottom: -200, right: 0)
         
+        
+       print("total a pagar: \(totalAPagar)")
+       print("toatal de pedidos: \(totalpedido)")
+
         
     }
 //     func orders(accessToken:String) {
@@ -144,7 +162,7 @@ class OfertasViewController: UITableViewController {
             } else if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    //print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                    self.weklyPlans = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -250,8 +268,10 @@ class Quantity: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
        // oferta?.itemAgregado(datos!, totalpedido, totalAPagar)
+
         StackView1.spacing = 30
         StackView2.spacing = 120
         Titulo.text = datos?.offers[indice!].items[indice!].title
