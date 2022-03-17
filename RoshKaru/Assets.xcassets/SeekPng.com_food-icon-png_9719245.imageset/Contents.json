@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "SeekPng.com_food-icon-png_9719245.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "SeekPng.com_food-icon-png_9719245-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "SeekPng.com_food-icon-png_9719245-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
