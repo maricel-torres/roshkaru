@@ -8,21 +8,22 @@ import UIKit
 
 class EatCalls{
     
-    private static var BASEURL = "https://texo.thebirdmaker.com/eat"
+    private static var BASEURL = "https://phoebe.roshka.com/eat"
     
     static func all_calls_example() {
         
 
-//      let at = "73f6ccb8-a4f0-4e71-86fc-9473df433280"
-//      start_login(phoneNumber: "0981123456", accessToken: at)
-        //input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
-//      input_name(accessToken: at, name: "Kii Kuu")
+      //let at = "1442c366-a673-4b81-adbe-b022a4a1e93a"
+//      start_login(phoneNumber: "0981123456", accessToken: nil)
+//      input_sms(accessToken: at, input: "011c945f30ce2cbafc452f39840f025693339c42")
+//      input_name(accessToken: at, name: "Yesss")
 //      toggle_traits(accessToken: at, trait: .eater)
 //      set_location(accessToken: at, addressType: .delivery, latitude: 45.5555, longitude: 24.22222)
-//      set_address(addressType: .delivery, streetName: "Tte. Cusmanish", number: "833", neighborhood: "Las Mercedes", reference: "barrio cerrado de roshka")
+//        set_address(accessToken: at, addressType: .delivery, streetName: "Tte. Cusmanish", number: "833", neighborhood: "Las Mercedes", reference: "barrio cerrado de roshka")
 //      weekly_plans_cooks(accessToken: at)
 //      /// TODO: add parameters
-//      add_item_to_cart(accessToken: at, cartKey: "", cookKey: "", offerKey: "", itemKey: "", quantity: 1)
+      //var cartKey: String? = "7a625cfe-dbb3-4bf5-b8e3-4b384ba9658b"
+      //add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: "48468369-1668-486f-b209-092af2ea283c", offerKey: "709d6809-459c-4c08-a754-0a8442fcbca1", itemKey: "1bcea31c-7225-461e-913f-1978ae560c3f", quantity: 1)
 
         
     }
@@ -179,7 +180,7 @@ class EatCalls{
     
     static func toggle_traits(accessToken:String, trait: Trait) {
         
-        var urlComponents = URLComponents(string: "\(BASEURL)/start_login")!
+        var urlComponents = URLComponents(string: "\(BASEURL)/toggle_traits")!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken),
             URLQueryItem(name: "traits", value: trait.rawValue),
@@ -269,14 +270,19 @@ class EatCalls{
 //        private String reference;
     
     static func test_set_address() {
-        set_address(addressType:.delivery, streetName: "Mcal Lopez", number: "984", neighborhood: "Villa Morra", reference: "Shopping")
+        set_address(accessToken: "", addressType:.delivery, streetName: "Mcal Lopez", number: "984", neighborhood: "Villa Morra", reference: "Shopping")
     }
     
     enum AddressType: String {
         case delivery, cook_site
     }
+    
+    private static func AccessTokenQueryItem(_ at: String ) -> URLQueryItem {
+        URLQueryItem(name: "accessToken", value: at)
+    }
+    
 
-    static func set_address(addressType:AddressType, streetName:String, number:String, neighborhood:String, reference:String?) {
+    static func set_address(accessToken: String, addressType:AddressType, streetName:String, number:String, neighborhood:String, reference:String?) {
         
         var urlComponents = URLComponents(string: "\(BASEURL)/set_address")!
         var queryItems: [URLQueryItem] = [
@@ -284,7 +290,7 @@ class EatCalls{
             URLQueryItem(name: "streetName", value: streetName),
             URLQueryItem(name: "number", value: number),
             URLQueryItem(name: "neighborhood", value: neighborhood),
-            
+            AccessTokenQueryItem(accessToken),
         ]
         if let reference = reference {
             queryItems.append(URLQueryItem(name: "reference", value: reference))
@@ -322,29 +328,29 @@ class EatCalls{
 //        weekly_plans_cooks(accessToken: "")
 //      }
 //
-//    static func weekly_plans_cooks (accessToken:String) {
-//        var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
-//        let queryItems: [URLQueryItem] = [
-//            URLQueryItem(name: "accessToken", value: accessToken)
-//        ]
-//        urlComponents.queryItems = queryItems
-//        let url = urlComponents.url!
-//        print(url.absoluteString)
-//        let request = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                print(error);
-//            } else if let data = data {
-//                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-//                if let json = json {
-//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+    static func weekly_plans_cooks (accessToken:String) {
+        var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken)
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
 //                    DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-//                } else {
-//                    print("# Success")
-//                }
-//            }
-//        }.resume()
-//    }
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
     
 //        add_payment_method
 //        ==================
@@ -622,6 +628,76 @@ class EatCalls{
             }
         }.resume()
     }
+    
+    
+//    close_cart
+//    ==========
+//    var accessToken: String
+//    var cartKey: String
+//    var confirm: Bool = false; // tiene valor por defecto, si no se envia nada, es false
+    
+    static func close_cart(accessToken: String, cartKey: String, confirm: Bool) {
+        
+        var urlComponents = URLComponents(string: "\(BASEURL)/close_cart")!
+        let queryItems: [URLQueryItem] = [
+            AccessTokenQueryItem(accessToken),
+            URLQueryItem(name: "cartKey", value: cartKey),
+            URLQueryItem(name: "confirm", value: String(cartKey)),
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
+    
+//    pay_cart
+//    ========
+//    var accessToken: String
+//    var cartKey: String
+//    var paymentMethodKey: String
+//    var total: Int
+    
+    static func pay_cart(accessToken: String, cartKey: String, paymentMethodKey: String, total: Int) {
+    
+        var urlComponents = URLComponents(string: "\(BASEURL)/pay_cart")!
+        let queryItems: [URLQueryItem] = [
+            AccessTokenQueryItem(accessToken),
+            URLQueryItem(name: "cartKey", value: cartKey),
+            URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
+            URLQueryItem(name: "total", value: total),
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
+    
 }
 
 // conversion a SHA1
@@ -648,4 +724,6 @@ class EatCalls{
 //    }
 //
 //}
+
+
 
