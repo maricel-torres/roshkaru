@@ -36,8 +36,6 @@ var totalpedido: Int = 0
 
 class OfertasViewController: UITableViewController {
     var index:Int?
-    var total : Int?
-    var pedido: Int?
     
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
@@ -47,6 +45,10 @@ class OfertasViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
+
+        botonMagico()
+     
+        //orders(accessToken: at)
         //self.tableView.contentInset = .init(top: 0, left: 0, bottom: -50, right: 0)
 //        let view = UIView()
 //        view.translatesAutoresizingMaskIntoConstraints = false
@@ -65,8 +67,86 @@ class OfertasViewController: UITableViewController {
         
        print("total a pagar: \(totalAPagar)")
        print("toatal de pedidos: \(totalpedido)")
+
         
     }
+//     func orders(accessToken:String) {
+//        var urlComponents = URLComponents(string: "\(BASEURL)/orders")!
+//        var queryItems: [URLQueryItem] = [
+//            URLQueryItem(name: "accessToken", value: accessToken)
+//        ]
+//        urlComponents.queryItems = queryItems
+//        let url = urlComponents.url!
+//        print(url.absoluteString)
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print(error);
+//            } else if let data = data {
+//                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+//                if let json = json {
+//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//
+//                } else {
+//                    print("# Success")
+//                }
+//            }
+//        }.resume()
+//    }
+// Agrega items al carrito
+     func add_item_to_cart(accessToken:String, cartKey: String?, cookKey:String, offerKey: String, itemKey: String, quantity: Int ) {
+        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "cookKey", value: cookKey),
+            URLQueryItem(name: "offerKey", value: offerKey),
+            URLQueryItem(name: "itemKey", value: itemKey),
+            URLQueryItem(name: "quantity", value: String(quantity)),
+            URLQueryItem(name: "accessToken", value: accessToken)
+        ]
+        if let cartKey = cartKey {
+            queryItems.append(URLQueryItem(name: "cartKey", value: cartKey))
+        }
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
+// llama a la funcion agregar carrito  y muestra el boton de pedido y total a pagar
+//    func itemAgregado(_ datos: Cook, _ totalPedio: Int, _ totalAPagar: Int){
+//
+//    }
+    private func setButtonTitle() {
+        bonBoton?.setTitle("Ver mi pedido \(totalAPagar)", for: .normal)
+    }
+    
+    private weak var bonBoton: UIButton?
+    
+    public func botonMagico () {
+        let bonBoton = UIButton()
+        self.bonBoton = bonBoton
+        bonBoton.backgroundColor = .red
+        bonBoton.tintColor = .white
+        setButtonTitle()
+        tableView.addSubview(bonBoton)
+        bonBoton.translatesAutoresizingMaskIntoConstraints = false
+        bonBoton.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        bonBoton.leadingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
+        bonBoton.trailingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
+        bonBoton.layer.cornerRadius = 15
+      }
     public func weekly_plans_cooks (accessToken:String) {
         var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
         let queryItems: [URLQueryItem] = [
@@ -132,6 +212,7 @@ class OfertasViewController: UITableViewController {
                 if let nextViewController = segue.destination as? Quantity {
                     nextViewController.datos = weklyPlans![index!]
                     nextViewController.indice = index
+                    nextViewController.oferta = self
                 }
             }
         }
@@ -181,10 +262,16 @@ class Quantity: UIViewController{
     
     @IBOutlet weak var AddButton: UIButton!
     
+    weak var oferta: OfertasViewController?
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+       // oferta?.itemAgregado(datos!, totalpedido, totalAPagar)
+
         StackView1.spacing = 30
         StackView2.spacing = 120
         Titulo.text = datos?.offers[indice!].items[indice!].title

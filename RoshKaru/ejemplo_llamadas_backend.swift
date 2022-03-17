@@ -524,7 +524,9 @@ class EatCalls{
     }
     
     static func close_cart(accessToken:String, cartKey: String?, confirm: Bool) {
-        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+
+        var urlComponents = URLComponents(string: "\(BASEURL)/close_cart")!
+
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken),
             URLQueryItem(name: "cartKey", value: accessToken),
@@ -562,7 +564,8 @@ class EatCalls{
     }
     
     static func pay_cart(accessToken:String, cartKey: String?, paymentMethodKey: String?, total: Int?) {
-        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+        var urlComponents = URLComponents(string: "\(BASEURL)/pay_cart")!
+
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken),
             URLQueryItem(name: "cartKey", value: accessToken),
@@ -596,7 +599,8 @@ class EatCalls{
     }
     
     static func orders(accessToken:String) {
-        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+
+        var urlComponents = URLComponents(string: "\(BASEURL)/orders")!
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "accessToken", value: accessToken)
         ]
