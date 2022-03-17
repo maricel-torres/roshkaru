@@ -13,7 +13,8 @@ import CryptoKit
 
 class ValidacionViewController: UIViewController {
 
-    @IBOutlet weak var botonVerificar: UIButton!
+    @IBOutlet weak var verifyImage: UIImageView!
+    @IBOutlet weak var botonVerificar: MDCButton!
     @IBOutlet weak var codigoVerificacion: UITextField!
     
     // Variable que contendra el valor ingresado en el texfield
@@ -23,11 +24,24 @@ class ValidacionViewController: UIViewController {
     // Variable que contendra el codigo que se envio al numero celular ingresado
     var challenge: String?
     var accessToken: String?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        verifyImage.image = UIImage(named: "smsCodigo")
         codigoVerificacion.center = self.view.center
+        botonVerificar.setTitle("Siguiente", for: .normal)
+        botonVerificar.setTitleColor(.white, for: .normal)
+        botonVerificar.backgroundColor = .systemRed
+        botonVerificar.sizeToFit()
+        botonVerificar.layer.cornerRadius = 18
+        
+//        codigoVerificacion.center = self.view.center
+//        codigoVerificacion.label.text = "Codigo Verificacion"
+//        codigoVerificacion.placeholder = "Ingrese Codigo"
+//        codigoVerificacion.sizeToFit()
+//        codigoVerificacion.setOutlineColor(.systemRed, for: .normal)
+//        codigoVerificacion.setOutlineColor(.red, for: .editing)
     }
     
     
@@ -35,7 +49,7 @@ class ValidacionViewController: UIViewController {
 //        if let codigo = codigoVerificacion.text {
 //            self.input_sms(accessToken: challenge!, input: codigo.sha1())
 //        }
-        self.input_sms(accessToken: accessToken!, input: codigoVerificacion.text!)
+        self.input_sms(accessToken: accessToken!, input: codigoVerificacion.text!.sha1())
     }
     
     

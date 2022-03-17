@@ -32,23 +32,39 @@ struct Cook : Codable{
     var kitchen: String
 }
 var totalAPagar: Int = 0
-
+var totalpedido: Int = 0
 
 class OfertasViewController: UITableViewController {
     var index:Int?
     var total : Int?
     var pedido: Int?
     
-    var BASEURL = "https://texo.thebirdmaker.com/eat"
+    var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
-    var at = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
+    var at = "be73b556-4de1-402b-84b9-0f0a0977b5fb"
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
-       print(pedido ?? 0)
-        print(total ?? 0)
+        //self.tableView.contentInset = .init(top: 0, left: 0, bottom: -50, right: 0)
+//        let view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .green
+//        view.layer.zPosition = 1111
+//        self.tableView.addSubview(view)
+//        let to = self.tableView!
+//        NSLayoutConstraint.activate([
+//            view.trailingAnchor.constraint(equalTo: to.trailingAnchor),
+//            view.leadingAnchor.constraint(equalTo: to.leadingAnchor),
+//            view.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.bottomAnchor),
+//            view.heightAnchor.constraint(equalToConstant: 100)
+//        ])
+//        self.tableView.contentInset = .init(top: 0, left: 0, bottom: -200, right: 0)
+        
+        
+       print("total a pagar: \(totalAPagar)")
+       print("toatal de pedidos: \(totalpedido)")
         
     }
     public func weekly_plans_cooks (accessToken:String) {
@@ -67,7 +83,7 @@ class OfertasViewController: UITableViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     //print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                    self.weklyPlans = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                   self.weklyPlans = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -92,7 +108,7 @@ class OfertasViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        weklyPlans?[0].offers.count ?? 0
+         weklyPlans?[0].offers.count ?? 0
         
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -130,10 +146,6 @@ class OfertaCell: UITableViewCell {
             titulo.text = item?.title
             precio.text = "Gs." + String(item?.price ?? 0)
             descripcion.text = "Reseña: " + (item?.description ?? "")
-//            print(diaHora!)
-//            print(titulo!)
-//            print(precio!, descripcion!)
-            
         }
     }
     
@@ -173,7 +185,7 @@ class Quantity: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        StackView1.spacing = 20
+        StackView1.spacing = 30
         StackView2.spacing = 120
         Titulo.text = datos?.offers[indice!].items[indice!].title
         Precio.text = "Gs." + String(datos?.offers[indice!].items[indice!].price ?? 0)
@@ -187,38 +199,56 @@ class Quantity: UIViewController{
     @IBAction func StepperValueChanged(_ sender: UIStepper) {
         let value = Int(sender.value)
         PagoChanged = value * (datos?.offers[indice!].items[indice!].price ?? 0)
-        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(totalAPagar))", for: .normal)
+        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(PagoChanged))", for: .normal)
         pedidoChanged = Int(sender.value)
-        print("PagoChanged: \(PagoChanged), PedidoChanged: \(pedidoChanged)")
+        //print("PagoChanged: \(PagoChanged), PedidoChanged: \(pedidoChanged)")
         
     }
-    
+   
     
     @IBAction func volverAPantallaOfertas(_ sender: Any) {
-        
-        self.performSegue(withIdentifier: "VolveraOfertas", sender: totalAPagar)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-          // let total = String(describing: sender)
-        if(pedidoChanged != 0){
-            pedido = pedidoChanged + pedido
-            totalAPagar = totalAPagar + PagoChanged
-        } else{
-            pedido += 1
-        }
-        if(totalAPagar == 0){
-            totalAPagar = datos?.offers[indice!].items[indice!].price ?? 0
+        if PagoChanged == 0 {
+            if(totalAPagar == 0){
+                totalAPagar = datos?.offers[indice!].items[indice!].price ?? 0
+                totalpedido = 1
+                print("total a pagar: \(totalAPagar)")
+                print("total de pedidos: \(totalpedido)")
+            }else{
+                totalAPagar = totalAPagar + (datos?.offers[indice!].items[indice!].price ?? 0)
+                totalpedido += 1
+                print("total a pagar: \(totalAPagar)")
+                print("total de pedidos: \(totalpedido)")
+            }
         }else{
-            totalAPagar = totalAPagar + (datos?.offers[indice!].items[indice!].price ?? 0)
+            if(totalAPagar == 0){
+                totalAPagar = datos?.offers[indice!].items[indice!].price ?? 0
+                totalpedido = 1
+                print("total a pagar: \(totalAPagar)")
+                print("total de pedidos: \(totalpedido)")
+            }else{
+                totalAPagar = totalAPagar + PagoChanged
+                totalpedido = totalpedido + pedidoChanged
+                print("total a pagar: \(totalAPagar)")
+                print("total de pedidos: \(totalpedido)")
+            }
             
         }
-            if segue.identifier == "VolveraOfertas" {
-                if let destino = segue.destination as? OfertasViewController {
-                    destino.total = totalAPagar
-                    destino.pedido = pedido
-                  
-                }
-            }
-        }
+        dismiss(animated: true, completion: nil)
+        //self.performSegue(withIdentifier: "VolveraOfertas", sender: totalAPagar)
+    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//
+//            if segue.identifier == "VolveraOfertas" {
+//                if let destino = segue.destination as? OfertasViewController {
+//                    destino.total = totalAPagar
+//                    destino.pedido = totalpedido
+//
+//                  //  print(destino.total!)
+//                }
+//            }
+//
+//
+//        }
   
 }
