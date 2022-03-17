@@ -18,7 +18,7 @@ class UbicacionViewController: UIViewController {
     @IBOutlet weak var pinIcon: UIImageView!
     @IBOutlet weak var stack: UIStackView!
     
-    var accessToken:String?
+    var accessToken:String? = "e6a2b767-0a12-4958-aac2-ed11bc620212"
     
     override func viewDidLoad() {
         button.accessibilityLabel = "Create"
@@ -28,10 +28,8 @@ class UbicacionViewController: UIViewController {
         stack.addArrangedSubview(button)
         button.layer.cornerRadius = 18
         
-        
-        
         super.viewDidLoad()
-        self.accessToken = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
+        self.accessToken = "bb7c5e81-0237-4c49-be78-3a32a56e06b5"
         let latitude    = -25.281818845574698
         let longitude   = -57.61052921667962
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hmL-e4-4nE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -17,23 +17,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-LU-gt3">
-                                <rect key="frame" x="192" y="561" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-LU-gt3">
+                                <rect key="frame" x="182.5" y="694" width="49" height="55"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="OK"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
                                 <connections>
+                                    <action selector="VolverAPantallaPrincipal:" destination="hmL-e4-4nE" eventType="touchUpInside" id="p6O-mW-Izv"/>
                                     <segue destination="7gn-rr-k8b" kind="show" id="M2s-Df-zE0"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckAnimated/11" highlightedImage="CheckAnimated/1" translatesAutoresizingMaskIntoConstraints="NO" id="mIf-Se-jwE">
+                                <rect key="frame" x="47" y="293" width="320" height="320"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pedido Realizado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2j-42-W6P">
+                                <rect key="frame" x="60" y="124" width="294" height="79"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HKx-mf-YeQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mIf-Se-jwE" firstAttribute="centerX" secondItem="HKx-mf-YeQ" secondAttribute="centerX" id="29Q-QG-n6Y"/>
+                            <constraint firstItem="eDg-LU-gt3" firstAttribute="top" secondItem="mIf-Se-jwE" secondAttribute="bottom" constant="81" id="Cj3-bA-A0S"/>
+                            <constraint firstItem="HKx-mf-YeQ" firstAttribute="bottom" secondItem="eDg-LU-gt3" secondAttribute="bottom" constant="113" id="KP7-0H-X2C"/>
+                            <constraint firstItem="a2j-42-W6P" firstAttribute="centerX" secondItem="HKx-mf-YeQ" secondAttribute="centerX" id="P5D-ni-nwV"/>
+                            <constraint firstItem="mIf-Se-jwE" firstAttribute="top" secondItem="a2j-42-W6P" secondAttribute="bottom" constant="90" id="lsH-wX-HQY"/>
+                            <constraint firstItem="eDg-LU-gt3" firstAttribute="centerX" secondItem="mIf-Se-jwE" secondAttribute="centerX" id="onc-tR-6t7"/>
+                            <constraint firstItem="a2j-42-W6P" firstAttribute="top" secondItem="HKx-mf-YeQ" secondAttribute="top" constant="80" id="qbP-hb-m8p"/>
+                            <constraint firstItem="mIf-Se-jwE" firstAttribute="centerY" secondItem="HKx-mf-YeQ" secondAttribute="centerY" id="xDz-sa-9o8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pedido Realizado" id="01e-S4-uP2"/>
+                    <connections>
+                        <outlet property="OkButton" destination="eDg-LU-gt3" id="a3E-9Y-Bm0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sVh-os-8bE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990" y="1681"/>
+            <point key="canvasLocation" x="1989.8550724637682" y="1680.8035714285713"/>
         </scene>
         <!--UITableViewController-kXB-LF-vGI-->
         <scene sceneID="WgD-2t-f3r">
@@ -47,6 +73,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CheckAnimated/1" width="320" height="320"/>
+        <image name="CheckAnimated/11" width="320" height="320"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

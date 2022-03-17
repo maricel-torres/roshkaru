@@ -9,22 +9,18 @@
 import UIKit
 
 class HechoViewController: UIViewController {
-
+    
+    
+   
+    @IBOutlet weak var CheckImage: UIImageView!
+    
+    @IBOutlet weak var OkButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //mas adelante
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func VolverAPantallaPrincipal(_ sender: Any) {
     }
-    */
-
 }
