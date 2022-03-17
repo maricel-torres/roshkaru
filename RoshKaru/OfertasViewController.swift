@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import GMStepper
 
 struct Item : Codable {
     var day : String
@@ -31,68 +31,33 @@ struct Cook : Codable{
     var name: String
     var kitchen: String
 }
-var totalAPagar: Int = 0
-var totalpedido: Int = 0
+
 
 class OfertasViewController: UITableViewController {
-    var index:Int?
-    
+    var indexOffers:Int?
+    var indexItems : Int?
+    var totalAPagar: Int = 0
+    var totalpedido: Int = 0
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
     var at = "be73b556-4de1-402b-84b9-0f0a0977b5fb"
+
+    var indexCook: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
 
-        botonMagico()
-     
-        //orders(accessToken: at)
-        //self.tableView.contentInset = .init(top: 0, left: 0, bottom: -50, right: 0)
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .green
-//        view.layer.zPosition = 1111
-//        self.tableView.addSubview(view)
-//        let to = self.tableView!
-//        NSLayoutConstraint.activate([
-//            view.trailingAnchor.constraint(equalTo: to.trailingAnchor),
-//            view.leadingAnchor.constraint(equalTo: to.leadingAnchor),
-//            view.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.bottomAnchor),
-//            view.heightAnchor.constraint(equalToConstant: 100)
-//        ])
-//        self.tableView.contentInset = .init(top: 0, left: 0, bottom: -200, right: 0)
-        
+
         
        print("total a pagar: \(totalAPagar)")
        print("toatal de pedidos: \(totalpedido)")
 
         
     }
-//     func orders(accessToken:String) {
-//        var urlComponents = URLComponents(string: "\(BASEURL)/orders")!
-//        var queryItems: [URLQueryItem] = [
-//            URLQueryItem(name: "accessToken", value: accessToken)
-//        ]
-//        urlComponents.queryItems = queryItems
-//        let url = urlComponents.url!
-//        print(url.absoluteString)
-//        let request = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                print(error);
-//            } else if let data = data {
-//                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-//                if let json = json {
-//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-//
-//                } else {
-//                    print("# Success")
-//                }
-//            }
-//        }.resume()
-//    }
+
 // Agrega items al carrito
      func add_item_to_cart(accessToken:String, cartKey: String?, cookKey:String, offerKey: String, itemKey: String, quantity: Int ) {
         var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
@@ -124,22 +89,24 @@ class OfertasViewController: UITableViewController {
             }
         }.resume()
     }
+    private var cartKey: String?
 // llama a la funcion agregar carrito  y muestra el boton de pedido y total a pagar
-//    func itemAgregado(_ datos: Cook, _ totalPedio: Int, _ totalAPagar: Int){
-//
-//    }
-    private func setButtonTitle() {
-        bonBoton?.setTitle("Ver mi pedido \(totalAPagar)", for: .normal)
+    func itemAgregado(_ cook: Cook, _ offer: Offer, _ item: Item, _ cantidad: Int){
+        //botonMagico()
+    add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: cook.key, offerKey: offer.key, itemKey: item.key, quantity: cantidad)
+  }
+    private func setButtonTitle(_ total: Int) {
+        bonBoton?.setTitle("Ver mi pedido \(total)", for: .normal)
     }
     
     private weak var bonBoton: UIButton?
     
-    public func botonMagico () {
+    public func botonMagico (_ total: Int) {
         let bonBoton = UIButton()
         self.bonBoton = bonBoton
         bonBoton.backgroundColor = .red
         bonBoton.tintColor = .white
-        setButtonTitle()
+        setButtonTitle(total)
         tableView.addSubview(bonBoton)
         bonBoton.translatesAutoresizingMaskIntoConstraints = false
         bonBoton.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
@@ -162,6 +129,7 @@ class OfertasViewController: UITableViewController {
             } else if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
+
                     //print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                    self.weklyPlans = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
@@ -201,21 +169,24 @@ class OfertasViewController: UITableViewController {
          return celda!
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        index = indexPath.row
+        indexItems = indexPath.row
+        indexOffers = indexPath.section
         self.performSegue(withIdentifier: "oferta", sender: indexPath)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
+        
             if segue.identifier == "oferta" {
                 if let nextViewController = segue.destination as? Quantity {
-                    nextViewController.datos = weklyPlans![index!]
-                    nextViewController.indice = index
+                    nextViewController.cook = weklyPlans![0]
+                    nextViewController.offer = weklyPlans![0].offers[indexOffers!]
+                    nextViewController.item = weklyPlans![0].offers[indexOffers!].items[indexItems!]
                     nextViewController.oferta = self
                 }
             }
-        }
+        
+    }
 }
 
 class OfertaCell: UITableViewCell {
@@ -245,9 +216,12 @@ class OfertaCell: UITableViewCell {
 }
 class Quantity: UIViewController{
 
-    var datos : Cook?
-    var indice : Int?
-    var pedido : Int = 0
+    var cook : Cook!
+    var offer : Offer!
+    var item : Item!
+    var cantidad = 0
+    
+    var total = 0
     var pedidoChanged : Int = 0
     var PagoChanged: Int = 0
     @IBOutlet weak var StackView1: UIStackView!
@@ -264,28 +238,26 @@ class Quantity: UIViewController{
     
     weak var oferta: OfertasViewController?
     
-    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-       // oferta?.itemAgregado(datos!, totalpedido, totalAPagar)
-
         StackView1.spacing = 30
         StackView2.spacing = 120
-        Titulo.text = datos?.offers[indice!].items[indice!].title
-        Precio.text = "Gs." + String(datos?.offers[indice!].items[indice!].price ?? 0)
-        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(datos?.offers[indice!].items[indice!].price ?? 0))", for: .normal)
-        
+        Titulo.text = self.item.title
+        Precio.text = "\(self.item.currencyCode) \(self.item.price)"
+        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(self.item.price))", for: .normal)
+       
         
     }
     
+    @IBOutlet weak var stepper: GMStepper!
     
     
     @IBAction func StepperValueChanged(_ sender: UIStepper) {
         let value = Int(sender.value)
-        PagoChanged = value * (datos?.offers[indice!].items[indice!].price ?? 0)
+        PagoChanged = value * self.item.price
         self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(PagoChanged))", for: .normal)
         pedidoChanged = Int(sender.value)
         //print("PagoChanged: \(PagoChanged), PedidoChanged: \(pedidoChanged)")
@@ -294,48 +266,20 @@ class Quantity: UIViewController{
    
     
     @IBAction func volverAPantallaOfertas(_ sender: Any) {
-        if PagoChanged == 0 {
-            if(totalAPagar == 0){
-                totalAPagar = datos?.offers[indice!].items[indice!].price ?? 0
-                totalpedido = 1
-                print("total a pagar: \(totalAPagar)")
-                print("total de pedidos: \(totalpedido)")
-            }else{
-                totalAPagar = totalAPagar + (datos?.offers[indice!].items[indice!].price ?? 0)
-                totalpedido += 1
-                print("total a pagar: \(totalAPagar)")
-                print("total de pedidos: \(totalpedido)")
-            }
-        }else{
-            if(totalAPagar == 0){
-                totalAPagar = datos?.offers[indice!].items[indice!].price ?? 0
-                totalpedido = 1
-                print("total a pagar: \(totalAPagar)")
-                print("total de pedidos: \(totalpedido)")
-            }else{
-                totalAPagar = totalAPagar + PagoChanged
-                totalpedido = totalpedido + pedidoChanged
-                print("total a pagar: \(totalAPagar)")
-                print("total de pedidos: \(totalpedido)")
-            }
-            
-        }
+        
+        self.cantidad = Int(stepper.value)
+        self.oferta?.itemAgregado(self.cook, self.offer, self.item, cantidad)
+        self.total = total + self.cantidad * self.item.price
+        print(cantidad)
+        print(total)
+        oferta?.botonMagico(total)
+        
         dismiss(animated: true, completion: nil)
-        //self.performSegue(withIdentifier: "VolveraOfertas", sender: totalAPagar)
+        
+        
+        
+        
+        
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//
-//            if segue.identifier == "VolveraOfertas" {
-//                if let destino = segue.destination as? OfertasViewController {
-//                    destino.total = totalAPagar
-//                    destino.pedido = totalpedido
-//
-//                  //  print(destino.total!)
-//                }
-//            }
-//
-//
-//        }
   
 }
