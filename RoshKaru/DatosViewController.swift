@@ -16,10 +16,18 @@ class DatosViewController: UIViewController {
     
     @IBOutlet weak var name: UITextField!
     
+    @IBOutlet weak var btnNext: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         imageDato.image = UIImage(named: "name")
+        
+        btnNext.setTitle("Siguiente", for: .normal)
+        btnNext.setTitleColor(.white, for: .normal)
+        btnNext.backgroundColor = .systemRed
+        btnNext.sizeToFit()
+        btnNext.layer.cornerRadius = 18
 
     }
     
