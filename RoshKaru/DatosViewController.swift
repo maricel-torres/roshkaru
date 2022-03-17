@@ -36,6 +36,14 @@ class DatosViewController: UIViewController {
         return false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier ==  "registrar"{
+            if let nexviewcontroller  = segue.destination as? UbicacionViewController {
+                nexviewcontroller.accessToken = self.accessToken
+            }
+        }
+    }
+    
     private var hud: MBProgressHUD?
     
     private func makeCall() {
