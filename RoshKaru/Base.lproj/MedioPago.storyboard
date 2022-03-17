@@ -15,18 +15,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkh-fm-uut">
-                                <rect key="frame" x="71" y="588" width="56" height="11"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Efectivo"/>
-                                <connections>
-                                    <segue destination="PO9-Es-ilX" kind="show" id="0u3-jh-kWo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIA-oz-zmY">
-                                <rect key="frame" x="253" y="578" width="47" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Tarjeta"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIA-oz-zmY">
+                                <rect key="frame" x="20" y="513" width="374" height="32"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="TARJETA"/>
                                 <connections>
                                     <action selector="ActionTarjeta:" destination="XCO-QN-RFv" eventType="touchUpInside" id="nn3-Qm-O41"/>
                                     <segue destination="6Ma-8f-1Za" kind="show" identifier="tarjeta" id="mdq-hZ-q58"/>
@@ -41,17 +35,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkh-fm-uut">
+                                <rect key="frame" x="20" y="553" width="374" height="32"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="EFECTIVO"/>
+                                <connections>
+                                    <segue destination="PO9-Es-ilX" kind="show" id="0u3-jh-kWo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="nkh-fm-uut" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="20" id="3OT-eq-0NE"/>
+                            <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="nkh-fm-uut" secondAttribute="trailing" constant="20" id="Bba-fc-PrQ"/>
                             <constraint firstItem="r8K-Mv-T03" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="10" id="Fu1-ZH-BzW"/>
                             <constraint firstItem="Sot-zd-WSv" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="20" id="HZm-k1-rYs"/>
+                            <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="rIA-oz-zmY" secondAttribute="trailing" constant="20" id="N5J-cX-0xn"/>
                             <constraint firstItem="Sot-zd-WSv" firstAttribute="centerY" secondItem="aM4-Q6-ZIp" secondAttribute="centerY" id="S5l-Ba-H53"/>
+                            <constraint firstItem="nkh-fm-uut" firstAttribute="top" secondItem="rIA-oz-zmY" secondAttribute="bottom" constant="8" id="T9C-2K-NIo"/>
+                            <constraint firstItem="rIA-oz-zmY" firstAttribute="top" secondItem="Sot-zd-WSv" secondAttribute="bottom" constant="50" id="YDY-Ik-Zpb"/>
                             <constraint firstItem="r8K-Mv-T03" firstAttribute="top" secondItem="aM4-Q6-ZIp" secondAttribute="top" id="Zg2-cV-OG9"/>
                             <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="r8K-Mv-T03" secondAttribute="trailing" constant="10" id="eWZ-Jb-Klg"/>
                             <constraint firstItem="Sot-zd-WSv" firstAttribute="centerX" secondItem="aM4-Q6-ZIp" secondAttribute="centerX" id="gsi-CV-GJp"/>
                             <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="Sot-zd-WSv" secondAttribute="trailing" constant="20" id="hfF-vX-07o"/>
                             <constraint firstItem="Sot-zd-WSv" firstAttribute="top" secondItem="r8K-Mv-T03" secondAttribute="bottom" constant="10" id="olH-8g-3NN"/>
+                            <constraint firstItem="rIA-oz-zmY" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="20" id="yS0-gm-1gA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aM4-Q6-ZIp"/>
                     </view>
