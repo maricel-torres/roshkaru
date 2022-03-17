@@ -20,19 +20,24 @@ class LoginViewController: UIViewController {
     
     var accessToken:String?
     var challenge:String?
+    //@IBOutlet weak var NumeroCelular: UITextField!
     @IBOutlet weak var BtnSendNumber: MDCButton!
+    
     @IBOutlet weak var StackLogin: UIStackView!
     let NumeroCelular = MDCOutlinedTextField()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Implementacion MaterialComponents al boton
+        
+        
         BtnSendNumber.addTarget(self, action: #selector(SendNumber(_:)), for: .touchUpInside)
         BtnSendNumber.accessibilityLabel = "Create"
         BtnSendNumber.setTitle("ENVIAR", for: .normal)
         BtnSendNumber.setTitleColor(.white, for: .normal)
         BtnSendNumber.backgroundColor = .systemRed
         BtnSendNumber.layer.cornerRadius = 18
-        // Implementacion MaterialComponents al Textfield
+        
+        
         NumeroCelular.label.text = "Número de teléfono"
         NumeroCelular.placeholder = "09X123456"
         NumeroCelular.leadingAssistiveLabel.text = "Sin letras, guiones o espacios."
@@ -43,14 +48,16 @@ class LoginViewController: UIViewController {
         StackLogin.addArrangedSubview(NumeroCelular)
         StackLogin.addArrangedSubview(BtnSendNumber)
         
+        
+        
     }
-    // Funcion Action enviar numero
+    
     @IBAction func SendNumber(_ sender: Any) {
         if let nroCelular = NumeroCelular.text {
             self.start_login(phoneNumber: nroCelular, accessToken: nil)
+            
         }
     }
-    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         makeCall()
         return false
@@ -58,13 +65,19 @@ class LoginViewController: UIViewController {
     private var hud: MBProgressHUD?
     
     private func makeCall() {
+        
         let x: UITextField? = findFirst(self.view)
         if let phone = x?.text, phone.trimmed.count > 0 {
+            
+            
+            
             self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud?.hide(animated: true, afterDelay: 3)
+           hud?.hide(animated: true, afterDelay: 3)
+            // start_login(phoneNumber: phone, accessToken: nil)
         } else {
             showError("Por favor ingrese el número de teléfono")
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,6 +88,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+
 
     private func start_login(phoneNumber: String, accessToken:String? ) {
         let BASEURL = "https://phoebe.roshka.com/eat"
@@ -99,17 +113,22 @@ class LoginViewController: UIViewController {
                 let httpResponse = response as? HTTPURLResponse
                 let status = httpResponse?.statusCode ?? 0
                 let statusCodeIsError = status > 299 || status < 200
+                
                 printDebugJson(data)
+                
                 if let ret: StartLoginRet = DecodableFromJson(data) {
+                    
                     // guardar el access token en defaults
                     UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
                     UserDefaults.standard.synchronize()
+                    
                     DispatchQueue.main.async {
                         // ir al segue de verificacion
                         self.accessToken = ret.session.accessToken
                         self.challenge = ret.login.challenge
                         self.performSegue(withIdentifier: "IDverificacion", sender: nil)
                     }
+
                 } else if let error: ErrorRet = DecodableFromJson(data) {
                     DispatchQueue.main.async {
                         // mostrar error
@@ -118,6 +137,7 @@ class LoginViewController: UIViewController {
                 } else if statusCodeIsError {
                     assert(false)
                 }
+                
             }
         }.resume()
         
@@ -172,12 +192,14 @@ struct StartLoginRet: Codable {
 }
 
 extension String {
+ 
     var trimmed: String {
         self.trimmingCharacters(in: CharacterSet(charactersIn: " "))
     }
 }
 
 extension UIViewController {
+    
     func findFirst<T>(_ view: UIView) -> T? {
         for v in view.subviews {
             if let x = v as? T {

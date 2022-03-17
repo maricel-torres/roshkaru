@@ -80,11 +80,25 @@ class PrincipalTableViewController: UITableViewController {
 }
 
 class CookCell: UITableViewCell {
-    
+
+    @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var nameCook: UILabel!
     @IBOutlet weak var avatarCook: UIImageView!
     var cook : Cook? {
         didSet {
+            
+            let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            outerView.clipsToBounds = false
+            outerView.layer.shadowColor = UIColor.systemPink.cgColor
+            outerView.layer.shadowOpacity = 1
+            outerView.layer.shadowOffset = CGSize.zero
+            outerView.layer.shadowRadius = self.avatarCook.frame.width / 2.0
+            outerView.layer.shadowPath = UIBezierPath(roundedRect: outerView.bounds, cornerRadius: 10).cgPath
+            
+//            let myImage = UIImageView(frame: outerView.bounds)
+//            myImage.clipsToBounds = true
+//            myImage.layer.cornerRadius = 10
+            
             nameCook.text = cook?.name
             let urlString = cook?.photoUrl ?? "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
             let url = URL(string: urlString)!
@@ -95,8 +109,10 @@ class CookCell: UITableViewCell {
                         //self.avatarCook.contentMode = .scaleToFill
                         self.avatarCook.image = image.cropsToSquare()
                         self.nameCook.text = self.cook?.name
-                        //self.avatarCook.setRounded()
-                        //self.avatarCook.image = image
+                        self.avatarCook.setRounded()
+                        self.detail.text = self.cook?.description
+                        outerView.addSubview(self.avatarCook)
+                        self.contentView.addSubview(outerView)
                     }
                 }
             }

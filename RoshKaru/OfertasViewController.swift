@@ -41,12 +41,19 @@ class OfertasViewController: UITableViewController {
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
     var at = "be73b556-4de1-402b-84b9-0f0a0977b5fb"
+
     var indexCook: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: at)
+
+
+        
+       print("total a pagar: \(totalAPagar)")
+       print("toatal de pedidos: \(totalpedido)")
 
         
     }
@@ -122,7 +129,8 @@ class OfertasViewController: UITableViewController {
             } else if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
-                  //  print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+
+                    //print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                    self.weklyPlans = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -234,7 +242,7 @@ class Quantity: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // print(datos!)
+
         StackView1.spacing = 30
         StackView2.spacing = 120
         Titulo.text = self.item.title
@@ -267,6 +275,10 @@ class Quantity: UIViewController{
         oferta?.botonMagico(total)
         
         dismiss(animated: true, completion: nil)
+        
+        
+        
+        
         
     }
   
