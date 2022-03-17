@@ -13,6 +13,7 @@ class CargaTarjetaTableViewController: UIViewController {
 
     @IBOutlet weak var cargaTarjetaSiguiente: UIButton!
     
+    //elementos
     var stackStack = UIStackView()
     var labelNombreTarjeta = UILabel()
     var fieldNombreTarjeta = UITextField()
@@ -44,6 +45,20 @@ class CargaTarjetaTableViewController: UIViewController {
     
     
     @IBAction func buttonAction(_ sender: Any) {
+//        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+//        self.add_payment_method(type: .credit_card,
+//                                cardHolderName: fieldNombreTarjeta.text,
+//                                cardNumbers: fieldNumeroTarjeta.text,
+//                                cardExpirationMonth: Int(fieldMesVencimientoTarjeta.text!),
+//                                cardExpirationYear: Int(fieldAnhoVencimientoTarjeta.text!),
+//                                cardSecurityCode: fieldCSCTarjeta.text)
+    
+        
+        if fieldNombreTarjeta.text! == "" || fieldNumeroTarjeta.text! == "" || fieldAnhoVencimientoTarjeta.text! == "" || fieldMesVencimientoTarjeta.text! == "" || fieldCSCTarjeta.text! == ""{
+           let alert = UIAlertController(title: "Aviso!", message: "Verifique datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
+           alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+           present(alert, animated: true)
+        } else  {
         self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.add_payment_method(type: .credit_card,
                                 cardHolderName: fieldNombreTarjeta.text,
@@ -51,6 +66,7 @@ class CargaTarjetaTableViewController: UIViewController {
                                 cardExpirationMonth: Int(fieldMesVencimientoTarjeta.text!),
                                 cardExpirationYear: Int(fieldAnhoVencimientoTarjeta.text!),
                                 cardSecurityCode: fieldCSCTarjeta.text)
+        }
 //        add_payment_method(type: .credit_card, cardHolderName: "Nicolas Cage", cardNumbers: "1233-1231-1243-4343", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "348" /*accessToken: self.accessToken*/)
     }
     
@@ -109,19 +125,14 @@ class CargaTarjetaTableViewController: UIViewController {
         
         bandaMarcas()
         nombreLabel()
-       // stackStack.setCustomSpacing(2.0, after: labelNombreTarjeta)
         nombreField()
         numeroLabel()
-        //stackStack.setCustomSpacing(2.0, after: labelNumeroTarjeta)
         numeroField()
         anhoLabel()
-        //stackStack.setCustomSpacing(2.0, after: labelAnhoVencimientoTarjeta)
         anhoField()
         mesLabel()
-       // stackStack.setCustomSpacing(2.0, after: labelMesVencimientoTarjeta)
         mesField()
         cscLabel()
-        //stackStack.setCustomSpacing(2.0, after: labelCSCTarjeta)
         cscField()
     }
     
@@ -178,7 +189,7 @@ class CargaTarjetaTableViewController: UIViewController {
     
     //field anho vencimiento de tarjeta
     func anhoField () {
-        fieldAnhoVencimientoTarjeta.placeholder = "AA"
+        fieldAnhoVencimientoTarjeta.placeholder = "AAAA"
         fieldAnhoVencimientoTarjeta.layer.borderWidth = 0.5
         fieldAnhoVencimientoTarjeta.layer.cornerRadius = 4
         fieldAnhoVencimientoTarjeta.layer.borderColor = UIColor.gray.cgColor
@@ -224,7 +235,7 @@ class CargaTarjetaTableViewController: UIViewController {
 //        let alert = UIAlertController(title: "Aviso!", message: "Verifique datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
 //        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 //
-//        if fieldNombreTarjeta.text! == "arturo" {
+//        if fieldNombreTarjeta.text! == "" {
 //            present(alert, animated: true)
 //        }
     
@@ -242,7 +253,7 @@ class CargaTarjetaTableViewController: UIViewController {
                                     /*accessToken: String?*/
      ) {
         
-         let BASEURL = "https://texo.thebirdmaker.com/eat"
+         let BASEURL = "https://phoebe.roshka.com/eat/start_login?phoneNumber=0981123"
          var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
          var queryItems: [URLQueryItem] = [
              URLQueryItem(name: "type", value: type.rawValue),
