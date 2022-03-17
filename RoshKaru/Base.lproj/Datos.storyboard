@@ -35,12 +35,21 @@
                                     <segue destination="8qo-ME-c1P" kind="show" identifier="registrar" id="iSO-PT-z5Q"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bf-kV-sbE">
+                                <rect key="frame" x="87" y="172" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ccn-Ql-UkQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5bf-kV-sbE" firstAttribute="top" secondItem="ccn-Ql-UkQ" secondAttribute="top" constant="128" id="TPo-4N-x0p"/>
+                            <constraint firstItem="ccn-Ql-UkQ" firstAttribute="trailing" secondItem="5bf-kV-sbE" secondAttribute="trailing" constant="87" id="f1s-4g-nf8"/>
+                            <constraint firstItem="5bf-kV-sbE" firstAttribute="leading" secondItem="ccn-Ql-UkQ" secondAttribute="leading" constant="87" id="hLM-Bb-to5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Datos" id="2zH-jE-oI6"/>
                     <connections>
+                        <outlet property="imageDato" destination="5bf-kV-sbE" id="7Vj-Sc-iwB"/>
                         <outlet property="name" destination="eXV-Ie-IkV" id="285-KO-KIc"/>
                     </connections>
                 </viewController>
