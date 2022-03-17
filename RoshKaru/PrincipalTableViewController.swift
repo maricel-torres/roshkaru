@@ -12,6 +12,9 @@ class PrincipalTableViewController: UITableViewController {
     
     var accessToken:String?
     var cooks:[Cook]?
+    var indexCookSelected:Int?
+    
+    private var hud: MBProgressHUD?
     override func viewDidLoad() {
         self.accessToken = "3463746f-9d6a-4926-a7fc-a081fd97e09a"
         weekly_plans_cooks(accessToken: self.accessToken!)
@@ -77,6 +80,22 @@ class PrincipalTableViewController: UITableViewController {
     /*
     // MARK: - Navigation
     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.indexCookSelected = indexPath.row
+        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.performSegue(withIdentifier: "ofertas", sender: indexPath)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ofertas" {
+            if let nextViewController = segue.destination as? OfertasViewController {
+                nextViewController.at = self.accessToken!
+                nextViewController.indexCook = self.indexCookSelected
+            }
+        }
+    }
+    
 }
 
 class CookCell: UITableViewCell {
@@ -84,6 +103,7 @@ class CookCell: UITableViewCell {
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var nameCook: UILabel!
     @IBOutlet weak var avatarCook: UIImageView!
+    private var hud: MBProgressHUD?
     var cook : Cook? {
         didSet {
             
@@ -95,10 +115,6 @@ class CookCell: UITableViewCell {
             outerView.layer.shadowRadius = self.avatarCook.frame.width / 2.0
             outerView.layer.shadowPath = UIBezierPath(roundedRect: outerView.bounds, cornerRadius: 10).cgPath
             
-//            let myImage = UIImageView(frame: outerView.bounds)
-//            myImage.clipsToBounds = true
-//            myImage.layer.cornerRadius = 10
-            
             nameCook.text = cook?.name
             let urlString = cook?.photoUrl ?? "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
             let url = URL(string: urlString)!
@@ -106,7 +122,6 @@ class CookCell: UITableViewCell {
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        //self.avatarCook.contentMode = .scaleToFill
                         self.avatarCook.image = image.cropsToSquare()
                         self.nameCook.text = self.cook?.name
                         self.avatarCook.setRounded()
@@ -116,10 +131,6 @@ class CookCell: UITableViewCell {
                     }
                 }
             }
-            
-//            avatarCook.translatesAutoresizingMaskIntoConstraints = false
-//            avatarCook.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-//            avatarCook.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
             
             
         }
