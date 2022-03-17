@@ -12,11 +12,14 @@ import MBProgressHUD
 class DatosViewController: UIViewController {
     
     var accessToken: String?
-
+    @IBOutlet weak var imageDato: UIImageView!
+    
     @IBOutlet weak var name: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        imageDato.image = UIImage(named: "name")
 
     }
     
@@ -41,7 +44,7 @@ class DatosViewController: UIViewController {
     }
 
     @IBAction func sendName(_ sender: Any) {
-        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        //self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.input_name(accessToken: self.accessToken!,
                         name: name.text!)
 
@@ -86,7 +89,6 @@ class DatosViewController: UIViewController {
                         // mostrar error
                         self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
                         self.name.text = nil
-                        self.hud?.isHidden = true
                     }
                 }
                 
