@@ -53,6 +53,7 @@
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="COMER"/>
                                 <connections>
+                                    <action selector="quieroComer:" destination="R9G-ys-mhA" eventType="touchUpInside" id="KcM-Q3-G5R"/>
                                     <segue destination="1qQ-TJ-vda" kind="show" identifier="idubicacion" id="zef-ce-T3D"/>
                                 </connections>
                             </button>
