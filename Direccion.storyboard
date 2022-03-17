@@ -76,8 +76,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gE-rk-Ntw">
-                                <rect key="frame" x="62" y="732" width="291" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gE-rk-Ntw" customClass="MDCButton">
+                                <rect key="frame" x="10" y="732" width="394" height="30"/>
                                 <state key="normal" title="Siguiente">
                                     <color key="titleColor" systemColor="labelColor"/>
                                     <color key="titleShadowColor" systemColor="systemOrangeColor"/>
@@ -92,15 +92,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qx6-vn-E9T" firstAttribute="leading" secondItem="JvL-Ws-NKB" secondAttribute="leading" constant="10" id="7S5-bJ-uzW"/>
+                            <constraint firstItem="9gE-rk-Ntw" firstAttribute="leading" secondItem="JvL-Ws-NKB" secondAttribute="leading" constant="10" id="AMg-K4-0ZM"/>
                             <constraint firstItem="qx6-vn-E9T" firstAttribute="top" secondItem="JvL-Ws-NKB" secondAttribute="top" constant="20" id="FBe-Zb-tBO"/>
                             <constraint firstItem="9gE-rk-Ntw" firstAttribute="centerX" secondItem="JvL-Ws-NKB" secondAttribute="centerX" id="HNo-2B-iri"/>
                             <constraint firstItem="JvL-Ws-NKB" firstAttribute="trailing" secondItem="qx6-vn-E9T" secondAttribute="trailing" constant="10" id="Xuf-cU-ZRA"/>
                             <constraint firstItem="JvL-Ws-NKB" firstAttribute="bottom" secondItem="9gE-rk-Ntw" secondAttribute="bottom" constant="100" id="a0q-ja-8Jb"/>
                             <constraint firstItem="39F-UJ-9Mz" firstAttribute="leading" secondItem="JvL-Ws-NKB" secondAttribute="leading" constant="10" id="p2k-a4-DzL"/>
+                            <constraint firstItem="JvL-Ws-NKB" firstAttribute="trailing" secondItem="9gE-rk-Ntw" secondAttribute="trailing" constant="10" id="xg7-1a-AMv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Direccion" id="ccg-uo-zr2"/>
                     <connections>
+                        <outlet property="button" destination="9gE-rk-Ntw" id="mEv-Uo-rDk"/>
                         <outlet property="neighborhood" destination="YKl-1p-eDM" id="Nf6-qj-9x1"/>
                         <outlet property="number" destination="baT-yB-SPd" id="cmt-Ka-k7U"/>
                         <outlet property="reference" destination="PSC-0T-APe" id="so5-oc-BD4"/>
@@ -111,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzC-lE-F8o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2164" y="-2486"/>
+            <point key="canvasLocation" x="2163.768115942029" y="-2486.3839285714284"/>
         </scene>
         <!--UITableViewController-kXB-LF-vGI-->
         <scene sceneID="sW8-cR-N6C">
