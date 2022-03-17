@@ -670,35 +670,35 @@ class EatCalls{
 //    var paymentMethodKey: String
 //    var total: Int
     
-    static func pay_cart(accessToken: String, cartKey: String, paymentMethodKey: String, total: Int) {
-    
-        var urlComponents = URLComponents(string: "\(BASEURL)/pay_cart")!
-        let queryItems: [URLQueryItem] = [
-            AccessTokenQueryItem(accessToken),
-            URLQueryItem(name: "cartKey", value: cartKey),
-            URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
-            URLQueryItem(name: "total", value: total),
-        ]
-        urlComponents.queryItems = queryItems
-        let url = urlComponents.url!
-        print(url.absoluteString)
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print(error);
-            } else if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                    
-                } else {
-                    print("# Success")
-                }
-            }
-        }.resume()
-    }
-    
-}
+//    static func pay_cart(accessToken: String, cartKey: String, paymentMethodKey: String, total: Int) {
+//
+//        var urlComponents = URLComponents(string: "\(BASEURL)/pay_cart")!
+//        let queryItems: [URLQueryItem] = [
+//            AccessTokenQueryItem(accessToken),
+//            URLQueryItem(name: "cartKey", value: cartKey),
+//            URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
+//            URLQueryItem(name: "total", value: total),
+//        ]
+//        urlComponents.queryItems = queryItems
+//        let url = urlComponents.url!
+//        print(url.absoluteString)
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print(error);
+//            } else if let data = data {
+//                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+//                if let json = json {
+//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//
+//                } else {
+//                    print("# Success")
+//                }
+//            }
+//        }.resume()
+//    }
+//
+//}
 
 // conversion a SHA1
 //import CommonCrypto
@@ -726,4 +726,4 @@ class EatCalls{
 //}
 
 
-
+}
