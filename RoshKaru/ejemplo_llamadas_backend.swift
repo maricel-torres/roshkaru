@@ -513,38 +513,111 @@ class EatCalls{
             }
         }.resume()
     }
-//    struct Item : Codable {
-//        var day : String
-//        var title: String
-//        var price: Int
-//        var currencyCode: String
-//        var key: String
-//        var dayPart: String
-//        var description: String
-//    }
-//    struct Offer : Codable{
-//        let key: String
-//        var items: [Item]
-//    }
-//    struct Cook : Codable{
-//        var offers: [Offer]
-//        var kitchenPhotoUrl: String?
-//        var key: String
-//        var description: String
-//        var photoUrl: String
-//        var name: String
-//        var kitchen: String
-//    }
-//    static func DecodeJson(_ jsonString: String) {
-//        let listaJson = try? JSONDecoder().decode([Cook].self, from: jsonString.data(using: .utf8)!)
-//        if let listaJson = listaJson {
-//            print(listaJson)
-//        }
-//    }
+    //close_cart
+    //==========
+    //var accessToken: String
+    //var cartKey: String
+    //var confirm: Bool = false; // tiene valor por defecto, si no se envia nada, es false
+    
+    static func test_close_cart() {
+        close_cart(accessToken: "be73b556-4de1-402b-84b9-0f0a0977b5fb", cartKey: "7890adaewe", confirm: false)
+    }
+    
+    static func close_cart(accessToken:String, cartKey: String?, confirm: Bool) {
+        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken),
+            URLQueryItem(name: "cartKey", value: accessToken),
+            URLQueryItem(name: "confirm", value: String(confirm))
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
+    
+    
+    //pay_cart
+    //========
+    //var accessToken: String
+    //var cartKey: String
+    //var paymentMethodKey: String
+    //var total: Int
+    
+    static func test_pay_cart() {
+        pay_cart(accessToken: "be73b556-4de1-402b-84b9-0f0a0977b5fb", cartKey: "7890adaewe", paymentMethodKey: "Efectivo", total: 100000)
+    }
+    
+    static func pay_cart(accessToken:String, cartKey: String?, paymentMethodKey: String?, total: Int?) {
+        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken),
+            URLQueryItem(name: "cartKey", value: accessToken),
+            URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
+            URLQueryItem(name: "total", value: String(total!))
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
+    //orders
+    //======
+    //var accessToken: String
 
-//    
-//}
-
+    static func test_orders() {
+        orders(accessToken: "be73b556-4de1-402b-84b9-0f0a0977b5fb")
+    }
+    
+    static func orders(accessToken:String) {
+        var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken)
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    
+                } else {
+                    print("# Success")
+                }
+            }
+        }.resume()
+    }
 }
 
 // conversion a SHA1

@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import MaterialComponents.MaterialButtons
 
 class DireccionViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
@@ -16,28 +17,38 @@ class DireccionViewController: UIViewController {
     @IBOutlet weak var number: UITextField!
     @IBOutlet weak var neighborhood: UITextField!
     @IBOutlet weak var reference: UITextField!
+    @IBOutlet weak var button: MDCButton!
     
     var accessToken:String?
     private var hud: MBProgressHUD?
     
     override func viewDidLoad() {
-        self.accessToken = "3rwr345r43tret5654y6egret65hn"
         super.viewDidLoad()
         stackViewPricipal.spacing = 20
         stackView.spacing = 10
         
+        button.accessibilityLabel = "Create"
+        button.setTitle("Siguiente", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemRed
+        button.layer.cornerRadius = 18
         
     }
     // MARK: - Navigation
 
     @IBAction func sendData(_ sender: Any) {
-        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.set_address(accessToken: self.accessToken!,
-                             addressType: .delivery,
-                             streetName: self.streetName.text!,
-                             number: self.number.text!,
-                             neighborhood: self.neighborhood.text!,
-                             reference: self.reference.text)
+        if (streetName == nil || number == nil || neighborhood == nil){
+            showError("Complete los campos obligatorios (*)")
+        }
+        else{
+            self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.set_address(accessToken: self.accessToken!,
+                                 addressType: .delivery,
+                                 streetName: self.streetName.text!,
+                                 number: self.number.text!,
+                                 neighborhood: self.neighborhood.text!,
+                                 reference: self.reference.text)
+        }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -47,7 +58,7 @@ class DireccionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "principal" {
             if let nextViewController = segue.destination as? PrincipalTableViewController {
-                nextViewController.sender = self.accessToken
+                nextViewController.accessToken = self.accessToken
             }
         }
     }
@@ -58,7 +69,7 @@ class DireccionViewController: UIViewController {
     }
 
     func set_address(accessToken: String, addressType:AddressType, streetName:String, number:String, neighborhood:String, reference:String?) {
-        let BASEURL = "https://texo.thebirdmaker.com/eat"
+        let BASEURL = "https://phoebe.roshka.com/eat"
         var urlComponents = URLComponents(string: "\(BASEURL)/set_address")!
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "addressType", value: addressType.rawValue),
@@ -86,10 +97,10 @@ class DireccionViewController: UIViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                } else {
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "principal", sender: self.accessToken!)
                     }
-                } else {
                     print("# Success")
                 }
                 
