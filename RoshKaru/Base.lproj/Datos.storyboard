@@ -17,38 +17,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXV-Ie-IkV">
-                                <rect key="frame" x="111" y="431" width="192" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXV-Ie-IkV">
+                                <rect key="frame" x="167" y="431" width="80" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="sendName:" destination="hfU-BQ-X0F" eventType="editingDidEnd" id="PxL-6c-on2"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzH-yH-4ha">
-                                <rect key="frame" x="175" y="544" width="64" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5bf-kV-sbE">
+                                <rect key="frame" x="87" y="172" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="PjV-fM-cQp"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzH-yH-4ha">
+                                <rect key="frame" x="50" y="569" width="314" height="90"/>
                                 <state key="normal" title="Siguiente"/>
                                 <connections>
                                     <action selector="sendName:" destination="hfU-BQ-X0F" eventType="touchUpInside" id="ZRm-nV-iNT"/>
                                     <segue destination="8qo-ME-c1P" kind="show" identifier="registrar" id="iSO-PT-z5Q"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bf-kV-sbE">
-                                <rect key="frame" x="87" y="172" width="240" height="128"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ccn-Ql-UkQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ccn-Ql-UkQ" firstAttribute="bottom" secondItem="pzH-yH-4ha" secondAttribute="bottom" constant="203" id="5gP-Cr-D3s"/>
+                            <constraint firstItem="ccn-Ql-UkQ" firstAttribute="trailing" secondItem="pzH-yH-4ha" secondAttribute="trailing" constant="50" id="6l1-EK-7zs"/>
+                            <constraint firstItem="pzH-yH-4ha" firstAttribute="leading" secondItem="ccn-Ql-UkQ" secondAttribute="leading" constant="50" id="RuB-PG-0vM"/>
                             <constraint firstItem="5bf-kV-sbE" firstAttribute="top" secondItem="ccn-Ql-UkQ" secondAttribute="top" constant="128" id="TPo-4N-x0p"/>
+                            <constraint firstItem="5bf-kV-sbE" firstAttribute="centerX" secondItem="eXV-Ie-IkV" secondAttribute="centerX" id="Up6-yU-2Id"/>
+                            <constraint firstItem="pzH-yH-4ha" firstAttribute="top" secondItem="eXV-Ie-IkV" secondAttribute="bottom" constant="104" id="bMH-YO-aGD"/>
+                            <constraint firstItem="eXV-Ie-IkV" firstAttribute="centerY" secondItem="tdj-Lr-x5e" secondAttribute="centerY" id="ewt-SJ-BHf"/>
                             <constraint firstItem="ccn-Ql-UkQ" firstAttribute="trailing" secondItem="5bf-kV-sbE" secondAttribute="trailing" constant="87" id="f1s-4g-nf8"/>
                             <constraint firstItem="5bf-kV-sbE" firstAttribute="leading" secondItem="ccn-Ql-UkQ" secondAttribute="leading" constant="87" id="hLM-Bb-to5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Datos" id="2zH-jE-oI6"/>
                     <connections>
+                        <outlet property="btnNext" destination="pzH-yH-4ha" id="pc9-Jb-POX"/>
                         <outlet property="imageDato" destination="5bf-kV-sbE" id="7Vj-Sc-iwB"/>
                         <outlet property="name" destination="eXV-Ie-IkV" id="285-KO-KIc"/>
                     </connections>
