@@ -15,7 +15,7 @@ import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     var json:String?
     
     var accessToken:String?
@@ -28,7 +28,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NumeroCelular.delegate = self
+        NumeroCelular.keyboardType = .numberPad
         
         BtnSendNumber.addTarget(self, action: #selector(SendNumber(_:)), for: .touchUpInside)
         BtnSendNumber.accessibilityLabel = "Create"
@@ -50,6 +51,15 @@ class LoginViewController: UIViewController {
         
         
         
+    }
+    
+    
+    // funcion para poder ingresar solo numeros en el textfiel
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowChar = "0123456789"
+        let allowCharSet = CharacterSet(charactersIn: allowChar)
+        let typeCharSet = CharacterSet(charactersIn: string)
+        return allowCharSet.isSuperset(of: typeCharSet)
     }
     
     @IBAction func SendNumber(_ sender: Any) {

@@ -8,12 +8,25 @@
 import UIKit
 
 class MedioPagoViewController: UIViewController {
+    
+    
+    @IBOutlet weak var tarjeta: MDCButton!
+    @IBOutlet weak var efectivo: MDCButton!
     var accessToken:String?
     var selectTipoPago: CargaTarjetaTableViewController.PaymentType?
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.accessToken = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
-        // Do any additional setup after loading the view.
+        tarjeta.accessibilityLabel = "Create"
+        tarjeta.setTitle("TARJETA", for: .normal)
+        tarjeta.setTitleColor(.white, for: .normal)
+        tarjeta.backgroundColor = .systemRed
+        tarjeta.layer.cornerRadius = 18
+        
+        efectivo.accessibilityLabel = "Create"
+        efectivo.setTitle("COCINAR", for: .normal)
+        efectivo.setTitleColor(.white, for: .normal)
+        efectivo.backgroundColor = .systemRed
+        efectivo.layer.cornerRadius = 18
     }
     
     
