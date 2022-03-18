@@ -35,6 +35,12 @@ class MedioPagoViewController: UIViewController {
     @IBAction func ActionTarjeta(_ sender: Any) {
         self.selectTipoPago = .credit_card
     }
+    
+    
+    @IBAction func ActionEfectivo(_ sender: Any) {
+        self.selectTipoPago = .cash
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "tarjeta"{
             if let nexviewcontroller  = segue.destination as? CargaTarjetaTableViewController {
