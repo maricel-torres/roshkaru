@@ -87,6 +87,10 @@ class PrincipalTableViewController: UITableViewController {
         
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return false
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ofertas" {
             if let nextViewController = segue.destination as? OfertasViewController {
