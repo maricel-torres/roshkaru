@@ -54,7 +54,7 @@ class OfertasViewController: UITableViewController {
     var totalpedido: Int = 0
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
-    var accessToken: String?
+    var accessToken: String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
     var indexCook: Int?
     var cart: Cart?
     var total : Double?
@@ -63,10 +63,10 @@ class OfertasViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: accessToken!)
-        //self.bonbutton.addTarget(self, action: #selector(IrAConfirmacionDePedido(_:)), for: .touchUpInside)
+        
     }
     // Accion del boton cuando se aprienta
-        @objc func IrAConfirmacionDePedido(){
+    @objc func IrAMedioPago(_ sender: UIButton){
             self.performSegue(withIdentifier: "MedioPago", sender: self.accessToken!)
         }
   
@@ -99,6 +99,7 @@ class OfertasViewController: UITableViewController {
                         self.cartKey = self.cart?.cartKey
                         self.total = self.cart?.total
                         self.botonMagico()
+                        self.bonBoton!.addTarget(self, action: #selector(self.IrAMedioPago(_:)), for: .touchUpInside)
                     }
                     
                 } else {
@@ -121,7 +122,7 @@ class OfertasViewController: UITableViewController {
     private func setButtonTitle() {
         bonBoton?.setTitle("Ver mi pedido \(Int(total!))", for: .normal)
     }
-    private weak var bonBoton: UIButton?
+    weak var bonBoton: UIButton?
     public func botonMagico () {
         let bonBoton = UIButton()
         self.bonBoton = bonBoton
@@ -181,18 +182,15 @@ class OfertasViewController: UITableViewController {
        return listaJson!
     }
     //Carga de la tabla para ver las ofertas
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Ofertas"
-    }
     override func numberOfSections(in tableView: UITableView) -> Int {
-         weklyPlans?[0].offers.count ?? 0
+        weklyPlans?[indexCook!].offers.count ?? 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        weklyPlans?[0].offers[section].items.count ?? 0
+        weklyPlans?[indexCook!].offers[section].items.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: "items", for: indexPath) as? OfertaCell
-        celda?.item = weklyPlans?[0].offers[indexPath.section].items[indexPath.row]
+        celda?.item = weklyPlans?[indexCook!].offers[indexPath.section].items[indexPath.row]
          return celda!
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -203,9 +201,9 @@ class OfertasViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "oferta" {
                 if let nextViewController = segue.destination as? Quantity {
-                    nextViewController.cook = weklyPlans![0]
-                    nextViewController.offer = weklyPlans![0].offers[indexOffers!]
-                    nextViewController.item = weklyPlans![0].offers[indexOffers!].items[indexItems!]
+                    nextViewController.cook = weklyPlans![indexCook!]
+                    nextViewController.offer = weklyPlans![indexCook!].offers[indexOffers!]
+                    nextViewController.item = weklyPlans![indexCook!].offers[indexOffers!].items[indexItems!]
                     nextViewController.oferta = self
                 }
             }
@@ -292,7 +290,8 @@ class Quantity: UIViewController{
         //print(cantidad)
        // print(total)
         
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

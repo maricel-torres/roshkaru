@@ -156,13 +156,13 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notas para este platillo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFr-rp-voQ">
-                                <rect key="frame" x="40" y="508.5" width="174.5" height="20.5"/>
+                                <rect key="frame" x="40" y="408.5" width="174.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="334" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="aqF-Ow-4i4">
-                                <rect key="frame" x="40" y="549" width="334" height="65"/>
+                                <rect key="frame" x="40" y="449" width="334" height="65"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" placeholderIntrinsicWidth="334" placeholderIntrinsicHeight="65" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Por ejemplo: Sin sal" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KKU-8a-MAi">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="65"/>
@@ -173,7 +173,7 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7h-cO-JRg">
-                                <rect key="frame" x="40" y="308.5" width="334" height="50"/>
+                                <rect key="frame" x="40" y="258.5" width="334" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unidades" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tY-Dj-7Md">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="50"/>
@@ -221,7 +221,7 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUQ-U8-kN9">
-                                <rect key="frame" x="40" y="754" width="334" height="88"/>
+                                <rect key="frame" x="40" y="714" width="334" height="128"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -236,7 +236,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aUQ-U8-kN9" firstAttribute="trailing" secondItem="KKU-8a-MAi" secondAttribute="trailing" id="APX-cu-82E"/>
-                            <constraint firstItem="S7h-cO-JRg" firstAttribute="top" secondItem="mSs-0s-Q7F" secondAttribute="bottom" constant="150" id="F80-4T-oaU"/>
+                            <constraint firstItem="S7h-cO-JRg" firstAttribute="top" secondItem="mSs-0s-Q7F" secondAttribute="bottom" constant="100" id="F80-4T-oaU"/>
                             <constraint firstItem="aUQ-U8-kN9" firstAttribute="leading" secondItem="KKU-8a-MAi" secondAttribute="leading" id="GL4-i7-WEF"/>
                             <constraint firstItem="BJF-70-Y7q" firstAttribute="trailing" secondItem="S7h-cO-JRg" secondAttribute="trailing" constant="40" id="ILC-v3-9fs"/>
                             <constraint firstItem="BJF-70-Y7q" firstAttribute="bottom" secondItem="aUQ-U8-kN9" secondAttribute="bottom" constant="20" id="KIw-ap-u0W"/>
@@ -246,10 +246,10 @@
                             <constraint firstItem="aqF-Ow-4i4" firstAttribute="trailing" secondItem="S7h-cO-JRg" secondAttribute="trailing" id="cxp-HK-Yrk"/>
                             <constraint firstItem="S7h-cO-JRg" firstAttribute="leading" secondItem="BJF-70-Y7q" secondAttribute="leading" constant="40" id="g0T-ki-3HD"/>
                             <constraint firstItem="mSs-0s-Q7F" firstAttribute="leading" secondItem="BJF-70-Y7q" secondAttribute="leading" id="juv-i0-k98"/>
-                            <constraint firstItem="aUQ-U8-kN9" firstAttribute="top" secondItem="KKU-8a-MAi" secondAttribute="bottom" constant="140" id="nVd-TR-jez"/>
                             <constraint firstItem="mSs-0s-Q7F" firstAttribute="top" secondItem="BJF-70-Y7q" secondAttribute="top" constant="20" id="vEE-xS-mWv"/>
                             <constraint firstItem="aqF-Ow-4i4" firstAttribute="leading" secondItem="HFr-rp-voQ" secondAttribute="leading" id="x1O-zL-Bbt"/>
-                            <constraint firstItem="HFr-rp-voQ" firstAttribute="top" secondItem="S7h-cO-JRg" secondAttribute="bottom" constant="150" id="xvg-Cg-JG4"/>
+                            <constraint firstItem="HFr-rp-voQ" firstAttribute="top" secondItem="S7h-cO-JRg" secondAttribute="bottom" constant="100" id="xvg-Cg-JG4"/>
+                            <constraint firstItem="aUQ-U8-kN9" firstAttribute="top" secondItem="aqF-Ow-4i4" secondAttribute="bottom" constant="200" id="zT1-jh-Cel"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vUE-a9-Ols"/>
