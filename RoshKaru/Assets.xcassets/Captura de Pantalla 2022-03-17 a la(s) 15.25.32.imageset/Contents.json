@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "Captura de Pantalla 2022-03-17 a la(s) 15.25.32.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Captura de Pantalla 2022-03-17 a la(s) 15.25.32-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "smsCodigo.jpg",
+      "filename" : "Captura de Pantalla 2022-03-17 a la(s) 15.25.32-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

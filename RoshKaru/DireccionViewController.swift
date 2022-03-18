@@ -19,12 +19,11 @@ class DireccionViewController: UIViewController {
     @IBOutlet weak var reference: UITextField!
     @IBOutlet weak var button: MDCButton!
     
-    var accessToken:String? = "e6a2b767-0a12-4958-aac2-ed11bc620212"
+    var accessToken:String?
     private var hud: MBProgressHUD?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.accessToken = "bb7c5e81-0237-4c49-be78-3a32a56e06b5"
         stackViewPricipal.spacing = 20
         stackView.spacing = 10
         
@@ -38,10 +37,9 @@ class DireccionViewController: UIViewController {
     // MARK: - Navigation
 
     @IBAction func sendData(_ sender: Any) {
-        if (streetName == nil || number == nil || neighborhood == nil){
-            showError("Complete los campos obligatorios (*)")
-        }
-        else{
+        if let streetName = self.streetName.text, streetName.trimmed.count > 0,
+           let number = self.number.text, number.trimmed.count > 0,
+           let neighborhood = self.neighborhood.text, neighborhood.trimmed.count > 0 {
             self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             self.set_address(accessToken: self.accessToken!,
                                  addressType: .delivery,
@@ -49,6 +47,9 @@ class DireccionViewController: UIViewController {
                                  number: self.number.text!,
                                  neighborhood: self.neighborhood.text!,
                                  reference: self.reference.text)
+        }
+        else{
+            showError("Rellene campos faltantes")
         }
     }
     

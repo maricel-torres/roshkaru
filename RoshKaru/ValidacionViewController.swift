@@ -23,12 +23,12 @@ class ValidacionViewController: UIViewController {
     var jsonVcLogin: String?
     // Variable que contendra el codigo que se envio al numero celular ingresado
     var challenge: String?
-    var accessToken: String?
+    var accessToken: String? = "e6a2b767-0a12-4958-aac2-ed11bc620212"
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        verifyImage.image = UIImage(named: "smsCodigo")
+        verifyImage.image = UIImage(named: "sms")
         codigoVerificacion.center = self.view.center
         botonVerificar.setTitle("Siguiente", for: .normal)
         botonVerificar.setTitleColor(.white, for: .normal)
@@ -93,9 +93,9 @@ class ValidacionViewController: UIViewController {
             if let error = error {
                 print(error)
             } else if let data = data {
-                let httpResponse = response as? HTTPURLResponse
-                let status = httpResponse?.statusCode ?? 0
-                let statusCodeIsError = status < 200 || status > 299
+   //             let httpResponse = response as? HTTPURLResponse
+//                let status = httpResponse?.statusCode ?? 0
+//                let statusCodeIsError = status < 200 || status > 299
                 
                 printDebugJson(data)
                 DispatchQueue.main.async {

@@ -53,7 +53,7 @@
                                     <outlet property="avatarCook" destination="BLr-1u-g93" id="Y6O-n5-3Op"/>
                                     <outlet property="detail" destination="Sku-fg-cwe" id="g3a-iN-EFa"/>
                                     <outlet property="nameCook" destination="694-o4-XQZ" id="CR3-CZ-8yI"/>
-                                    <segue destination="BlN-A4-dkg" kind="show" id="r1q-QA-69D"/>
+                                    <segue destination="BlN-A4-dkg" kind="show" identifier="ofertas" id="r1q-QA-69D"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

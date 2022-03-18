@@ -35,10 +35,16 @@ class QuieroViewController: UIViewController {
     
     
     
-//    @IBAction func quieroComer(_ sender: Any) {
-//        performSegue(withIdentifier: "idubicacion", sender: accesstoken)
-//    }
+
+    @IBAction func quieroComer(_ sender: Any) {
+        self.toggle_traits(accessToken: self.accesstoken!, trait: .eater)
+    }
     
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return false
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "idubicacion"{
             if let nexviewcontroller  = segue.destination as? UbicacionViewController {
@@ -46,14 +52,48 @@ class QuieroViewController: UIViewController {
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    enum Trait: String {
+        case cook
+        case eater
     }
-    */
+    
+    func toggle_traits(accessToken:String, trait: Trait) {
+        let BASEURL = "https://phoebe.roshka.com/eat"
+        var urlComponents = URLComponents(string: "\(BASEURL)/toggle_traits")!
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken),
+            URLQueryItem(name: "traits", value: trait.rawValue),
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                } else {
+                    self.successReally(data)
+                    self.performSegue(withIdentifier: "idubicacion", sender: nil)
+                }
+                
+                
+            }
+        }.resume()
+        
+    }
+    
+    func successReally(_ data: Data) {
+        if let str = String(data: data, encoding: .utf8), str.count > 0  {
+            print("_WOOOPS_______________________________________________\n\(str)")
+        } else {
+            print("# Success")
+        }
+    }
 
 }
