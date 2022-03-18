@@ -27,6 +27,7 @@
 		2A54986627DB9A480027B20F /* HechoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986527DB9A480027B20F /* HechoViewController.swift */; };
 		2A54986827DB9B4E0027B20F /* PrincipalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986727DB9B4E0027B20F /* PrincipalTableViewController.swift */; };
 		2A54986A27DB9DB50027B20F /* CargaTarjetaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */; };
+		2ABA91A327E508BC007D10C4 /* HistorialdePedidosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA91A227E508BC007D10C4 /* HistorialdePedidosTableViewController.swift */; };
 		65F15B4827DF8933008B51F7 /* Ubicacion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F15B4727DF8933008B51F7 /* Ubicacion.storyboard */; };
 		65F15B4D27DF89A3008B51F7 /* Verificacion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F15B4C27DF89A3008B51F7 /* Verificacion.storyboard */; };
 		65F15B5327DF89B4008B51F7 /* Datos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F15B5127DF89B4008B51F7 /* Datos.storyboard */; };
@@ -90,6 +91,7 @@
 		2A54986527DB9A480027B20F /* HechoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HechoViewController.swift; sourceTree = "<group>"; };
 		2A54986727DB9B4E0027B20F /* PrincipalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalTableViewController.swift; sourceTree = "<group>"; };
 		2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargaTarjetaTableViewController.swift; sourceTree = "<group>"; };
+		2ABA91A227E508BC007D10C4 /* HistorialdePedidosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialdePedidosTableViewController.swift; sourceTree = "<group>"; };
 		34AFC46CA5CB8906836C3636 /* Pods_RoshKaru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B034647D7D4ED0385F8DCF /* Pods_RoshKaru_RoshKaruUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaru_RoshKaruUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7AF01D0B2EFC54A56E4C0D /* Pods_RoshKaruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -506,6 +508,7 @@
 				2A54986627DB9A480027B20F /* HechoViewController.swift in Sources */,
 				2A54985827DB92340027B20F /* QuieroViewController.swift in Sources */,
 				A17EDAFB27DBF76E00F28DC9 /* ejemplo_llamadas_backend.swift in Sources */,
+				2ABA91A327E508BC007D10C4 /* HistorialdePedidosTableViewController.swift in Sources */,
 				2A54985C27DB99F20027B20F /* DireccionViewController.swift in Sources */,
 				2A34FB2F27E5073C000A9DE4 /* InfoCookViewController.swift in Sources */,
 				2A54986827DB9B4E0027B20F /* PrincipalTableViewController.swift in Sources */,

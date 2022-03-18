@@ -40,6 +40,7 @@
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="EFECTIVO"/>
                                 <connections>
+                                    <action selector="ActionEfectivo:" destination="XCO-QN-RFv" eventType="touchUpInside" id="OFs-r1-wgl"/>
                                     <segue destination="PO9-Es-ilX" kind="show" id="0u3-jh-kWo"/>
                                 </connections>
                             </button>
