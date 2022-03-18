@@ -79,7 +79,9 @@ class QuieroViewController: UIViewController {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
                     self.successReally(data)
-                    self.performSegue(withIdentifier: "idubicacion", sender: nil)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "idubicacion", sender: nil)
+                    }
                 }
                 
                 
