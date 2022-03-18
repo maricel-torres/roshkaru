@@ -40,20 +40,13 @@ class CargaTarjetaTableViewController: UIViewController {
         labelInstruccion()
         stack()
         estiloBoton()
-        self.accessToken = "ca6dfba0-8f01-401e-bc0c-c04607a3ee0b"
+        self.accessToken = "754699cb-27b5-4b4b-8fcf-9079b95bf23f"
     }
     
-    
+    //MBProgressHUD para animacion de "cargando"
     @IBAction func buttonAction(_ sender: Any) {
-//        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-//        self.add_payment_method(type: .credit_card,
-//                                cardHolderName: fieldNombreTarjeta.text,
-//                                cardNumbers: fieldNumeroTarjeta.text,
-//                                cardExpirationMonth: Int(fieldMesVencimientoTarjeta.text!),
-//                                cardExpirationYear: Int(fieldAnhoVencimientoTarjeta.text!),
-//                                cardSecurityCode: fieldCSCTarjeta.text)
     
-        
+        //verifica si hay campos vacios
         if fieldNombreTarjeta.text! == "" || fieldNumeroTarjeta.text! == "" || fieldAnhoVencimientoTarjeta.text! == "" || fieldMesVencimientoTarjeta.text! == "" || fieldCSCTarjeta.text! == ""{
            let alert = UIAlertController(title: "Aviso!", message: "Verifique datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -70,6 +63,8 @@ class CargaTarjetaTableViewController: UIViewController {
 //        add_payment_method(type: .credit_card, cardHolderName: "Nicolas Cage", cardNumbers: "1233-1231-1243-4343", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "348" /*accessToken: self.accessToken*/)
     }
     
+    
+    //funciones segue
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         false
     }
@@ -231,19 +226,13 @@ class CargaTarjetaTableViewController: UIViewController {
         
     }
     
-//    @objc func buttonAction(sender: UIButton!) {
-//        let alert = UIAlertController(title: "Aviso!", message: "Verifique datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//
-//        if fieldNombreTarjeta.text! == "" {
-//            present(alert, animated: true)
-//        }
-    
+    //definicion tipos de datos segun medio de pago
     enum PaymentType: String {
         case credit_card
         case cash
     }
         
+    //funcion para agregar datos de tarjeta
     func add_payment_method(type:PaymentType,
                                     cardHolderName: String?,
                                     cardNumbers: String?,
@@ -253,7 +242,7 @@ class CargaTarjetaTableViewController: UIViewController {
                                     /*accessToken: String?*/
      ) {
         
-         let BASEURL = "https://phoebe.roshka.com/eat/start_login?phoneNumber=0981123"
+         let BASEURL = "https://phoebe.roshka.com/eat"
          var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
          var queryItems: [URLQueryItem] = [
              URLQueryItem(name: "type", value: type.rawValue),
@@ -276,9 +265,11 @@ class CargaTarjetaTableViewController: UIViewController {
          }
 //         if let accessToken = accessToken {
 //            queryItems.append(URLQueryItem(name: "accessToken", value: accessToken))
+//             //queryItems.append(URLQueryItem(name: "phoneNumber", value: "0981118615"))
 //        }
          
          
+        //validacion de datos de tarjeta
          urlComponents.queryItems = queryItems
          let url = urlComponents.url!
          print(url.absoluteString)

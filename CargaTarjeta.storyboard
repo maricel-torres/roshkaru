@@ -29,6 +29,7 @@
                         <viewLayoutGuide key="safeArea" id="4gP-a7-CHD"/>
                     </view>
                     <navigationItem key="navigationItem" id="5tB-fq-PDP"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cargaTarjetaSiguiente" destination="rWG-eT-K2T" id="DBV-My-2Lc"/>
                     </connections>
