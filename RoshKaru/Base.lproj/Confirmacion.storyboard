@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,26 +14,38 @@
             <objects>
                 <viewController storyboardIdentifier="UIViewController-PAm-L0-OLf" id="PAm-L0-OLf" customClass="ConfirmacionViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="icB-8a-kul">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMR-wr-4dT">
-                                <rect key="frame" x="148" y="721" width="120" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMR-wr-4dT" customClass="MDCButton">
+                                <rect key="frame" x="10" y="721" width="394" height="30"/>
                                 <state key="normal" title="Confirmar Pedido"/>
                                 <connections>
-                                    <segue destination="CBz-GI-B0u" kind="show" id="zN5-kS-I5h"/>
+                                    <segue destination="CBz-GI-B0u" kind="show" identifier="pedidoRealizado" id="zN5-kS-I5h"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wPN-RQ-6ur">
+                                <rect key="frame" x="40" y="120" width="307" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Md5-kZ-5QW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AMR-wr-4dT" firstAttribute="leading" secondItem="Md5-kZ-5QW" secondAttribute="leading" constant="10" id="O4g-EW-X9s"/>
+                            <constraint firstItem="Md5-kZ-5QW" firstAttribute="trailing" secondItem="AMR-wr-4dT" secondAttribute="trailing" constant="10" id="XJn-JA-6d4"/>
+                            <constraint firstItem="AMR-wr-4dT" firstAttribute="top" secondItem="Md5-kZ-5QW" secondAttribute="top" constant="677" id="fBL-dC-kf0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Confirmacion" id="g9n-QB-hl0"/>
+                    <connections>
+                        <outlet property="btnConfirm" destination="AMR-wr-4dT" id="Yem-7R-hyr"/>
+                        <outlet property="verticalStack" destination="wPN-RQ-6ur" id="mXv-Hp-sac"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMs-o4-eVn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1097" y="1681"/>
+            <point key="canvasLocation" x="1095.6521739130435" y="1680.8035714285713"/>
         </scene>
         <!--UIViewController-hmL-e4-4nE-->
         <scene sceneID="aWp-k6-U2R">

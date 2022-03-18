@@ -10,6 +10,7 @@ import UIKit
 
 class HechoViewController: UIViewController {
 
+    var accessToken: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
