@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialButtons
 
 class MedioPagoViewController: UIViewController {
     
-    
     @IBOutlet weak var tarjeta: MDCButton!
+    
     @IBOutlet weak var efectivo: MDCButton!
+    
     var accessToken:String?
     var selectTipoPago: CargaTarjetaTableViewController.PaymentType?
     override func viewDidLoad() {
@@ -21,7 +23,7 @@ class MedioPagoViewController: UIViewController {
         tarjeta.setTitleColor(.white, for: .normal)
         tarjeta.backgroundColor = .systemRed
         tarjeta.layer.cornerRadius = 18
-        
+
         efectivo.accessibilityLabel = "Create"
         efectivo.setTitle("COCINAR", for: .normal)
         efectivo.setTitleColor(.white, for: .normal)
@@ -32,7 +34,6 @@ class MedioPagoViewController: UIViewController {
     
     @IBAction func ActionTarjeta(_ sender: Any) {
         self.selectTipoPago = .credit_card
-           performSegue(withIdentifier: "tarjeta", sender: accessToken)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "tarjeta"{
