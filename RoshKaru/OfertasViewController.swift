@@ -8,7 +8,18 @@
 
 import UIKit
 import GMStepper
-
+struct Items{
+    var title: String
+    var quantity: Int
+    var currencyCode: String
+    var dayPart: String
+    var precio: Int
+}
+struct Carrito{
+    var cartKey: String?
+    var items: [Items]
+    var total: Int
+}
 struct Item : Codable {
     var day : String
     var title: String
@@ -57,7 +68,10 @@ class OfertasViewController: UITableViewController {
     var accessToken: String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
     var indexCook: Int?
     var cart: Cart?
+    var pedido : Cart?
     var total : Double?
+    var carrito : Carrito?
+    var contador : Int? = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -67,6 +81,10 @@ class OfertasViewController: UITableViewController {
     }
     // Accion del boton cuando se aprienta
     @objc func IrAMedioPago(_ sender: UIButton){
+        
+            print(carrito ?? 0)
+        print("total: \(Int(total!))")
+        print("cartKey: \(cartKey!)")
             self.performSegue(withIdentifier: "MedioPago", sender: self.accessToken!)
         }
   
@@ -93,13 +111,25 @@ class OfertasViewController: UITableViewController {
             } else if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    //print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     self.cart = self.DecodeJsonCart("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
                         self.cartKey = self.cart?.cartKey
                         self.total = self.cart?.total
+//                        self.pedido = self.cart
+//                        self.carrito?.cartKey = self.cart?.cartKey
+//                        self.carrito?.total = Int(self.cart?.total ?? 0)
+//                            self.carrito?.items[self.contador!].title = self.weklyPlans![0].offers[0].items[0].title
+//                            self.carrito?.items[0].dayPart = self.weklyPlans![0].offers[0].items[0].day + "-" + self.weklyPlans![0].offers[0].items[0].dayPart
+//                            self.carrito?.items[self.contador!].quantity = self.pedido?.items[self.contador!].quantity ?? 0
+//                            self.carrito?.items[self.contador!].precio = self.weklyPlans![0].offers[0].items[self.indexItems!].price
+//                            self.carrito?.items[self.contador!].currencyCode = self.weklyPlans![0].offers[0].items[0].currencyCode
+//                            self.contador! += 1
+//                        print(self.carrito?.cartKey ?? "hola")
+//                        print(self.carrito?.total ?? 0)
                         self.botonMagico()
                         self.bonBoton!.addTarget(self, action: #selector(self.IrAMedioPago(_:)), for: .touchUpInside)
+                        
                     }
                     
                 } else {
@@ -210,6 +240,8 @@ class OfertasViewController: UITableViewController {
         if segue.identifier ==  "MedioPago"{
             if let nextviewcontroller  = segue.destination as?  MedioPagoViewController {
                 nextviewcontroller.accessToken = self.accessToken
+//                nextviewcontroller.cartKey = cartKey
+//                nextviewcontroller.totalAPagar = total
             }
         }
     }
@@ -294,5 +326,8 @@ class Quantity: UIViewController{
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+    
+
 
 
