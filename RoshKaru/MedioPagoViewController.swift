@@ -25,7 +25,7 @@ class MedioPagoViewController: UIViewController {
         tarjeta.layer.cornerRadius = 18
 
         efectivo.accessibilityLabel = "Create"
-        efectivo.setTitle("COCINAR", for: .normal)
+        efectivo.setTitle("EFECTIVO", for: .normal)
         efectivo.setTitleColor(.white, for: .normal)
         efectivo.backgroundColor = .systemRed
         efectivo.layer.cornerRadius = 18
