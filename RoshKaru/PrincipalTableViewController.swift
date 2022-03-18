@@ -94,7 +94,7 @@ class PrincipalTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ofertas" {
             if let nextViewController = segue.destination as? OfertasViewController {
-                nextViewController.at = self.accessToken!
+                nextViewController.accessToken = self.accessToken!
                 nextViewController.indexCook = self.indexCookSelected
             }
         }
