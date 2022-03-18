@@ -22,6 +22,7 @@ struct Offer : Codable{
     let key: String
     var items: [Item]
 }
+//estructura de weeklyplans
 struct Cook : Codable{
     var offers: [Offer]
     var kitchenPhotoUrl: String?
@@ -31,8 +32,21 @@ struct Cook : Codable{
     var name: String
     var kitchen: String
 }
-
-
+struct ItemsCart: Codable {
+    var cartKey : String?
+    var quantity: Int
+    var offerKey: String
+    var itemKey: String
+    var replace: Bool
+    var accessToken: String
+    var cookKey: String
+}
+// estructura del carrito
+struct Cart : Codable {
+    var items: [ItemsCart]
+    var cartKey: String
+    var total: Double
+}
 class OfertasViewController: UITableViewController {
     var indexOffers:Int?
     var indexItems : Int?
@@ -40,23 +54,22 @@ class OfertasViewController: UITableViewController {
     var totalpedido: Int = 0
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
-    var at = "be73b556-4de1-402b-84b9-0f0a0977b5fb"
-
+    var accessToken: String?
     var indexCook: Int?
-
+    var cart: Cart?
+    var total : Double?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        weekly_plans_cooks(accessToken: at)
-        
-       print("total a pagar: \(totalAPagar)")
-       print("toatal de pedidos: \(totalpedido)")
-
-        
+        weekly_plans_cooks(accessToken: accessToken!)
+        //self.bonbutton.addTarget(self, action: #selector(IrAConfirmacionDePedido(_:)), for: .touchUpInside)
     }
-    
-
+    // Accion del boton cuando se aprienta
+        @objc func IrAConfirmacionDePedido(){
+            self.performSegue(withIdentifier: "MedioPago", sender: self.accessToken!)
+        }
+  
 // Agrega items al carrito
      func add_item_to_cart(accessToken:String, cartKey: String?, cookKey:String, offerKey: String, itemKey: String, quantity: Int ) {
         var urlComponents = URLComponents(string: "\(BASEURL)/add_item_to_cart")!
@@ -81,7 +94,13 @@ class OfertasViewController: UITableViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-
+                    self.cart = self.DecodeJsonCart("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    DispatchQueue.main.async {
+                        self.cartKey = self.cart?.cartKey
+                        self.total = self.cart?.total
+                        self.botonMagico()
+                    }
+                    
                 } else {
                     print("# Success")
                 }
@@ -91,21 +110,24 @@ class OfertasViewController: UITableViewController {
     private var cartKey: String?
 // llama a la funcion agregar carrito  y muestra el boton de pedido y total a pagar
     func itemAgregado(_ cook: Cook, _ offer: Offer, _ item: Item, _ cantidad: Int){
-        //botonMagico()
-    add_item_to_cart(accessToken: at, cartKey: cartKey, cookKey: cook.key, offerKey: offer.key, itemKey: item.key, quantity: cantidad)
+        if(cartKey == nil){
+            add_item_to_cart(accessToken: accessToken!, cartKey: cartKey, cookKey: cook.key, offerKey: offer.key, itemKey: item.key, quantity: cantidad)
+        }else{
+            add_item_to_cart(accessToken: accessToken!, cartKey: cartKey, cookKey: cook.key, offerKey: offer.key, itemKey: item.key, quantity: cantidad)
+        }
+        
   }
-    private func setButtonTitle(_ total: Int) {
-        bonBoton?.setTitle("Ver mi pedido \(total)", for: .normal)
+    //Boton que muestra el total a pagar y para confirmar el pedido
+    private func setButtonTitle() {
+        bonBoton?.setTitle("Ver mi pedido \(Int(total!))", for: .normal)
     }
-    
     private weak var bonBoton: UIButton?
-    
-    public func botonMagico (_ total: Int) {
+    public func botonMagico () {
         let bonBoton = UIButton()
         self.bonBoton = bonBoton
         bonBoton.backgroundColor = .red
         bonBoton.tintColor = .white
-        setButtonTitle(total)
+        setButtonTitle()
         tableView.addSubview(bonBoton)
         bonBoton.translatesAutoresizingMaskIntoConstraints = false
         bonBoton.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
@@ -113,6 +135,8 @@ class OfertasViewController: UITableViewController {
         bonBoton.trailingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
         bonBoton.layer.cornerRadius = 15
       }
+
+// funcion que trae las ofertas del cocinero
     public func weekly_plans_cooks (accessToken:String) {
         var urlComponents = URLComponents(string: "\(BASEURL)/weekly_plans/cooks")!
         let queryItems: [URLQueryItem] = [
@@ -129,7 +153,7 @@ class OfertasViewController: UITableViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
 
-                    //print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+//                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                    self.weklyPlans = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -140,6 +164,7 @@ class OfertasViewController: UITableViewController {
             }
         }.resume()
     }
+    //funcion que decodifica las ofertas
     public func DecodeJson(_ jsonString: String)-> [Cook] {
         let listaJson = try? JSONDecoder().decode([Cook].self, from: jsonString.data(using: .utf8)!)
 //        if let listaJson = listaJson {
@@ -147,16 +172,20 @@ class OfertasViewController: UITableViewController {
 //        }
         return listaJson!
     }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        ""
+   // funcion que decodifica el carrito
+    public func DecodeJsonCart(_ jsonString: String)-> Cart {
+        let listaJson = try? JSONDecoder().decode(Cart.self, from: jsonString.data(using: .utf8)!)
+//        if let listaJson = listaJson {
+//            print(listaJson)
+//        }
+       return listaJson!
     }
-    
+    //Carga de la tabla para ver las ofertas
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "Ofertas"
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
          weklyPlans?[0].offers.count ?? 0
-        
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         weklyPlans?[0].offers[section].items.count ?? 0
@@ -164,18 +193,14 @@ class OfertasViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: "items", for: indexPath) as? OfertaCell
         celda?.item = weklyPlans?[0].offers[indexPath.section].items[indexPath.row]
-        
          return celda!
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         indexItems = indexPath.row
         indexOffers = indexPath.section
         self.performSegue(withIdentifier: "oferta", sender: indexPath)
-        
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
             if segue.identifier == "oferta" {
                 if let nextViewController = segue.destination as? Quantity {
                     nextViewController.cook = weklyPlans![0]
@@ -184,12 +209,14 @@ class OfertasViewController: UITableViewController {
                     nextViewController.oferta = self
                 }
             }
-        
+        if segue.identifier ==  "MedioPago"{
+            if let nextviewcontroller  = segue.destination as?  MedioPagoViewController {
+                nextviewcontroller.accessToken = self.accessToken
+            }
+        }
     }
-    
-
 }
-
+//clase para cargar los datos a las celdas de la tabla ofertas
 class OfertaCell: UITableViewCell {
     
     var item : Item? {
@@ -215,13 +242,13 @@ class OfertaCell: UITableViewCell {
     
     
 }
+//clase para la pantalla donde se carga la cantidad y se agrega al pedido o carrito
 class Quantity: UIViewController{
 
     var cook : Cook!
     var offer : Offer!
     var item : Item!
     var cantidad = 0
-    
     var total = 0
     var pedidoChanged : Int = 0
     var PagoChanged: Int = 0
@@ -238,48 +265,35 @@ class Quantity: UIViewController{
     @IBOutlet weak var AddButton: UIButton!
     
     weak var oferta: OfertasViewController?
-    
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         StackView1.spacing = 30
         StackView2.spacing = 120
         Titulo.text = self.item.title
         Precio.text = "\(self.item.currencyCode) \(self.item.price)"
-        self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(self.item.price))", for: .normal)
-       
-        
+        AddButton.setTitle("Agregar a mi pedido Gs. \(String(self.item.price))", for: .normal)
+        AddButton.translatesAutoresizingMaskIntoConstraints = false
+        AddButton.layer.cornerRadius = 15
     }
     
-    @IBOutlet weak var stepper: GMStepper!
-    
-    
+    @IBOutlet weak var stepper: GMStepper!// variable del boton tipo stepper
+    //Accion del boton stepper cuando cambia el valor
     @IBAction func StepperValueChanged(_ sender: UIStepper) {
         let value = Int(sender.value)
         PagoChanged = value * self.item.price
         self.AddButton.setTitle("Agregar a mi pedido Gs. \(String(PagoChanged))", for: .normal)
         pedidoChanged = Int(sender.value)
-        //print("PagoChanged: \(PagoChanged), PedidoChanged: \(pedidoChanged)")
-        
     }
-   
-    
+    //vuelve a la pantalla ofertas para seguir haciendo pedidos o ir a confirmacion de pedidos
     @IBAction func volverAPantallaOfertas(_ sender: Any) {
-        
         self.cantidad = Int(stepper.value)
         self.oferta?.itemAgregado(self.cook, self.offer, self.item, cantidad)
         self.total = total + self.cantidad * self.item.price
-        print(cantidad)
-        print(total)
-        oferta?.botonMagico(total)
+        //print(cantidad)
+       // print(total)
         
         dismiss(animated: true, completion: nil)
-        
     }
-    
-    
-
-  
 }
+
+
