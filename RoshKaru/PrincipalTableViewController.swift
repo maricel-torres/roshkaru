@@ -10,7 +10,7 @@ import UIKit
 
 class PrincipalTableViewController: UITableViewController {
     
-    var accessToken:String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
+    var accessToken:String?
     var cooks:[Cook]?
     var indexCookSelected:Int?
     
@@ -18,27 +18,9 @@ class PrincipalTableViewController: UITableViewController {
     override func viewDidLoad() {
         //self.accessToken = "3463746f-9d6a-4926-a7fc-a081fd97e09a"
         weekly_plans_cooks(accessToken: self.accessToken!)
-       
         super.viewDidLoad()
-        Navigation()
     }
-    private func Navigation(){
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(add(_:)))
-    }
-    @objc private func add(_ sender : Any?){
-        modal()
-    }
-    private func modal(){
-        if let controller = UIStoryboard(name: "Principal", bundle: nil).instantiateViewController(withIdentifier: "historialPedidos") as? HistorialdePedidosTableViewController{
-                controller.accessToken = accessToken
-                let inNavigationController = true
-                if inNavigationController {
-                    let nav = UINavigationController(rootViewController: controller)
-                    self.present(nav, animated: true, completion: nil)
-                }
-        }
-    }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -182,5 +164,4 @@ extension UIImage {
         return cropped
     }
 }
-
 
