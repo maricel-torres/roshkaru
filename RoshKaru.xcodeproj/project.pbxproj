@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A34FB2F27E5073C000A9DE4 /* InfoCookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34FB2E27E5073C000A9DE4 /* InfoCookViewController.swift */; };
 		2A54982427DB8DF90027B20F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54982327DB8DF90027B20F /* AppDelegate.swift */; };
 		2A54982627DB8DF90027B20F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54982527DB8DF90027B20F /* SceneDelegate.swift */; };
 		2A54982827DB8DF90027B20F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54982727DB8DF90027B20F /* LoginViewController.swift */; };
@@ -65,7 +64,6 @@
 /* Begin PBXFileReference section */
 		1541DBFA0DB39EBB8A90B80A /* Pods-RoshKaru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoshKaru.debug.xcconfig"; path = "Target Support Files/Pods-RoshKaru/Pods-RoshKaru.debug.xcconfig"; sourceTree = "<group>"; };
 		259E0AF6EE00C666566DCECA /* Pods-RoshKaruTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoshKaruTests.debug.xcconfig"; path = "Target Support Files/Pods-RoshKaruTests/Pods-RoshKaruTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2A34FB2E27E5073C000A9DE4 /* InfoCookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCookViewController.swift; sourceTree = "<group>"; };
 		2A54982027DB8DF90027B20F /* RoshKaru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoshKaru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A54982327DB8DF90027B20F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A54982527DB8DF90027B20F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +196,7 @@
 				2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */,
 				A17EDAFA27DBF76E00F28DC9 /* ejemplo_llamadas_backend.swift */,
 				65F15BA127DFDD9B008B51F7 /* RoshKaru-Bridging-Header.h */,
-				2A34FB2E27E5073C000A9DE4 /* InfoCookViewController.swift */,
+				2ABA91A227E508BC007D10C4 /* HistorialdePedidosTableViewController.swift */,
 			);
 			path = RoshKaru;
 			sourceTree = "<group>";
@@ -510,7 +508,6 @@
 				A17EDAFB27DBF76E00F28DC9 /* ejemplo_llamadas_backend.swift in Sources */,
 				2ABA91A327E508BC007D10C4 /* HistorialdePedidosTableViewController.swift in Sources */,
 				2A54985C27DB99F20027B20F /* DireccionViewController.swift in Sources */,
-				2A34FB2F27E5073C000A9DE4 /* InfoCookViewController.swift in Sources */,
 				2A54986827DB9B4E0027B20F /* PrincipalTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

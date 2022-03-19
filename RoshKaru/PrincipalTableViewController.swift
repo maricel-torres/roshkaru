@@ -20,24 +20,24 @@ class PrincipalTableViewController: UITableViewController {
         weekly_plans_cooks(accessToken: self.accessToken!)
        
         super.viewDidLoad()
-        //Navigation()
+        Navigation()
     }
-//    private func Navigation(){
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(add(_:)))
-//    }
-//    @objc private func add(_ sender : Any?){
-//        modal()
-//    }
-//    private func modal(){
-//        if let controller = UIStoryboard(name: "Principal", bundle: nil).instantiateViewController(withIdentifier: "historialPedidos") as? HistorialdePedidosTableViewController{
-//                controller.accessToken = accessToken
-//                let inNavigationController = true
-//                if inNavigationController {
-//                    let nav = UINavigationController(rootViewController: controller)
-//                    self.present(nav, animated: true, completion: nil)
-//                }
-//        }
-//    }
+    private func Navigation(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(add(_:)))
+    }
+    @objc private func add(_ sender : Any?){
+        modal()
+    }
+    private func modal(){
+        if let controller = UIStoryboard(name: "Principal", bundle: nil).instantiateViewController(withIdentifier: "historialPedidos") as? HistorialdePedidosTableViewController{
+                controller.accessToken = accessToken
+                let inNavigationController = true
+                if inNavigationController {
+                    let nav = UINavigationController(rootViewController: controller)
+                    self.present(nav, animated: true, completion: nil)
+                }
+        }
+    }
     
     // MARK: - Table view data source
 
