@@ -11,13 +11,13 @@ import CommonCrypto
 import CryptoKit
 
 
-class ValidacionViewController: UIViewController {
+class ValidacionViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var verifyImage: UIImageView!
     @IBOutlet weak var botonVerificar: MDCButton!
-    @IBOutlet weak var codigoVerificacion: UITextField!
     
-    // Variable que contendra el valor ingresado en el texfield
+    @IBOutlet weak var Stackfield: UIStackView!
+    let codeNumber = MDCOutlinedTextField()    // Variable que contendra el valor ingresado en el texfield
     var codigoIngresado: String?
 
     var jsonVcLogin: String?
@@ -27,15 +27,38 @@ class ValidacionViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        codeNumber.delegate = self
+        codeNumber.keyboardType = .numberPad
         
-        verifyImage.image = UIImage(named: "sms")
-        codigoVerificacion.center = self.view.center
-        botonVerificar.setTitle("Siguiente", for: .normal)
+        botonVerificar.setTitle("VERIFICAR", for: .normal)
         botonVerificar.setTitleColor(.white, for: .normal)
-        botonVerificar.backgroundColor = .systemRed
+        botonVerificar.backgroundColor = .systemBlue
         botonVerificar.sizeToFit()
         botonVerificar.layer.cornerRadius = 18
+            
+            
+        codeNumber.label.text = "Código"
+        codeNumber.font = UIFont.init(name: "Trebuchet MS", size: 17)
+
+        codeNumber.placeholder = "Ingrese aquí su código"
         
+
+        codeNumber.leadingAssistiveLabel.text = "Sin letras, guiones o espacios."
+        codeNumber.leadingAssistiveLabel.font = UIFont.init(name: "Trebuchet MS", size: 12)
+        codeNumber.sizeToFit()
+        codeNumber.setOutlineColor(.systemBlue, for: .normal)
+        codeNumber.setOutlineColor(.blue, for: .editing)
+            
+        Stackfield.addArrangedSubview(codeNumber)
+        Stackfield.addArrangedSubview(botonVerificar)
+    }
+    
+    // funcion para poder ingresar solo numeros en el textfiel
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowChar = "0123456789"
+        let allowCharSet = CharacterSet(charactersIn: allowChar)
+        let typeCharSet = CharacterSet(charactersIn: string)
+        return allowCharSet.isSuperset(of: typeCharSet)
     }
     
     
@@ -43,7 +66,9 @@ class ValidacionViewController: UIViewController {
 //        if let codigo = codigoVerificacion.text {
 //            self.input_sms(accessToken: challenge!, input: codigo.sha1())
 //        }
-        self.input_sms(accessToken: accessToken!, input: codigoVerificacion.text!.sha1())
+        if let codeCelular = codeNumber.text {
+            self.input_sms(accessToken: accessToken!, input: codeCelular.sha1())
+        }
     }
     
     
@@ -61,7 +86,7 @@ class ValidacionViewController: UIViewController {
             self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
            hud?.hide(animated: true, afterDelay: 2)
         } else {
-            self.codigoVerificacion.text = nil
+            self.codeNumber.text = nil
             showError("Por favor ingrese el codigo")
         }
         
@@ -114,7 +139,7 @@ class ValidacionViewController: UIViewController {
                     DispatchQueue.main.async {
                         // mostrar error
                         self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
-                        self.codigoVerificacion.text = nil
+                        self.codeNumber.text = nil
                     }
                 }
                 

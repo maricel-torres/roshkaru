@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ieb-RX-1aJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ieb-RX-1aJ">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -37,11 +37,8 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-PZ-3aS" customClass="MDCButton">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
-                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
-                                        <state key="normal" title="ENVIAR">
-                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        </state>
+                                        <state key="normal" title="ENVIAR"/>
                                         <connections>
                                             <action selector="SendNumber:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Tq-TW-hwu"/>
                                             <segue destination="3hE-GD-GNy" kind="show" identifier="IDverificacion" id="uix-cN-Faz"/>
@@ -49,7 +46,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login (1)" translatesAutoresizingMaskIntoConstraints="NO" id="f92-Ll-gue">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="loginazul" translatesAutoresizingMaskIntoConstraints="NO" id="f92-Ll-gue">
                                 <rect key="frame" x="76" y="182" width="240" height="128"/>
                             </imageView>
                         </subviews>
@@ -191,6 +188,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="login (1)" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="loginazul" width="146.33332824707031" height="121.66666412353516"/>
     </resources>
 </document>

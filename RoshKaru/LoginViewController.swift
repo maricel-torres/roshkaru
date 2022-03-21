@@ -31,25 +31,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NumeroCelular.delegate = self
         NumeroCelular.keyboardType = .numberPad
         
-        BtnSendNumber.addTarget(self, action: #selector(SendNumber(_:)), for: .touchUpInside)
-        BtnSendNumber.accessibilityLabel = "Create"
         BtnSendNumber.setTitle("ENVIAR", for: .normal)
         BtnSendNumber.setTitleColor(.white, for: .normal)
-        BtnSendNumber.backgroundColor = .systemRed
+        BtnSendNumber.backgroundColor = .systemBlue
         BtnSendNumber.layer.cornerRadius = 18
         
         
         NumeroCelular.label.text = "Número de teléfono"
+        NumeroCelular.font = UIFont.init(name: "Trebuchet MS", size: 17)
         NumeroCelular.placeholder = "09X123456"
         NumeroCelular.leadingAssistiveLabel.text = "Sin letras, guiones o espacios."
+        NumeroCelular.leadingAssistiveLabel.font = UIFont.init(name: "Trebuchet MS", size: 12)
         NumeroCelular.sizeToFit()
-        NumeroCelular.setOutlineColor(.systemRed, for: .normal)
-        NumeroCelular.setOutlineColor(.red, for: .editing)
+        NumeroCelular.setOutlineColor(.systemBlue, for: .normal)
+        NumeroCelular.setOutlineColor(.blue, for: .editing)
         
         StackLogin.addArrangedSubview(NumeroCelular)
         StackLogin.addArrangedSubview(BtnSendNumber)
-        
-        
         
     }
     
