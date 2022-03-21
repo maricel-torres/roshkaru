@@ -104,6 +104,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MDFInternationalization (3.0.0)
   - MDFTextAccessibility (2.0.1)
+  - TextFieldFormatter (0.1.0)
 
 DEPENDENCIES:
   - GMStepper
@@ -113,6 +114,7 @@ DEPENDENCIES:
   - "MaterialComponents/TextControls+OutlinedTextAreas"
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - MBProgressHUD (~> 1.2.0)
+  - TextFieldFormatter
 
 SPEC REPOS:
   trunk:
@@ -121,6 +123,7 @@ SPEC REPOS:
     - MBProgressHUD
     - MDFInternationalization
     - MDFTextAccessibility
+    - TextFieldFormatter
 
 SPEC CHECKSUMS:
   GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
@@ -128,7 +131,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
+  TextFieldFormatter: 86dfe06160a885f6eb985e1266bb24a874debb9a
 
-PODFILE CHECKSUM: 6ad58464616000086fbd22d5dc5694ef88dde7b5
+PODFILE CHECKSUM: d0bc872dcaa05b80f6ee1a0c75c87d4ed0089f68
 
 COCOAPODS: 1.11.2

@@ -13,8 +13,7 @@ target 'RoshKaru' do
   pod 'MaterialComponents/TextControls+OutlinedTextAreas'
   pod 'MaterialComponents/TextControls+OutlinedTextFields'
   pod 'MaterialComponents/Buttons'
-  
-
+  pod 'TextFieldFormatter'
   target 'RoshKaruTests' do
     inherit! :search_paths
     # Pods for testing
