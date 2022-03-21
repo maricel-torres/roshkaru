@@ -208,7 +208,7 @@ class CargaTarjetaTableViewController: UIViewController {
         cargaTarjetaSiguiente.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
         cargaTarjetaSiguiente.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
         cargaTarjetaSiguiente.frame.size.height = 25
-        cargaTarjetaSiguiente.backgroundColor = .systemRed
+        cargaTarjetaSiguiente.backgroundColor = .systemBlue
         cargaTarjetaSiguiente.setTitleColor(.white, for: .normal)
         cargaTarjetaSiguiente.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         cargaTarjetaSiguiente.layer.cornerRadius = 22
