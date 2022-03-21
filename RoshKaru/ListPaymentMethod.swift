@@ -32,8 +32,8 @@ class ListPaymentMethod:UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pay-cell", for: indexPath) as? PayCell
         cell?.pay = payMethods[indexPath.row]
-        cell?.selectionStyle = .none
-        cell?.backgroundColor = UIColor.systemBlue
+//        cell?.selectionStyle = .none
+//        cell?.backgroundColor = UIColor.systemBlue
         return cell!
     }
     
