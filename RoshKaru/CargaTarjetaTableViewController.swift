@@ -36,11 +36,10 @@ class CargaTarjetaTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         labelInstruccion()
         stack()
         estiloBoton()
-        self.accessToken = "754699cb-27b5-4b4b-8fcf-9079b95bf23f"
+        //self.accessToken = "754699cb-27b5-4b4b-8fcf-9079b95bf23f"
     }
     
     //MBProgressHUD para animacion de "cargando"
@@ -53,7 +52,8 @@ class CargaTarjetaTableViewController: UIViewController {
            present(alert, animated: true)
         } else  {
         self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.add_payment_method(type: .credit_card,
+        self.add_payment_method(accessToken: self.accessToken!,
+                                type: .credit_card,
                                 cardHolderName: fieldNombreTarjeta.text,
                                 cardNumbers: fieldNumeroTarjeta.text,
                                 cardExpirationMonth: Int(fieldMesVencimientoTarjeta.text!),
@@ -65,18 +65,18 @@ class CargaTarjetaTableViewController: UIViewController {
     
     
     //funciones segue
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        false
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "confirmacion" {
-            if let nextViewController = segue.destination as? ConfirmacionViewController {
-                nextViewController.accessToken = self.accessToken
-                
-            }
-        }
-    }
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//        false
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "confirmacion" {
+//            if let nextViewController = segue.destination as? ConfirmacionViewController {
+//                nextViewController.accessToken = self.accessToken
+//
+//            }
+//        }
+//    }
     
     //label titulo del screen
     func labelInstruccion () {
@@ -223,6 +223,7 @@ class CargaTarjetaTableViewController: UIViewController {
         cargaTarjetaSiguiente.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         //cargaTarjetaSiguiente.backgroundColor = .setBackgroundColor(.blue, forState: .highlighted)
         cargaTarjetaSiguiente.layer.cornerRadius = 22
+        cargaTarjetaSiguiente.titleLabel?.text = "GUARDAR"
         
     }
     
@@ -233,66 +234,63 @@ class CargaTarjetaTableViewController: UIViewController {
     }
         
     //funcion para agregar datos de tarjeta
-    func add_payment_method(type:PaymentType,
-                                    cardHolderName: String?,
-                                    cardNumbers: String?,
-                                    cardExpirationMonth: Int?,
-                                    cardExpirationYear: Int?,
-                                    cardSecurityCode: String?
-                                    /*accessToken: String?*/
-     ) {
+    func add_payment_method(accessToken: String,
+                                   type:PaymentType,
+                                   cardHolderName: String?,
+                                   cardNumbers: String?,
+                                   cardExpirationMonth: Int?,
+                                   cardExpirationYear: Int?,
+                                   cardSecurityCode: String?
+    ) {
+        let BASEURL = "https://phoebe.roshka.com/eat"
+        var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "type", value: type.rawValue),
+            AccessTokenQueryItem(accessToken)
+        ]
+        if let cardHolderName = cardHolderName {
+            queryItems.append(URLQueryItem(name: "cardHolderName", value: cardHolderName))
+        }
+        if let cardNumbers = cardNumbers {
+            queryItems.append(URLQueryItem(name: "cardNumbers", value: cardNumbers))
+        }
+        if let cardExpirationMonth = cardExpirationMonth {
+            queryItems.append(URLQueryItem(name: "cardExpirationMonth", value: String(cardExpirationMonth)))
+        }
+        if let cardExpirationYear = cardExpirationYear {
+            queryItems.append(URLQueryItem(name: "cardExpirationYear", value: String(cardExpirationYear)))
+        }
+        if let cardSecurityCode = cardSecurityCode {
+            queryItems.append(URLQueryItem(name: "cardSecurityCode", value: cardSecurityCode))
+        }
         
-         let BASEURL = "https://phoebe.roshka.com/eat"
-         var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
-         var queryItems: [URLQueryItem] = [
-             URLQueryItem(name: "type", value: type.rawValue),
-         ]
-         if let cardHolderName = cardHolderName {
-             queryItems.append(URLQueryItem(name: "cardHolderName", value: cardHolderName))
-         }
-         if let cardNumbers = cardNumbers {
-             queryItems.append(URLQueryItem(name: "cardNumbers", value: cardNumbers))
-         }
-         if let cardExpirationMonth = cardExpirationMonth {
-             queryItems.append(URLQueryItem(name: "cardExpirationMonth", value: String(cardExpirationMonth)))
-         }
-         if let cardExpirationYear = cardExpirationYear {
-             queryItems.append(URLQueryItem(name: "cardExpirationYear", value: String(cardExpirationYear)))
-         }
-         if let cardSecurityCode = cardSecurityCode {
-             queryItems.append(URLQueryItem(name: "cardSecurityCode", value: cardSecurityCode))
-            //queryItaccems.append(URLQueryItem(name: "replace", value: String(true)))
-         }
-//         if let accessToken = accessToken {
-//            queryItems.append(URLQueryItem(name: "accessToken", value: accessToken))
-//             //queryItems.append(URLQueryItem(name: "phoneNumber", value: "0981118615"))
-//        }
-         
-         
-        //validacion de datos de tarjeta
-         urlComponents.queryItems = queryItems
-         let url = urlComponents.url!
-         print(url.absoluteString)
-         let request = URLRequest(url: url)
-         URLSession.shared.dataTask(with: request) { data, response, error in
-             if let error = error {
-                 print(error);
-             } else if let data = data {
-                 
-                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                 if let json = json {
-                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                 } else {
-                     print("# Success")
+        
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                } else {
+                    print("# Success")
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "confirmacion", sender: self.accessToken)
+                        self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
-                 }
-                 
-             }
-         }.resume()
-         
-     }
+                }
+            }
+        }.resume()
+        
+    }
+    
+    func AccessTokenQueryItem(_ at: String ) -> URLQueryItem {
+        URLQueryItem(name: "accessToken", value: at)
+    }
 
 
 }

@@ -105,12 +105,6 @@ class MedioPagoViewController: UIViewController {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
                     print("# Success")
-                    //self.navigationController?.popViewController(animated: true)
-                    //self.performSegue(withIdentifier: "efectivo", sender: nil)
-//                    let vc = ListPaymentMethod.getInstance()
-//                    vc.accessToken = self.accessToken
-//                    self.navigationController?.pushViewController(vc, animated: true)
-                    
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                     }
