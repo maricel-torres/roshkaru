@@ -23,13 +23,13 @@ class QuieroViewController: UIViewController {
         comer.accessibilityLabel = "Create"
         comer.setTitle("COMER", for: .normal)
         comer.setTitleColor(.white, for: .normal)
-        comer.backgroundColor = .systemRed
+        comer.backgroundColor = .systemBlue
         comer.layer.cornerRadius = 18
         
         cocinar.accessibilityLabel = "Create"
         cocinar.setTitle("COCINAR", for: .normal)
         cocinar.setTitleColor(.white, for: .normal)
-        cocinar.backgroundColor = .systemRed
+        cocinar.backgroundColor = .systemBlue
         cocinar.layer.cornerRadius = 18
         // Do any additional setup after loading the view.
     }
