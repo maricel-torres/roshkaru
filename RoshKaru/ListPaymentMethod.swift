@@ -18,7 +18,6 @@ class ListPaymentMethod:UITableViewController{
         super.viewDidLoad()
         self.title = "Metodos de Pago"
         moreNavigation()
-        list_payment_methods(accessToken: accessToken!)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,7 +38,10 @@ class ListPaymentMethod:UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.keypayMethodSelected = payMethods[indexPath.row].key
         self.performSegue(withIdentifier: "confirmacion", sender: indexPath)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        list_payment_methods(accessToken: accessToken!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +76,6 @@ class ListPaymentMethod:UITableViewController{
             } else if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
                 if let json = json {
-                    print("Hola")
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     self.payMethods = self.DecodeJsonPay("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                     DispatchQueue.main.async {
@@ -113,6 +114,17 @@ class ListPaymentMethod:UITableViewController{
        return listaJson!
     }
     
+}
+
+extension ListPaymentMethod {
+    static let StoryboardName = "ListPaymentMethod"
+    static let identification = "PaymenthMethod"
+    
+    static func getInstance() -> ListPaymentMethod {
+        let storyboard = UIStoryboard(name: ListPaymentMethod.StoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: ListPaymentMethod.identification) as? ListPaymentMethod
+        return vc!
+    }
 }
 
 
