@@ -10,7 +10,7 @@ import UIKit
 
 class PrincipalTableViewController: UITableViewController {
     
-    var accessToken:String?
+    var accessToken:String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
     var cooks:[Cook]?
     var indexCookSelected:Int?
     
@@ -19,6 +19,7 @@ class PrincipalTableViewController: UITableViewController {
         //self.accessToken = "3463746f-9d6a-4926-a7fc-a081fd97e09a"
         weekly_plans_cooks(accessToken: self.accessToken!)
         super.viewDidLoad()
+        Navigation()
     }
 
     // MARK: - Table view data source
@@ -37,7 +38,21 @@ class PrincipalTableViewController: UITableViewController {
         
         return cell!
     }
+    private func Navigation(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Historial", style: .done, target: self, action: #selector(add(_:)))
 
+    }
+    @objc private func add(_ sender : Any?){
+        instaciarUnViewControllerSinSegues()
+        
+    }
+    
+    private func instaciarUnViewControllerSinSegues(){
+        if let controller = UIStoryboard(name: "Principal", bundle: nil).instantiateViewController(withIdentifier: "historial") as? HistorialDePedidosViewController{
+            controller.accessToken = accessToken
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 
     func weekly_plans_cooks (accessToken:String) {
         let BASEURL = "https://phoebe.roshka.com/eat"

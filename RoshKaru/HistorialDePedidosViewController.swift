@@ -7,84 +7,146 @@
 //
 
 import UIKit
+struct Items: Codable {
+    var cartKey: String
+    var quantity : Int
+    var offerKey: String
+    var itemKey: String
+    var replace: Bool
+    var accessToken: String
+    var cookKey: String
+  }
+struct Carts:Codable{
+  var total: Double
+  var key1: String
+  var items: [Items]
+  var key2: String
+  var table: String
+  var confirmed: Bool
+}
+struct Dato:Codable{
+  var cardExpirationMonth: Int
+  var cardNumbers : String
+  var replace: Bool
+  var cardSecurityCode : String
+  var cardExpirationYear: Int
+  var creditCard: Bool
+  var accessToken: String
+  var type: String
+  var cardHolderName: String
+}
+struct PaymentMethod: Codable {
+  var key : String
+  var data: Dato
+}
+struct Orders: Codable {
+  var key1 : String
+  var paymentMethod : PaymentMethod
+  var cart : Carts
+  var key2: String
+  var table: String
+  var date: Int
+}
+
 
 class HistorialDePedidosViewController: UITableViewController {
-
+    
+    
+    
+    
+    var accessToken : String?
+    var historial : [Orders]?
+    var BASEURL = "https://phoebe.roshka.com/eat"
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.title = "Lista"
+       orders(accessToken: "b15d29a2-6517-4309-b03f-d9a29c7ca5e5")
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        historial?.count ?? 0
     }
-
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let celda = tableView.dequeueReusableCell(withIdentifier: "items", for: indexPath) as! historialCell
+        celda.historial = historial?[indexPath.row]
+        
+         return celda
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func orders(accessToken:String) {
+        
+        var urlComponents = URLComponents(string: "\(BASEURL)/orders")!
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "accessToken", value: accessToken)
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                    let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                    if let json = json {
+                        print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                        
+                        self.historial = self.DecodeJson("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    } else {
+                        self.successReally(data)
+                }
+            }
+        }.resume()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func successReally(_ data: Data) {
+        if let str = String(data: data, encoding: .utf8), str.count > 0  {
+            print("_WOOOPS_______________________________________________\n\(str)")
+        } else {
+            print("# Success")
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    public func DecodeJson(_ jsonString: String)-> [Orders] {
+        let listaJson = try? JSONDecoder().decode([Orders].self, from: jsonString.data(using: .utf8)!)
+        if let listaJson = listaJson {
+            print(listaJson)
+        }
+       return listaJson!
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+class historialCell: UITableViewCell{
+    
+    var historial : Orders?{
+        didSet{
+            cartkey.text = historial?.cart.key2
+            total.text = String(Int(historial?.cart.total ?? 0))
+            let ti = TimeInterval((historial?.date ?? 0) / 1000)
+            let date = Date(timeIntervalSince1970: ti)
+            let components = Calendar.current.dateComponents([.month, .year, .day], from: date)
+            fecha.text = "\(components.day!)/\(components.month!)/\(components.year!)"
+        }
+    }
+    
+    @IBOutlet weak var cartkey: UILabel!
+    
+   
+    @IBOutlet weak var total: UILabel!
+    
+    
+    @IBOutlet weak var fecha: UILabel!
+    
+}
+
+
