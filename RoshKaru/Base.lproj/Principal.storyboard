@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kXB-LF-vGI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kXB-LF-vGI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +15,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rq1-lP-Hl4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="31" shouldIndentWhileEditing="NO" reuseIdentifier="principal-cell" rowHeight="102" id="7hl-5w-s8O" customClass="CookCell" customModule="RoshKaru" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="102"/>
@@ -25,7 +27,7 @@
                                         <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="694-o4-XQZ">
                                             <rect key="frame" x="113" y="16" width="281" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" systemColor="systemPinkColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLr-1u-g93">
@@ -62,10 +64,102 @@
                             <outlet property="delegate" destination="kXB-LF-vGI" id="him-oT-ZZo"/>
                         </connections>
                     </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="it7-Cz-bmh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-842.02898550724649" y="67.633928571428569"/>
+        </scene>
+        <!--Historial De Pedidos View Controller-->
+        <scene sceneID="Dfc-s3-m5c">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UzO-Em-uEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tableViewController storyboardIdentifier="historial" id="iDj-L8-p27" customClass="HistorialDePedidosViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="N8l-N2-3zD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="items" rowHeight="150" id="QO6-HM-9Z2" customClass="historialCell" customModule="RoshKaru" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="150"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QO6-HM-9Z2" id="4Q4-sU-x0a">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="CartKey" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poL-PE-evy">
+                                            <rect key="frame" x="130" y="56" width="61" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lk3-SR-PXE">
+                                            <rect key="frame" x="137" y="11" width="47" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FECHA: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnN-tK-uMP">
+                                            <rect key="frame" x="42" y="11" width="63" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CODIGO:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKa-Dh-8p2">
+                                            <rect key="frame" x="42" y="56" width="71" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwl-SY-kD8">
+                                            <rect key="frame" x="42" y="101" width="56" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVo-pV-3f7">
+                                            <rect key="frame" x="142" y="101" width="37" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="leading" secondItem="Qwl-SY-kD8" secondAttribute="trailing" constant="44" id="0LS-Pb-qwz"/>
+                                        <constraint firstItem="SKa-Dh-8p2" firstAttribute="leading" secondItem="KnN-tK-uMP" secondAttribute="leading" id="14a-CC-mLx"/>
+                                        <constraint firstAttribute="bottom" secondItem="mVo-pV-3f7" secondAttribute="bottom" constant="28" id="318-Os-iTu"/>
+                                        <constraint firstItem="KnN-tK-uMP" firstAttribute="top" secondItem="4Q4-sU-x0a" secondAttribute="top" constant="11" id="463-T6-HqG"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qwl-SY-kD8" secondAttribute="bottom" constant="28" id="69b-Cr-rie"/>
+                                        <constraint firstAttribute="trailing" secondItem="poL-PE-evy" secondAttribute="trailing" constant="223" id="Dxi-Jl-NJW"/>
+                                        <constraint firstItem="Qwl-SY-kD8" firstAttribute="leading" secondItem="SKa-Dh-8p2" secondAttribute="leading" id="E8L-wZ-WTh"/>
+                                        <constraint firstItem="poL-PE-evy" firstAttribute="leading" secondItem="SKa-Dh-8p2" secondAttribute="trailing" constant="17" id="GEX-y3-uoo"/>
+                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="top" secondItem="poL-PE-evy" secondAttribute="bottom" constant="24" id="K2i-B0-emE"/>
+                                        <constraint firstItem="KnN-tK-uMP" firstAttribute="leading" secondItem="4Q4-sU-x0a" secondAttribute="leading" constant="42" id="OK4-Rs-tVd"/>
+                                        <constraint firstItem="Lk3-SR-PXE" firstAttribute="leading" secondItem="KnN-tK-uMP" secondAttribute="trailing" constant="32" id="TGu-rl-iy9"/>
+                                        <constraint firstItem="SKa-Dh-8p2" firstAttribute="top" secondItem="KnN-tK-uMP" secondAttribute="bottom" constant="24" id="dqy-Kf-c7a"/>
+                                        <constraint firstItem="Lk3-SR-PXE" firstAttribute="top" secondItem="4Q4-sU-x0a" secondAttribute="top" constant="11" id="eSR-G8-KY9"/>
+                                        <constraint firstItem="Qwl-SY-kD8" firstAttribute="top" secondItem="SKa-Dh-8p2" secondAttribute="bottom" constant="24" id="nxq-OV-eCM"/>
+                                        <constraint firstAttribute="trailing" secondItem="mVo-pV-3f7" secondAttribute="trailing" constant="235" id="p9e-yd-BsP"/>
+                                        <constraint firstAttribute="trailing" secondItem="Lk3-SR-PXE" secondAttribute="trailing" constant="230" id="s1M-df-8CK"/>
+                                        <constraint firstItem="poL-PE-evy" firstAttribute="top" secondItem="Lk3-SR-PXE" secondAttribute="bottom" constant="24" id="uBy-FT-iFR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cartkey" destination="poL-PE-evy" id="PpP-XE-H6C"/>
+                                    <outlet property="fecha" destination="Lk3-SR-PXE" id="GDl-sD-Opm"/>
+                                    <outlet property="total" destination="mVo-pV-3f7" id="5h8-gL-T5P"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iDj-L8-p27" id="SJZ-jN-DK0"/>
+                            <outlet property="delegate" destination="iDj-L8-p27" id="qyV-tx-Z9n"/>
+                        </connections>
+                    </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="5.7971014492753632" y="-264.50892857142856"/>
         </scene>
         <!--UITableViewController-hvT-wT-mKn-->
         <scene sceneID="RoF-C8-Kqd">
@@ -76,4 +170,12 @@
             <point key="canvasLocation" x="1202" y="901"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
