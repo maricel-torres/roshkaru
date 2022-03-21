@@ -20,13 +20,13 @@ class MedioPagoViewController: UIViewController {
         tarjeta.accessibilityLabel = "Create"
         tarjeta.setTitle("TARJETA", for: .normal)
         tarjeta.setTitleColor(.white, for: .normal)
-        tarjeta.backgroundColor = .systemRed
+        tarjeta.backgroundColor = .systemBlue
         tarjeta.layer.cornerRadius = 18
 
         efectivo.accessibilityLabel = "Create"
         efectivo.setTitle("EFECTIVO", for: .normal)
         efectivo.setTitleColor(.white, for: .normal)
-        efectivo.backgroundColor = .systemRed
+        efectivo.backgroundColor = .systemBlue
         efectivo.layer.cornerRadius = 18
     }
     
