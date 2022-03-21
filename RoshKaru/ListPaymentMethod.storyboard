@@ -11,7 +11,7 @@
         <!--List Payment Method-->
         <scene sceneID="GEW-qT-uiZ">
             <objects>
-                <tableViewController id="zjZ-GA-afg" customClass="ListPaymentMethod" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PaymenthMethod" id="zjZ-GA-afg" customClass="ListPaymentMethod" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="47Y-AZ-rPf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

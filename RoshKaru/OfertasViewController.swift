@@ -208,8 +208,10 @@ class OfertasViewController: UITableViewController {
                 }
             }
         if segue.identifier ==  "MedioPago"{
-            if let nextviewcontroller  = segue.destination as?  MedioPagoViewController {
+            if let nextviewcontroller  = segue.destination as?  ListPaymentMethod{
                 nextviewcontroller.accessToken = self.accessToken
+                nextviewcontroller.carKey = cartKey
+                nextviewcontroller.totalPagar = Int(total!)
             }
         }
     }

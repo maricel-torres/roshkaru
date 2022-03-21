@@ -27,6 +27,7 @@
 		2A54986627DB9A480027B20F /* HechoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986527DB9A480027B20F /* HechoViewController.swift */; };
 		2A54986827DB9B4E0027B20F /* PrincipalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986727DB9B4E0027B20F /* PrincipalTableViewController.swift */; };
 		2A54986A27DB9DB50027B20F /* CargaTarjetaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */; };
+		2A61580627E8A2720040F2A2 /* HistorialDePedidosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61580527E8A2720040F2A2 /* HistorialDePedidosViewController.swift */; };
 		659CF64127E7E422008160F0 /* ListPaymentMethod.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659CF64027E7E422008160F0 /* ListPaymentMethod.storyboard */; };
 		659CF64627E7E43C008160F0 /* ListPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CF64527E7E43C008160F0 /* ListPaymentMethod.swift */; };
 		65F15B4827DF8933008B51F7 /* Ubicacion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F15B4727DF8933008B51F7 /* Ubicacion.storyboard */; };
@@ -92,6 +93,7 @@
 		2A54986527DB9A480027B20F /* HechoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HechoViewController.swift; sourceTree = "<group>"; };
 		2A54986727DB9B4E0027B20F /* PrincipalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalTableViewController.swift; sourceTree = "<group>"; };
 		2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargaTarjetaTableViewController.swift; sourceTree = "<group>"; };
+		2A61580527E8A2720040F2A2 /* HistorialDePedidosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialDePedidosViewController.swift; sourceTree = "<group>"; };
 		34AFC46CA5CB8906836C3636 /* Pods_RoshKaru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B034647D7D4ED0385F8DCF /* Pods_RoshKaru_RoshKaruUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaru_RoshKaruUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7AF01D0B2EFC54A56E4C0D /* Pods_RoshKaruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +205,7 @@
 				659CF64027E7E422008160F0 /* ListPaymentMethod.storyboard */,
 				659CF64527E7E43C008160F0 /* ListPaymentMethod.swift */,
 				2A34FB3127E89DE5000A9DE4 /* InfoCookViewController.swift */,
+				2A61580527E8A2720040F2A2 /* HistorialDePedidosViewController.swift */,
 			);
 			path = RoshKaru;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				2A54985A27DB99E10027B20F /* UbicacionViewController.swift in Sources */,
 				2A54985627DB91930027B20F /* DatosViewController.swift in Sources */,
 				2A54982627DB8DF90027B20F /* SceneDelegate.swift in Sources */,
+				2A61580627E8A2720040F2A2 /* HistorialDePedidosViewController.swift in Sources */,
 				2A54986427DB9A2F0027B20F /* ConfirmacionViewController.swift in Sources */,
 				2A54986027DB9A0B0027B20F /* OfertasViewController.swift in Sources */,
 				2A54986627DB9A480027B20F /* HechoViewController.swift in Sources */,
