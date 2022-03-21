@@ -10,19 +10,26 @@ import UIKit
 import MBProgressHUD
 import MaterialComponents.MaterialButtons
 
-class DireccionViewController: UIViewController {
+/// Pods materialComponets
+import MaterialComponents.MaterialTextControls_FilledTextAreas
+import MaterialComponents.MaterialTextControls_FilledTextFields
+import MaterialComponents.MaterialTextControls_OutlinedTextAreas
+import MaterialComponents.MaterialTextControls_OutlinedTextFields
+
+class DireccionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var stackViewPricipal: UIStackView!
-    @IBOutlet weak var streetName: UITextField!
-    @IBOutlet weak var number: UITextField!
-    @IBOutlet weak var neighborhood: UITextField!
-    @IBOutlet weak var reference: UITextField!
+    @IBOutlet weak var streetName: MDCOutlinedTextField!
+    @IBOutlet weak var number: MDCOutlinedTextField!
+    @IBOutlet weak var neighborhood: MDCOutlinedTextField!
+    @IBOutlet weak var reference: MDCOutlinedTextField!
     @IBOutlet weak var button: MDCButton!
     
     var accessToken:String?
     private var hud: MBProgressHUD?
     
     override func viewDidLoad() {
+        self.title = "Agregar Dirección"
         super.viewDidLoad()
         stackViewPricipal.spacing = 20
         stackView.spacing = 10
@@ -30,8 +37,38 @@ class DireccionViewController: UIViewController {
         button.accessibilityLabel = "Create"
         button.setTitle("Siguiente", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemRed
+        button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 18
+        
+        number.label.text = "Número de Domicilio"
+        number.delegate = self
+        number.keyboardType = .numberPad
+        number.font = UIFont.init(name: "Trebuchet MS", size: 17)
+        number.placeholder = "Nro. Domicilio"
+        number.sizeToFit()
+        number.setOutlineColor(.systemBlue, for: .normal)
+        number.setOutlineColor(.blue, for: .editing)
+        
+        streetName.label.text = "Nombre de Calle"
+        streetName.font = UIFont.init(name: "Trebuchet MS", size: 17)
+        streetName.placeholder = "Calle"
+        streetName.sizeToFit()
+        streetName.setOutlineColor(.systemBlue, for: .normal)
+        streetName.setOutlineColor(.blue, for: .editing)
+        
+        neighborhood.label.text = "Barrio"
+        neighborhood.font = UIFont.init(name: "Trebuchet MS", size: 17)
+        neighborhood.placeholder = "Barrio"
+        neighborhood.sizeToFit()
+        neighborhood.setOutlineColor(.systemBlue, for: .normal)
+        neighborhood.setOutlineColor(.blue, for: .editing)
+        
+        reference.label.text = "Referencias (Opcional)"
+        reference.font = UIFont.init(name: "Trebuchet MS", size: 17)
+        reference.placeholder = "Referencias"
+        reference.sizeToFit()
+        reference.setOutlineColor(.systemBlue, for: .normal)
+        reference.setOutlineColor(.blue, for: .editing)
         
     }
     // MARK: - Navigation
@@ -68,6 +105,13 @@ class DireccionViewController: UIViewController {
     
     enum AddressType: String {
         case delivery, cook_site
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowChar = "0123456789"
+        let allowCharSet = CharacterSet(charactersIn: allowChar)
+        let typeCharSet = CharacterSet(charactersIn: string)
+        return allowCharSet.isSuperset(of: typeCharSet)
     }
 
     func set_address(accessToken: String, addressType:AddressType, streetName:String, number:String, neighborhood:String, reference:String?) {

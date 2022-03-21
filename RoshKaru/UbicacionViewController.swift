@@ -24,7 +24,7 @@ class UbicacionViewController: UIViewController {
         button.accessibilityLabel = "Create"
         button.setTitle("Siguiente", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemRed
+        button.backgroundColor = .systemBlue
         stack.addArrangedSubview(button)
         button.layer.cornerRadius = 18
         
