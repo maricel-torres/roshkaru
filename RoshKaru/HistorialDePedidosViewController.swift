@@ -8,7 +8,7 @@
 
 import UIKit
 struct Items: Codable {
-    var cartKey: String
+    var cartKey: String?
     var quantity : Int
     var offerKey: String
     var itemKey: String
@@ -17,23 +17,23 @@ struct Items: Codable {
     var cookKey: String
   }
 struct Carts:Codable{
-  var total: Double
-  var key1: String
-  var items: [Items]
-  var key2: String
-  var table: String
-  var confirmed: Bool
+    var key1: String
+    var key2: String
+    var table: String
+    var items: [Items]
+    var confirmed: Bool
+    var total: Double
 }
 struct Dato:Codable{
-  var cardExpirationMonth: Int
-  var cardNumbers : String
-  var replace: Bool
-  var cardSecurityCode : String
-  var cardExpirationYear: Int
+    var replace: Bool
+    var accessToken: String
+    var type: String
+    var cardHolderName: String?
+    var cardNumbers : String?
+  var cardExpirationMonth: Int?
+  var cardExpirationYear: Int?
+  var cardSecurityCode : String?
   var creditCard: Bool
-  var accessToken: String
-  var type: String
-  var cardHolderName: String
 }
 struct PaymentMethod: Codable {
   var key : String
@@ -41,10 +41,10 @@ struct PaymentMethod: Codable {
 }
 struct Orders: Codable {
   var key1 : String
-  var paymentMethod : PaymentMethod
-  var cart : Carts
   var key2: String
   var table: String
+  var cart : Carts
+  var paymentMethod : PaymentMethod
   var date: Int
 }
 
