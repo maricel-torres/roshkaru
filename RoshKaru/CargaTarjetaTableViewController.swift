@@ -47,7 +47,7 @@ class CargaTarjetaTableViewController: UIViewController {
     
         //verifica si hay campos vacios
         if fieldNombreTarjeta.text! == "" || fieldNumeroTarjeta.text! == "" || fieldAnhoVencimientoTarjeta.text! == "" || fieldMesVencimientoTarjeta.text! == "" || fieldCSCTarjeta.text! == ""{
-           let alert = UIAlertController(title: "Aviso!", message: "Verifique datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
+           let alert = UIAlertController(title: "El hambre hace efecto!", message: "Verifica datos incorrectos o campos vacios.", preferredStyle: UIAlertController.Style.alert)
            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
            present(alert, animated: true)
         } else  {
@@ -60,23 +60,8 @@ class CargaTarjetaTableViewController: UIViewController {
                                 cardExpirationYear: Int(fieldAnhoVencimientoTarjeta.text!),
                                 cardSecurityCode: fieldCSCTarjeta.text)
         }
-//        add_payment_method(type: .credit_card, cardHolderName: "Nicolas Cage", cardNumbers: "1233-1231-1243-4343", cardExpirationMonth: 12, cardExpirationYear: 2024, cardSecurityCode: "348" /*accessToken: self.accessToken*/)
     }
-    
-    
-    //funciones segue
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-//        false
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "confirmacion" {
-//            if let nextViewController = segue.destination as? ConfirmacionViewController {
-//                nextViewController.accessToken = self.accessToken
-//
-//            }
-//        }
-//    }
+
     
     //label titulo del screen
     func labelInstruccion () {
@@ -116,7 +101,6 @@ class CargaTarjetaTableViewController: UIViewController {
         
         stackStack.axis = .vertical
         stackStack.distribution = .fillEqually
-        //stackStack.spacing = 5
         
         bandaMarcas()
         nombreLabel()
@@ -213,7 +197,6 @@ class CargaTarjetaTableViewController: UIViewController {
         cargaTarjetaSiguiente.translatesAutoresizingMaskIntoConstraints = false
         cargaTarjetaSiguiente.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         cargaTarjetaSiguiente.topAnchor.constraint(equalTo: self.stackStack.bottomAnchor, constant: 80).isActive = true
-        //cargaTarjetaSiguiente.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
         cargaTarjetaSiguiente.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         cargaTarjetaSiguiente.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
         cargaTarjetaSiguiente.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
@@ -221,7 +204,6 @@ class CargaTarjetaTableViewController: UIViewController {
         cargaTarjetaSiguiente.backgroundColor = .systemRed
         cargaTarjetaSiguiente.setTitleColor(.white, for: .normal)
         cargaTarjetaSiguiente.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        //cargaTarjetaSiguiente.backgroundColor = .setBackgroundColor(.blue, forState: .highlighted)
         cargaTarjetaSiguiente.layer.cornerRadius = 22
         cargaTarjetaSiguiente.titleLabel?.text = "GUARDAR"
         

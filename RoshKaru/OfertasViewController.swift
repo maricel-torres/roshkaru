@@ -54,7 +54,7 @@ class OfertasViewController: UITableViewController {
     var totalpedido: Int = 0
     var BASEURL = "https://phoebe.roshka.com/eat"
     var weklyPlans : [Cook]?
-    var accessToken: String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
+    var accessToken: String?// = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
     var indexCook: Int?
     var cart: Cart?
     var total : Double?
@@ -63,12 +63,14 @@ class OfertasViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         weekly_plans_cooks(accessToken: accessToken!)
+        Navigation()
         
     }
     // Accion del boton cuando se aprienta
     @objc func IrAMedioPago(_ sender: UIButton){
             self.performSegue(withIdentifier: "MedioPago", sender: self.accessToken!)
         }
+    
   
 // Agrega items al carrito
      func add_item_to_cart(accessToken:String, cartKey: String?, cookKey:String, offerKey: String, itemKey: String, quantity: Int ) {
@@ -214,7 +216,26 @@ class OfertasViewController: UITableViewController {
                 nextviewcontroller.totalPagar = Int(total!)
             }
         }
+        
     }
+    
+    //nav controller boton acerca de para info de cocinero
+    private func Navigation(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Acerca de", style: .done, target: self, action: #selector(add(_:)))
+    }
+    @objc private func add(_ sender : Any?){
+      instaciarUnViewControllerSinSegues()
+    }
+    private func instaciarUnViewControllerSinSegues(){
+      if let controller = UIStoryboard(name: "Ofertas", bundle: nil).instantiateViewController(withIdentifier: "historiaCook") as? InfoCookViewController {
+        controller.accessToken = accessToken
+        controller.nombreCook = weklyPlans![indexCook!].name
+        //controller.imagenURL = weklyPlans![indexCook!].photoUrl
+        controller.descripcionCook = weklyPlans![indexCook!].kitchen
+        self.navigationController?.pushViewController(controller, animated: true)
+      }
+    }
+    
 }
 //clase para cargar los datos a las celdas de la tabla ofertas
 class OfertaCell: UITableViewCell {
