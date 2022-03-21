@@ -73,11 +73,22 @@
                     </tableView>
                     <connections>
                         <segue destination="jlF-2R-Y0W" kind="show" identifier="confirmacion" id="b5Z-BU-Jon"/>
+                        <segue destination="6zn-nv-5kc" kind="show" identifier="irMetodoPago" id="khS-XI-oM2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ehi-aI-cOD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-75.362318840579718" y="110.49107142857143"/>
+        </scene>
+        <!--UIViewController-XCO-QN-RFv-->
+        <scene sceneID="RzE-Y0-a4E">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-XCO-QN-RFv" id="6zn-nv-5kc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="1R1-QK-Ys1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmz-pU-HUJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="643" y="3"/>
         </scene>
         <!--UIViewController-PAm-L0-OLf-->
         <scene sceneID="keI-UU-ec7">

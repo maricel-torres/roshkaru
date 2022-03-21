@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XCO-QN-RFv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XCO-QN-RFv">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,8 +19,8 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIA-oz-zmY" customClass="MDCButton">
                                 <rect key="frame" x="20" y="513" width="374" height="34"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="TARJETA"/>
                                 <connections>
                                     <action selector="ActionTarjeta:" destination="XCO-QN-RFv" eventType="touchUpInside" id="nn3-Qm-O41"/>
@@ -36,16 +38,16 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkh-fm-uut" customClass="MDCButton">
                                 <rect key="frame" x="20" y="555" width="374" height="34"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="EFECTIVO"/>
                                 <connections>
                                     <action selector="ActionEfectivo:" destination="XCO-QN-RFv" eventType="touchUpInside" id="OFs-r1-wgl"/>
-                                    <segue destination="PO9-Es-ilX" kind="show" id="0u3-jh-kWo"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aM4-Q6-ZIp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nkh-fm-uut" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="20" id="3OT-eq-0NE"/>
                             <constraint firstItem="aM4-Q6-ZIp" firstAttribute="trailing" secondItem="nkh-fm-uut" secondAttribute="trailing" constant="20" id="Bba-fc-PrQ"/>
@@ -62,7 +64,6 @@
                             <constraint firstItem="Sot-zd-WSv" firstAttribute="top" secondItem="r8K-Mv-T03" secondAttribute="bottom" constant="10" id="olH-8g-3NN"/>
                             <constraint firstItem="rIA-oz-zmY" firstAttribute="leading" secondItem="aM4-Q6-ZIp" secondAttribute="leading" constant="20" id="yS0-gm-1gA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aM4-Q6-ZIp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Medio de Pago" id="Fwr-TJ-0Ie"/>
                     <connections>
@@ -74,24 +75,25 @@
             </objects>
             <point key="canvasLocation" x="444.92753623188412" y="900.66964285714278"/>
         </scene>
-        <!--UIViewController-PAm-L0-OLf-->
-        <scene sceneID="sfD-Ju-57K">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-PAm-L0-OLf" id="PO9-Es-ilX" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZN4-Xk-bHF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1097" y="1681"/>
-        </scene>
         <!--UIViewController-UPL-Iu-3Wa-->
         <scene sceneID="T0e-TQ-r0P">
             <objects>
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-UPL-Iu-3Wa" id="6Ma-8f-1Za" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1MC-xF-Xyy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="1681"/>
+            <point key="canvasLocation" x="1701" y="901"/>
         </scene>
     </scenes>
     <resources>
         <image name="pay" width="170.66667175292969" height="170.66667175292969"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
