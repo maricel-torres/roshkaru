@@ -80,68 +80,73 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="items" rowHeight="150" id="QO6-HM-9Z2" customClass="historialCell" customModule="RoshKaru" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="150"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="items" rowHeight="165" id="QO6-HM-9Z2" customClass="historialCell" customModule="RoshKaru" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="165"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QO6-HM-9Z2" id="4Q4-sU-x0a">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="165"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="CartKey" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poL-PE-evy">
-                                            <rect key="frame" x="130" y="56" width="61" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" text="CartKey" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poL-PE-evy">
+                                            <rect key="frame" x="122.5" y="62" width="253.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lk3-SR-PXE">
-                                            <rect key="frame" x="137" y="11" width="47" height="21"/>
+                                            <rect key="frame" x="120" y="11" width="256" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FECHA: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnN-tK-uMP">
                                             <rect key="frame" x="42" y="11" width="63" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="63" id="gRv-aV-5gQ"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CODIGO:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKa-Dh-8p2">
-                                            <rect key="frame" x="42" y="56" width="71" height="21"/>
+                                            <rect key="frame" x="42" y="56" width="70.5" height="32.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwl-SY-kD8">
-                                            <rect key="frame" x="42" y="101" width="56" height="21"/>
+                                            <rect key="frame" x="42" y="112.5" width="56" height="24.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVo-pV-3f7">
-                                            <rect key="frame" x="142" y="101" width="37" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVo-pV-3f7">
+                                            <rect key="frame" x="106" y="112.5" width="270" height="24.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="leading" secondItem="Qwl-SY-kD8" secondAttribute="trailing" constant="44" id="0LS-Pb-qwz"/>
+                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="leading" secondItem="Qwl-SY-kD8" secondAttribute="trailing" constant="8" symbolic="YES" id="0SJ-6c-ViL"/>
                                         <constraint firstItem="SKa-Dh-8p2" firstAttribute="leading" secondItem="KnN-tK-uMP" secondAttribute="leading" id="14a-CC-mLx"/>
+                                        <constraint firstItem="Lk3-SR-PXE" firstAttribute="leading" secondItem="KnN-tK-uMP" secondAttribute="trailing" constant="15" id="1ex-At-lqN"/>
                                         <constraint firstAttribute="bottom" secondItem="mVo-pV-3f7" secondAttribute="bottom" constant="28" id="318-Os-iTu"/>
                                         <constraint firstItem="KnN-tK-uMP" firstAttribute="top" secondItem="4Q4-sU-x0a" secondAttribute="top" constant="11" id="463-T6-HqG"/>
                                         <constraint firstAttribute="bottom" secondItem="Qwl-SY-kD8" secondAttribute="bottom" constant="28" id="69b-Cr-rie"/>
-                                        <constraint firstAttribute="trailing" secondItem="poL-PE-evy" secondAttribute="trailing" constant="223" id="Dxi-Jl-NJW"/>
+                                        <constraint firstItem="poL-PE-evy" firstAttribute="centerY" secondItem="SKa-Dh-8p2" secondAttribute="centerY" id="6MQ-ex-Lw3"/>
                                         <constraint firstItem="Qwl-SY-kD8" firstAttribute="leading" secondItem="SKa-Dh-8p2" secondAttribute="leading" id="E8L-wZ-WTh"/>
-                                        <constraint firstItem="poL-PE-evy" firstAttribute="leading" secondItem="SKa-Dh-8p2" secondAttribute="trailing" constant="17" id="GEX-y3-uoo"/>
-                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="top" secondItem="poL-PE-evy" secondAttribute="bottom" constant="24" id="K2i-B0-emE"/>
+                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="top" secondItem="poL-PE-evy" secondAttribute="bottom" constant="30" id="GPI-e5-qId"/>
+                                        <constraint firstItem="poL-PE-evy" firstAttribute="leading" secondItem="SKa-Dh-8p2" secondAttribute="trailing" constant="10" id="HMv-a5-te2"/>
+                                        <constraint firstAttribute="trailing" secondItem="poL-PE-evy" secondAttribute="trailing" constant="38" id="JKV-7n-LXU"/>
+                                        <constraint firstItem="Lk3-SR-PXE" firstAttribute="centerY" secondItem="KnN-tK-uMP" secondAttribute="centerY" id="Lsb-1O-WIR"/>
                                         <constraint firstItem="KnN-tK-uMP" firstAttribute="leading" secondItem="4Q4-sU-x0a" secondAttribute="leading" constant="42" id="OK4-Rs-tVd"/>
-                                        <constraint firstItem="Lk3-SR-PXE" firstAttribute="leading" secondItem="KnN-tK-uMP" secondAttribute="trailing" constant="32" id="TGu-rl-iy9"/>
                                         <constraint firstItem="SKa-Dh-8p2" firstAttribute="top" secondItem="KnN-tK-uMP" secondAttribute="bottom" constant="24" id="dqy-Kf-c7a"/>
+                                        <constraint firstAttribute="trailing" secondItem="Lk3-SR-PXE" secondAttribute="trailing" constant="38" id="dtg-Dq-iXT"/>
                                         <constraint firstItem="Lk3-SR-PXE" firstAttribute="top" secondItem="4Q4-sU-x0a" secondAttribute="top" constant="11" id="eSR-G8-KY9"/>
                                         <constraint firstItem="Qwl-SY-kD8" firstAttribute="top" secondItem="SKa-Dh-8p2" secondAttribute="bottom" constant="24" id="nxq-OV-eCM"/>
-                                        <constraint firstAttribute="trailing" secondItem="mVo-pV-3f7" secondAttribute="trailing" constant="235" id="p9e-yd-BsP"/>
-                                        <constraint firstAttribute="trailing" secondItem="Lk3-SR-PXE" secondAttribute="trailing" constant="230" id="s1M-df-8CK"/>
-                                        <constraint firstItem="poL-PE-evy" firstAttribute="top" secondItem="Lk3-SR-PXE" secondAttribute="bottom" constant="24" id="uBy-FT-iFR"/>
+                                        <constraint firstItem="mVo-pV-3f7" firstAttribute="centerY" secondItem="Qwl-SY-kD8" secondAttribute="centerY" id="oDp-BO-xp2"/>
+                                        <constraint firstAttribute="trailing" secondItem="mVo-pV-3f7" secondAttribute="trailing" constant="38" id="rnL-T1-7EP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
