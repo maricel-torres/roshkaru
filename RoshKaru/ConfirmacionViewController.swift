@@ -13,6 +13,9 @@ class ConfirmacionViewController: UIViewController {
     var accessToken: String?
     @IBOutlet weak var btnConfirm: MDCButton!
     @IBOutlet weak var verticalStack: UIStackView!
+    var carKey:String?
+    var totalPagar:Int?
+    var metodoPagoKey:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
