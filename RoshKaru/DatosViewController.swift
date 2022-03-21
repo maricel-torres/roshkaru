@@ -14,19 +14,31 @@ class DatosViewController: UIViewController {
     var hud: MBProgressHUD?
     var accessToken: String?
     @IBOutlet weak var imageDato: UIImageView!
-    @IBOutlet weak var name: UITextField!
+    //@IBOutlet weak var name: UITextField!
     @IBOutlet weak var btnNext: MDCButton!
     
+    @IBOutlet weak var stackfield: UIStackView!
+    let name = MDCOutlinedTextField()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imageDato.image = UIImage(named: "names")
         btnNext.setTitle("Siguiente", for: .normal)
         btnNext.setTitleColor(.white, for: .normal)
-        btnNext.backgroundColor = .systemRed
+        btnNext.backgroundColor = .systemBlue
         btnNext.sizeToFit()
         btnNext.layer.cornerRadius = 18
-
+        
+        name.label.text = "Nombre"
+        name.font = UIFont.init(name: "Trebuchet MS", size: 17)
+        name.placeholder = "Fulanito"
+        name.leadingAssistiveLabel.text = "Ingrese aqui su nombre."
+        name.leadingAssistiveLabel.font = UIFont.init(name: "Trebuchet MS", size: 12)
+        name.sizeToFit()
+        name.setOutlineColor(.systemBlue, for: .normal)
+        name.setOutlineColor(.blue, for: .editing)
+        
+        stackfield.addArrangedSubview(name)
+        stackfield.addArrangedSubview(btnNext)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
