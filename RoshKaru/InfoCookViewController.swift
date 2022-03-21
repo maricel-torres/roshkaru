@@ -37,6 +37,8 @@ class InfoCookViewController: UIViewController {
         historyStack.centerYAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
         historyStack.centerXAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         historyStack.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
+        historyStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        historyStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
         historyStack.axis = .vertical
         historyStack.alignment = .center
         historyStack.distribution = .fillEqually
@@ -52,18 +54,21 @@ class InfoCookViewController: UIViewController {
     func tituloHistory () {
         historyStack.addArrangedSubview(nombreTitulo)
         nombreTitulo.text = nombreCook
+        nombreTitulo.font = nombreTitulo.font.withSize(30)
     }
     
     //seteo de la imagen en el stack
     func imgImg () {
         historyStack.addArrangedSubview(historyImg)
-        self.historyImg.downloadImage(from: URL(string: imagenURL!)!)
+        //self.historyImg.downloadImage(from: URL(string: imagenURL!)!)
     }
     
     //seteo del parrafo en el stack
     func parrafo () {
         historyStack.addArrangedSubview(textLabel)
         textLabel.text = descripcionCook
+        textLabel.font = textLabel.font.withSize(20)
+        textLabel.numberOfLines = 0
     }
     
 }
