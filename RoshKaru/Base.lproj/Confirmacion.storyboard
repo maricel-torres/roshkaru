@@ -21,13 +21,34 @@
                                 <rect key="frame" x="10" y="721" width="394" height="30"/>
                                 <state key="normal" title="Confirmar Pedido"/>
                                 <connections>
-                                    <segue destination="CBz-GI-B0u" kind="show" identifier="pedidoRealizado" id="zN5-kS-I5h"/>
+                                    <segue destination="CBz-GI-B0u" kind="show" identifier="hecho" id="zN5-kS-I5h"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wPN-RQ-6ur">
-                                <rect key="frame" x="40" y="120" width="307" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="276" translatesAutoresizingMaskIntoConstraints="NO" id="Vew-6f-2cf">
+                                <rect key="frame" x="25" y="350" width="350" height="350"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vew-6f-2cf" id="8Xx-0Z-B8A">
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="total" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-Re-NVc">
+                                            <rect key="frame" x="49" y="30" width="83" height="196"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="monto" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgb-yu-jxs">
+                                            <rect key="frame" x="246" y="30" width="93" height="196"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Md5-kZ-5QW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -40,7 +61,9 @@
                     <navigationItem key="navigationItem" title="Confirmacion" id="g9n-QB-hl0"/>
                     <connections>
                         <outlet property="btnConfirm" destination="AMR-wr-4dT" id="Yem-7R-hyr"/>
-                        <outlet property="verticalStack" destination="wPN-RQ-6ur" id="mXv-Hp-sac"/>
+                        <outlet property="monto" destination="dgb-yu-jxs" id="vzw-Uc-tjj"/>
+                        <outlet property="pedidos" destination="Vew-6f-2cf" id="GLv-sL-BH9"/>
+                        <outlet property="total" destination="rgd-Re-NVc" id="2ub-0l-hbm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMs-o4-eVn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
