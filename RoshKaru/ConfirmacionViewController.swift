@@ -43,46 +43,15 @@ class ConfirmacionViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "hecho" {
-            if let nexviewcontroller  = segue.destination as? HechoViewController {
-                nexviewcontroller.accessToken = self.accessToken
-                nexviewcontroller.carKey = self.carKey
+            if let nextviewcontroller  = segue.destination as? HechoViewController {
+                nextviewcontroller.accessToken = self.accessToken
+                nextviewcontroller.cartKey = self.carKey
+                nextviewcontroller.total = self.totalPagar
+                nextviewcontroller.paymentMethodKey = self.metodoPagoKey
+                
             }
         }
-    }
-
-    func pay_cart(accessToken:String, cartKey: String?, paymentMethodKey: String?, total: Int?) {
-        var urlComponents = URLComponents(string: "\(BASEURL)/pay_cart")!
-        var queryItems: [URLQueryItem] = [
-            AccessTokenQueryItem(accessToken),
-            URLQueryItem(name: "cartKey", value: cartKey),
-            URLQueryItem(name: "paymentMethodKey", value: paymentMethodKey),
-            URLQueryItem(name: "total", value: String(total!))
-        ]
-        urlComponents.queryItems = queryItems
-        let url = urlComponents.url!
-        print(url.absoluteString)
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                self.hud?.hide(animated: true)
-            }
-            if let error = error {
-                print(error);
-            } else if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-                if let json = json {
-                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
-                    
-                } else {
-                    self.successReally(data)
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "principal", sender: self.accessToken)
-                    }
-                }
-            }
-        }.resume()
-    }
-    
+    }    
     func AccessTokenQueryItem(_ at: String ) -> URLQueryItem {
         URLQueryItem(name: "accessToken", value: at)
     }
@@ -91,7 +60,40 @@ class ConfirmacionViewController: UIViewController {
         if let str = String(data: data, encoding: .utf8), str.count > 0  {
             print("_WOOOPS_______________________________________________\n\(str)")
         } else {
-            print("# Success")
+            print("#Success")
         }
     }
+    func close_cart(accessToken: String, cartKey: String, confirm: Bool) {
+        
+        var urlComponents = URLComponents(string: "\(BASEURL)/close_cart")!
+        let queryItems: [URLQueryItem] = [
+            self.AccessTokenQueryItem(accessToken),
+            URLQueryItem(name: "cartKey", value: cartKey),
+            URLQueryItem(name: "confirm", value: String(confirm)),
+        ]
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        print(url.absoluteString)
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error);
+            } else if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                   print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "hecho", sender: self.accessToken)
+                    }
+                } else {
+                    self.successReally(data)
+                }
+            }
+        }.resume()
+    }
+    
+    @IBAction func ConfirmarPedidoAction(_ sender: Any) {
+        close_cart(accessToken: accessToken!, cartKey: carKey!, confirm: true)
+    }
+    
 }

@@ -22,7 +22,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
-                                    <segue destination="7gn-rr-k8b" kind="show" id="M2s-Df-zE0"/>
+                                    <action selector="OkAction:" destination="hmL-e4-4nE" eventType="touchUpInside" id="s3N-zC-ukk"/>
+                                    <segue destination="7gn-rr-k8b" kind="show" identifier="principal" id="M2s-Df-zE0"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pedido Realizado" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awG-Tz-nFF">

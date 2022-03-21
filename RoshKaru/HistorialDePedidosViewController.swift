@@ -50,10 +50,6 @@ struct Orders: Codable {
 
 
 class HistorialDePedidosViewController: UITableViewController {
-    
-    
-    
-    
     var accessToken : String?
     var historial : [Orders]?
     var BASEURL = "https://phoebe.roshka.com/eat"
@@ -62,7 +58,7 @@ class HistorialDePedidosViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.title = "Historial de Pedidos"
-       orders(accessToken: "b15d29a2-6517-4309-b03f-d9a29c7ca5e5")
+       orders(accessToken: accessToken!)
     }
 
     // MARK: - Table view data source
