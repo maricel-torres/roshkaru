@@ -17,6 +17,7 @@ class ListPaymentMethod:UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Metodos de Pago"
+        moreNavigation()
         list_payment_methods(accessToken: accessToken!)
     }
     
@@ -47,6 +48,12 @@ class ListPaymentMethod:UITableViewController{
                 nextViewController.accessToken = self.accessToken!
                 nextViewController.carKey = self.carKey
                 nextViewController.metodoPagoKey = self.keypayMethodSelected
+            }
+        }
+        
+        if segue.identifier == "irMetodoPago" {
+            if let nextViewController = segue.destination as? MedioPagoViewController {
+                nextViewController.accessToken = self.accessToken!
             }
         }
     }
@@ -89,16 +96,7 @@ class ListPaymentMethod:UITableViewController{
     }
     
     private func instanciarViewController() {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UIViewController-XCO-QN-RFv")
-        let inNavigationController = true
-        if inNavigationController {
-            //let nav = UINavigationController(rootViewController: controller)
-            if let controller = controller as? MedioPagoViewController {
-                controller.accessToken = self.accessToken
-            }
-            //self.present(nav, animated: true, completion: nil)
-            self.present(controller, animated: true, completion: nil)
-        }
+        self.performSegue(withIdentifier: "irMetodoPago", sender: nil)
     }
     
     public func DecodeJsonPay(_ jsonString: String)-> [PayMethod] {
