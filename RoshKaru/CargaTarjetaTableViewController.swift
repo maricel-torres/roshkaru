@@ -8,7 +8,7 @@
 
 import UIKit
 import MBProgressHUD
-
+import TextFieldFormatter
 class CargaTarjetaTableViewController: UIViewController {
 
     @IBOutlet weak var cargaTarjetaSiguiente: UIButton!
@@ -18,16 +18,17 @@ class CargaTarjetaTableViewController: UIViewController {
     var labelNombreTarjeta = UILabel()
     var fieldNombreTarjeta = UITextField()
     var labelNumeroTarjeta = UILabel()
-    var fieldNumeroTarjeta = UITextField()
+    var fieldNumeroTarjeta = TextFieldFormatter()
     var labelMesVencimientoTarjeta = UILabel()
-    var fieldMesVencimientoTarjeta = UITextField()
+    var fieldMesVencimientoTarjeta = TextFieldFormatter()
     var labelAnhoVencimientoTarjeta = UILabel()
-    var fieldAnhoVencimientoTarjeta = UITextField()
+    var fieldAnhoVencimientoTarjeta = TextFieldFormatter()
     var labelCSCTarjeta = UILabel()
-    var fieldCSCTarjeta = UITextField()
+    var fieldCSCTarjeta = TextFieldFormatter()
     var labelInfo = UILabel()
     var bandaTarjetas = UIImageView()
     var bottomLine = CALayer()
+    
     
     private var hud: MBProgressHUD?
     var accessToken: String?
@@ -40,6 +41,12 @@ class CargaTarjetaTableViewController: UIViewController {
         stack()
         estiloBoton()
         //self.accessToken = "754699cb-27b5-4b4b-8fcf-9079b95bf23f"
+        
+        fieldNumeroTarjeta.pattern = "NNNN-NNNN-NNNN-NNNN"
+        fieldAnhoVencimientoTarjeta.pattern = "NNNN"
+        fieldMesVencimientoTarjeta.pattern = "NN"
+        fieldCSCTarjeta.pattern = "NNN"
+        
     }
     
     //MBProgressHUD para animacion de "cargando"
