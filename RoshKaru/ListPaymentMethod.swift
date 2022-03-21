@@ -7,7 +7,7 @@ class ListPaymentMethod:UITableViewController{
     @IBOutlet weak var cardNumber: UILabel!
     @IBOutlet weak var dateCard: UILabel!
     
-    var accessToken:String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
+    var accessToken:String?
     var payMethods = [PayMethod]()
     var carKey:String?
     var totalPagar:Int?
