@@ -61,7 +61,7 @@ class HistorialDePedidosViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        self.title = "Lista"
+        self.title = "Historial de Pedidos"
        orders(accessToken: "b15d29a2-6517-4309-b03f-d9a29c7ca5e5")
     }
 
