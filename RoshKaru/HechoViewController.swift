@@ -11,6 +11,7 @@ import UIKit
 class HechoViewController: UIViewController {
 
     var accessToken: String?
+    var carKey: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
