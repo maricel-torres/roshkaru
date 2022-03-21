@@ -23,7 +23,7 @@ class ValidacionViewController: UIViewController, UITextFieldDelegate {
     var jsonVcLogin: String?
     // Variable que contendra el codigo que se envio al numero celular ingresado
     var challenge: String?
-    var accessToken: String? = "e6a2b767-0a12-4958-aac2-ed11bc620212"
+    var accessToken: String? 
         
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,11 +10,11 @@ import UIKit
 
 class PrincipalTableViewController: UITableViewController {
     
-    var accessToken:String? = "b15d29a2-6517-4309-b03f-d9a29c7ca5e5"
+    var accessToken:String? 
     var cooks:[Cook]?
     var indexCookSelected:Int?
     
-    private var hud: MBProgressHUD?
+    //private var hud: MBProgressHUD?
     override func viewDidLoad() {
         //self.accessToken = "3463746f-9d6a-4926-a7fc-a081fd97e09a"
         weekly_plans_cooks(accessToken: self.accessToken!)
@@ -97,7 +97,7 @@ class PrincipalTableViewController: UITableViewController {
     */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.indexCookSelected = indexPath.row
-        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        //self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.performSegue(withIdentifier: "ofertas", sender: indexPath)
         
     }
