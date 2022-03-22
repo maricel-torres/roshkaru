@@ -63,12 +63,15 @@ class ValidacionViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func verifyCode(_ sender: Any) {
-//        if let codigo = codigoVerificacion.text {
-//            self.input_sms(accessToken: challenge!, input: codigo.sha1())
-//        }
-        if let codeCelular = codeNumber.text {
-            self.input_sms(accessToken: accessToken!, input: codeCelular.sha1())
+        if codeNumber.text == "1111" {
+            if let codeCelular = codeNumber.text {
+                self.input_sms(accessToken: accessToken!, input: codeCelular.sha1())
+            }
         }
+        else{
+            showError("Código de verificación incorrecto")
+        }
+        
     }
     
     
@@ -100,6 +103,7 @@ class ValidacionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     func input_sms(accessToken:String, input: String ) {
         let BASEURL = "https://phoebe.roshka.com/eat"
         var urlComponents = URLComponents(string: "\(BASEURL)/input_sms")!
@@ -116,37 +120,49 @@ class ValidacionViewController: UIViewController, UITextFieldDelegate {
                 self.hud?.hide(animated: true)
             }
             if let error = error {
-                print(error)
+                print(error);
             } else if let data = data {
-   //             let httpResponse = response as? HTTPURLResponse
-//                let status = httpResponse?.statusCode ?? 0
-//                let statusCodeIsError = status < 200 || status > 299
-                
-                printDebugJson(data)
-                DispatchQueue.main.async {
-                     // ir al segue de datos
-//                    self.accessToken = ret.login.challenge
-                    self.performSegue(withIdentifier: "datos", sender: accessToken)
-                 }
-                
-                if let ret: StartLoginRet = DecodableFromJson(data) {
-                    
-                    // guardar el access token en defaults
-                    UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
-                    UserDefaults.standard.synchronize()
-
-                } else if let error: ErrorRet = DecodableFromJson(data) {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
+                if let json = json {
+                    print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
+                } else {
+                    print("# Success")
                     DispatchQueue.main.async {
-                        // mostrar error
-                        self.showError(error.userMsg ?? error.msg ?? "Ocurrió un error!")
-                        self.codeNumber.text = nil
-                    }
+                        self.performSegue(withIdentifier: "datos", sender: accessToken)
+                     }
                 }
-                
             }
         }.resume()
-        
     }
+    
+    
+    
+//    func input_sms(accessToken:String, input: String ) {
+//        let BASEURL = "https://phoebe.roshka.com/eat"
+//        var urlComponents = URLComponents(string: "\(BASEURL)/input_sms")!
+//        let queryItems: [URLQueryItem] = [
+//            URLQueryItem(name: "accessToken", value: accessToken),
+//            URLQueryItem(name: "input", value: input),
+//        ]
+//        urlComponents.queryItems = queryItems
+//        let url = urlComponents.url!
+//        print(url.absoluteString)
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            DispatchQueue.main.async {
+//                self.hud?.hide(animated: true)
+//            }
+//            if let error = error {
+//                print(error)
+//            } else if let data = data {
+//                printDebugJson(data)
+//                DispatchQueue.main.async {
+//                    self.performSegue(withIdentifier: "datos", sender: accessToken)
+//                 }
+//            }
+//        }.resume()
+//
+//    }
     
 }
 // Extension para obtener el Sha1 de un string
