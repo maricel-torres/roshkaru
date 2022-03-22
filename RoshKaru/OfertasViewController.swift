@@ -230,9 +230,10 @@ class OfertasViewController: UITableViewController {
       if let controller = UIStoryboard(name: "Ofertas", bundle: nil).instantiateViewController(withIdentifier: "historiaCook") as? InfoCookViewController {
         controller.accessToken = accessToken
         controller.nombreCook = weklyPlans![indexCook!].name
-        //controller.imagenURL = weklyPlans![indexCook!].photoUrl
+        controller.imagenURL = weklyPlans![indexCook!].kitchenPhotoUrl
         controller.descripcionCook = weklyPlans![indexCook!].kitchen
-        self.navigationController?.pushViewController(controller, animated: true)
+        controller.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        present(controller, animated: true, completion: nil)
       }
     }
     
