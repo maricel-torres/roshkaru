@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ePw-pT-ISQ">
-                                <rect key="frame" x="28" y="453.33333333333331" width="358.33333333333331" height="43.333333333333314"/>
+                                <rect key="frame" x="28" y="479.33333333333331" width="358.33333333333331" height="43.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingrese su número de teléfono" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzq-Wn-2pe">
                                         <rect key="frame" x="0.0" y="0.0" width="358.33333333333331" height="24.666666666666668"/>
@@ -33,7 +33,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fgx-7Y-IeF">
-                                <rect key="frame" x="20" y="526.66666666666663" width="374" height="32"/>
+                                <rect key="frame" x="20" y="552.66666666666663" width="374" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-PZ-3aS" customClass="MDCButton">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
@@ -79,8 +79,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ieb-RX-1aJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WX8-WX-oaa">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WX8-WX-oaa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

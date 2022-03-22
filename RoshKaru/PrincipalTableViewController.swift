@@ -128,7 +128,7 @@ class CookCell: UITableViewCell {
             
             let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
             outerView.clipsToBounds = false
-            outerView.layer.shadowColor = UIColor.systemPink.cgColor
+            outerView.layer.shadowColor = UIColor.systemBlue.cgColor
             outerView.layer.shadowOpacity = 1
             outerView.layer.shadowOffset = CGSize.zero
             outerView.layer.shadowRadius = self.avatarCook.frame.width / 2.0
