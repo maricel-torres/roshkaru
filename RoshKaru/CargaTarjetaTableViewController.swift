@@ -76,7 +76,7 @@ class CargaTarjetaTableViewController: UIViewController {
         labelInfo.text = "Ingrese los datos de su tarjeta"
         labelInfo.font = labelInfo.font.withSize(25)
         labelInfo.translatesAutoresizingMaskIntoConstraints = false
-        labelInfo.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        labelInfo.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80).isActive = true
         labelInfo.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
     }
@@ -235,6 +235,7 @@ class CargaTarjetaTableViewController: UIViewController {
         var urlComponents = URLComponents(string: "\(BASEURL)/add_payment_method")!
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "type", value: type.rawValue),
+            URLQueryItem(name: "replace", value: String(true)),
             AccessTokenQueryItem(accessToken)
         ]
         if let cardHolderName = cardHolderName {

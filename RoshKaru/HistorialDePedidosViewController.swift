@@ -127,7 +127,7 @@ class historialCell: UITableViewCell{
     var historial : Orders?{
         didSet{
             cartkey.text = historial?.cart.key2
-            total.text = String(Int(historial?.cart.total ?? 0))
+            total.text = "Gs. " + String(Int(historial?.cart.total ?? 0))
             let ti = TimeInterval((historial?.date ?? 0) / 1000)
             let date = Date(timeIntervalSince1970: ti)
             let components = Calendar.current.dateComponents([.month, .year, .day], from: date)
