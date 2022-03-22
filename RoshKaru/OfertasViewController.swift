@@ -204,7 +204,7 @@ class OfertasViewController: UITableViewController {
         self.performSegue(withIdentifier: "oferta", sender: indexPath)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.hub = MBProgressHUD.showAdded(to: self.view, animated: true)
+        //self.hub = MBProgressHUD.showAdded(to: self.view, animated: true)
             if segue.identifier == "oferta" {
                 if let nextViewController = segue.destination as? Quantity {
                     nextViewController.cook = weklyPlans![indexCook!]
