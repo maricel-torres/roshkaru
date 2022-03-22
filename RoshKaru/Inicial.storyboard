@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ETq-1S-hAO">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="2ZT-52-tSx">
+            <objects>
+                <navigationController id="ETq-1S-hAO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u80-mc-AzP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vAO-Q2-feH" kind="relationship" relationship="rootViewController" id="sb4-Pu-aZc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pq9-lW-tjl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-736" y="73"/>
+        </scene>
+        <!--Incial View Controller-->
+        <scene sceneID="Y3G-yY-1Qo">
+            <objects>
+                <viewController storyboardIdentifier="inicial-storyboard" id="vAO-Q2-feH" customClass="IncialViewController" customModule="RoshKaru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NTM-7K-705">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="GTE-fB-DbU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fka-mC-Hal"/>
+                    <connections>
+                        <segue destination="KAz-cy-MYq" kind="show" identifier="login" id="175-oo-qAI"/>
+                        <segue destination="jNJ-C8-akr" kind="show" identifier="principal" id="1Xd-5m-fyF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7QX-S3-FFA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="73"/>
+        </scene>
+        <!--login-storyboard-->
+        <scene sceneID="3if-Kw-Um2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="login-storyboard" id="KAz-cy-MYq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wxM-5A-6Ei"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Cg-t5-A5v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="-36"/>
+        </scene>
+        <!--UITableViewController-kXB-LF-vGI-->
+        <scene sceneID="DOR-9Y-0S3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Principal" referencedIdentifier="UITableViewController-kXB-LF-vGI" id="jNJ-C8-akr" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="oG8-so-C44"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="czE-wo-xEH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="227"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

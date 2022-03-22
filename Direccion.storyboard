@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8eh-XD-7Ia">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8eh-XD-7Ia">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,12 +52,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gE-rk-Ntw" customClass="MDCButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gE-rk-Ntw" customClass="MDCButton">
                                 <rect key="frame" x="10" y="730" width="394" height="32"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
                                 <state key="normal" title="Siguiente">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleShadowColor" systemColor="systemOrangeColor"/>
                                 </state>
                                 <connections>
                                     <action selector="sendData:" destination="8eh-XD-7Ia" eventType="touchUpInside" id="a5w-mt-cVD"/>
@@ -63,7 +65,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="JvL-Ws-NKB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qx6-vn-E9T" firstAttribute="leading" secondItem="JvL-Ws-NKB" secondAttribute="leading" constant="10" id="7S5-bJ-uzW"/>
                             <constraint firstItem="9gE-rk-Ntw" firstAttribute="leading" secondItem="JvL-Ws-NKB" secondAttribute="leading" constant="10" id="AMg-K4-0ZM"/>
@@ -74,7 +77,6 @@
                             <constraint firstItem="39F-UJ-9Mz" firstAttribute="leading" secondItem="JvL-Ws-NKB" secondAttribute="leading" constant="10" id="p2k-a4-DzL"/>
                             <constraint firstItem="JvL-Ws-NKB" firstAttribute="trailing" secondItem="9gE-rk-Ntw" secondAttribute="trailing" constant="10" id="xg7-1a-AMv"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="JvL-Ws-NKB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Direccion" id="ccg-uo-zr2"/>
                     <connections>
@@ -91,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="2163.768115942029" y="-2486.3839285714284"/>
         </scene>
-        <!--UITableViewController-kXB-LF-vGI-->
+        <!--inicial-storyboard-->
         <scene sceneID="sW8-cR-N6C">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UITableViewController-kXB-LF-vGI" id="xyF-19-cBI" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Inicial" referencedIdentifier="inicial-storyboard" id="xyF-19-cBI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="P9G-Wb-Fuo"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nsz-9d-HQD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -102,4 +104,15 @@
             <point key="canvasLocation" x="2946" y="-2397"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

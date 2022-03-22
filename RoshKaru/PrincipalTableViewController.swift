@@ -40,12 +40,24 @@ class PrincipalTableViewController: UITableViewController {
     }
     private func Navigation(){
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Historial", style: .done, target: self, action: #selector(add(_:)))
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logout(_:)))
 
     }
     @objc private func add(_ sender : Any?){
         instaciarUnViewControllerSinSegues()
         
     }
+    
+    @objc private func logout(_ sender : Any?){
+        cerrarSession()
+    }
+    
+    func cerrarSession(){
+        UserDefaults.standard.setValue(nil, forKey: "accessToken")
+        UserDefaults.standard.synchronize()
+        self.performSegue(withIdentifier: "inicial", sender: nil)
+    }
+    
     
     private func instaciarUnViewControllerSinSegues(){
         if let controller = UIStoryboard(name: "Principal", bundle: nil).instantiateViewController(withIdentifier: "historial") as? HistorialDePedidosViewController{
