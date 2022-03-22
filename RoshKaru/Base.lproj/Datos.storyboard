@@ -25,10 +25,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v3m-57-psw">
-                                <rect key="frame" x="20" y="495.5" width="374" height="30"/>
+                                <rect key="frame" x="20" y="495.5" width="374" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7p-OX-FJY" customClass="MDCButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="sendDataName:" destination="hfU-BQ-X0F" eventType="touchUpInside" id="TVt-CN-2WF"/>

@@ -27,10 +27,10 @@
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Comer, si desea realizar un pedido. Cocinar, si desea registrarse como cocinero" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ihj-ko-ugo">
-                                <rect key="frame" x="20" y="470.33333333333326" width="374" height="111"/>
+                                <rect key="frame" x="20" y="470.33333333333331" width="374" height="64.999999999999943"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="111" id="jnz-gL-zV6"/>
+                                    <constraint firstAttribute="height" constant="65" id="jnz-gL-zV6"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="18"/>
@@ -40,12 +40,12 @@
                                 <rect key="frame" x="87" y="157" width="240" height="128"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9n-3h-C9N" customClass="MDCButton">
-                                <rect key="frame" x="20" y="621.33333333333337" width="374" height="32"/>
+                                <rect key="frame" x="20" y="575.33333333333337" width="374" height="32"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
                                 <state key="normal" title="COCINAR"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0V-NT-7Gt" customClass="MDCButton">
-                                <rect key="frame" x="20" y="584.33333333333337" width="374" height="32"/>
+                                <rect key="frame" x="20" y="538.33333333333337" width="374" height="32"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
                                 <state key="normal" title="COMER"/>
                                 <connections>
@@ -96,6 +96,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Captura de Pantalla 2022-03-21 a la(s) 16.21.14" width="398.5" height="258"/>
+        <image name="Captura de Pantalla 2022-03-21 a la(s) 16.21.14" width="265.66665649414062" height="172"/>
     </resources>
 </document>
