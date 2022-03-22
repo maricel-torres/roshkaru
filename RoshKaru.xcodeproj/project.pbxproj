@@ -28,6 +28,8 @@
 		2A54986827DB9B4E0027B20F /* PrincipalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986727DB9B4E0027B20F /* PrincipalTableViewController.swift */; };
 		2A54986A27DB9DB50027B20F /* CargaTarjetaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54986927DB9DB50027B20F /* CargaTarjetaTableViewController.swift */; };
 		2A61580627E8A2720040F2A2 /* HistorialDePedidosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61580527E8A2720040F2A2 /* HistorialDePedidosViewController.swift */; };
+		654D0C8227E9ED3E00163B68 /* Inicial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 654D0C8127E9ED3E00163B68 /* Inicial.storyboard */; };
+		654D0C8727E9ED7D00163B68 /* InicialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D0C8627E9ED7D00163B68 /* InicialViewController.swift */; };
 		659CF64127E7E422008160F0 /* ListPaymentMethod.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659CF64027E7E422008160F0 /* ListPaymentMethod.storyboard */; };
 		659CF64627E7E43C008160F0 /* ListPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CF64527E7E43C008160F0 /* ListPaymentMethod.swift */; };
 		65F15B4827DF8933008B51F7 /* Ubicacion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F15B4727DF8933008B51F7 /* Ubicacion.storyboard */; };
@@ -98,6 +100,8 @@
 		35B034647D7D4ED0385F8DCF /* Pods_RoshKaru_RoshKaruUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaru_RoshKaruUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7AF01D0B2EFC54A56E4C0D /* Pods_RoshKaruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoshKaruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B46FFA8C6467C38C6AD1010 /* Pods-RoshKaru.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoshKaru.release.xcconfig"; path = "Target Support Files/Pods-RoshKaru/Pods-RoshKaru.release.xcconfig"; sourceTree = "<group>"; };
+		654D0C8127E9ED3E00163B68 /* Inicial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inicial.storyboard; sourceTree = "<group>"; };
+		654D0C8627E9ED7D00163B68 /* InicialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicialViewController.swift; sourceTree = "<group>"; };
 		659CF64027E7E422008160F0 /* ListPaymentMethod.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListPaymentMethod.storyboard; sourceTree = "<group>"; };
 		659CF64527E7E43C008160F0 /* ListPaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPaymentMethod.swift; sourceTree = "<group>"; };
 		65F15B4727DF8933008B51F7 /* Ubicacion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ubicacion.storyboard; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				659CF64527E7E43C008160F0 /* ListPaymentMethod.swift */,
 				2A34FB3127E89DE5000A9DE4 /* InfoCookViewController.swift */,
 				2A61580527E8A2720040F2A2 /* HistorialDePedidosViewController.swift */,
+				654D0C8127E9ED3E00163B68 /* Inicial.storyboard */,
+				654D0C8627E9ED7D00163B68 /* InicialViewController.swift */,
 			);
 			path = RoshKaru;
 			sourceTree = "<group>";
@@ -319,7 +325,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = Bootcamp;
 				TargetAttributes = {
 					2A54981F27DB8DF90027B20F = {
@@ -363,6 +369,7 @@
 			files = (
 				65F15B4827DF8933008B51F7 /* Ubicacion.storyboard in Resources */,
 				65F15B8727DF8B97008B51F7 /* PedidoRealizado.storyboard in Resources */,
+				654D0C8227E9ED3E00163B68 /* Inicial.storyboard in Resources */,
 				65F15B6F27DF8AD7008B51F7 /* MedioPago.storyboard in Resources */,
 				65F15B7A27DF8B32008B51F7 /* Confirmacion.storyboard in Resources */,
 				65F15B6927DF8AC1008B51F7 /* Ofertas.storyboard in Resources */,
@@ -520,6 +527,7 @@
 				A17EDAFB27DBF76E00F28DC9 /* ejemplo_llamadas_backend.swift in Sources */,
 				659CF64627E7E43C008160F0 /* ListPaymentMethod.swift in Sources */,
 				2A54985C27DB99F20027B20F /* DireccionViewController.swift in Sources */,
+				654D0C8727E9ED7D00163B68 /* InicialViewController.swift in Sources */,
 				2A54986827DB9B4E0027B20F /* PrincipalTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,6 +649,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -701,6 +710,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

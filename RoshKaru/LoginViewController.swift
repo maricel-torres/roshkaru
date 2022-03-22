@@ -28,6 +28,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
+        
         NumeroCelular.delegate = self
         NumeroCelular.keyboardType = .numberPad
         
@@ -127,8 +130,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if let ret: StartLoginRet = DecodableFromJson(data) {
                     
                     // guardar el access token en defaults
-                    UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
-                    UserDefaults.standard.synchronize()
+//                    UserDefaults.standard.setValue(ret.session.accessToken, forKey: "accessToken")
+//                    UserDefaults.standard.synchronize()
                     
                     DispatchQueue.main.async {
                         // ir al segue de verificacion

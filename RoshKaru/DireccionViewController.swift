@@ -145,6 +145,8 @@ class DireccionViewController: UIViewController, UITextFieldDelegate {
                     print("\(String(data: try! JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]), encoding: .utf8)!)")
                 } else {
                     DispatchQueue.main.async {
+                        UserDefaults.standard.setValue(self.accessToken, forKey: "accessToken")
+                        UserDefaults.standard.synchronize()
                         self.performSegue(withIdentifier: "principal", sender: self.accessToken!)
                     }
                     print("# Success")
