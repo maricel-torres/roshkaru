@@ -128,7 +128,7 @@ class OfertasViewController: UITableViewController {
     public func botonMagico () {
         let bonBoton = UIButton()
         self.bonBoton = bonBoton
-        bonBoton.backgroundColor = .red
+        bonBoton.backgroundColor = .systemBlue
         bonBoton.tintColor = .white
         setButtonTitle()
         tableView.addSubview(bonBoton)
@@ -244,9 +244,14 @@ class OfertaCell: UITableViewCell {
         didSet {
             
             diaHora.text = (item?.day ?? "") + "-" + (item?.dayPart ?? "")
+            diaHora.font = UIFont.init(name: "Trebuchet MS", size: 17)
             titulo.text = item?.title
+            titulo.font = UIFont.init(name: "Trebuchet MS", size: 17)
+
             precio.text = "Gs." + String(item?.price ?? 0)
             descripcion.text = "Reseña: " + (item?.description ?? "")
+            descripcion.font = UIFont.init(name: "Trebuchet MS", size: 17)
+
         }
     }
     
