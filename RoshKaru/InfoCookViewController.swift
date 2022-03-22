@@ -11,6 +11,7 @@ import UIKit
 
 class InfoCookViewController: UIViewController {
     
+    var helpBack = UILabel()
     var historyStack = UIStackView()
     var nombreTitulo = UILabel()
     var historyImg = UIImageView()
@@ -23,11 +24,20 @@ class InfoCookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .init(displayP3Red: 253, green: 237, blue: 236, alpha: 1.0)
+        view.backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.9294117647, blue: 0.9254901961, alpha: 1)
+        ayuda()
         crearStack()
         
     }
     
+    func ayuda () {
+        view.addSubview(helpBack)
+        helpBack.translatesAutoresizingMaskIntoConstraints = false
+        helpBack.text = "(Desliza hacia abajo para volver)"
+        helpBack.font = helpBack.font.withSize(15)
+        helpBack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        helpBack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+    }
     
     
     //funcion para setear stack
@@ -36,10 +46,10 @@ class InfoCookViewController: UIViewController {
         historyStack.translatesAutoresizingMaskIntoConstraints = false
         historyStack.centerYAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
         historyStack.centerXAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        historyStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        historyStack.topAnchor.constraint(equalTo: helpBack.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
         historyStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
         historyStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
-        historyStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
+        historyStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60).isActive = true
         historyStack.axis = .vertical
         historyStack.alignment = .center
         historyStack.distribution = .fillEqually

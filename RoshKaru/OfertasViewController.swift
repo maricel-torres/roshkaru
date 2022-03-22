@@ -8,6 +8,7 @@
 
 import UIKit
 import GMStepper
+import MBProgressHUD
 
 struct Item : Codable {
     var day : String
@@ -58,6 +59,8 @@ class OfertasViewController: UITableViewController {
     var indexCook: Int?
     var cart: Cart?
     var total : Double?
+    private var hub: MBProgressHUD?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -201,6 +204,7 @@ class OfertasViewController: UITableViewController {
         self.performSegue(withIdentifier: "oferta", sender: indexPath)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.hub = MBProgressHUD.showAdded(to: self.view, animated: true)
             if segue.identifier == "oferta" {
                 if let nextViewController = segue.destination as? Quantity {
                     nextViewController.cook = weklyPlans![indexCook!]
@@ -219,14 +223,14 @@ class OfertasViewController: UITableViewController {
         
     }
     
-    //nav controller boton acerca de para info de cocinero
-    private func Navigation(){
+    //boton "acerca de" en nav controller para info de cocinero
+    private func Navigation() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Acerca de", style: .done, target: self, action: #selector(add(_:)))
     }
-    @objc private func add(_ sender : Any?){
+    @objc private func add(_ sender : Any?) {
       instaciarUnViewControllerSinSegues()
     }
-    private func instaciarUnViewControllerSinSegues(){
+    private func instaciarUnViewControllerSinSegues() {
       if let controller = UIStoryboard(name: "Ofertas", bundle: nil).instantiateViewController(withIdentifier: "historiaCook") as? InfoCookViewController {
         controller.accessToken = accessToken
         controller.nombreCook = weklyPlans![indexCook!].name
