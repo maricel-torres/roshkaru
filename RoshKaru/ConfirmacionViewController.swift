@@ -11,7 +11,7 @@ import UIKit
 class ConfirmacionViewController: UIViewController {
 
     @IBOutlet weak var monto: UILabel!
-    @IBOutlet weak var pedidos: UITableViewCell!
+  //  @IBOutlet weak var pedidos: UITableViewCell!
     var accessToken: String?
     var hud: MBProgressHUD?
     @IBOutlet weak var btnConfirm: MDCButton!
@@ -26,7 +26,7 @@ class ConfirmacionViewController: UIViewController {
 
         btnConfirm.setTitle("Confirmar", for: .normal)
         btnConfirm.setTitleColor(.white, for: .normal)
-        btnConfirm.backgroundColor = .systemRed
+        btnConfirm.backgroundColor = .systemBlue
         btnConfirm.sizeToFit()
         btnConfirm.layer.cornerRadius = 18
         
