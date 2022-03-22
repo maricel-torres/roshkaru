@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hmL-e4-4nE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hmL-e4-4nE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-LU-gt3">
-                                <rect key="frame" x="180.5" y="686" width="53" height="59"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-LU-gt3">
+                                <rect key="frame" x="180" y="653" width="54" height="59"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
@@ -26,28 +24,18 @@
                                     <segue destination="7gn-rr-k8b" kind="show" identifier="principal" id="M2s-Df-zE0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pedido Realizado" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awG-Tz-nFF">
-                                <rect key="frame" x="85" y="85" width="244" height="39.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="14" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jsl-48-TY3">
                                 <rect key="frame" x="47" y="293" width="320" height="320"/>
                             </imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="HKx-mf-YeQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="awG-Tz-nFF" firstAttribute="centerX" secondItem="HKx-mf-YeQ" secondAttribute="centerX" id="00p-Sb-j4c"/>
-                            <constraint firstItem="eDg-LU-gt3" firstAttribute="top" secondItem="jsl-48-TY3" secondAttribute="bottom" constant="73" id="DuO-rl-RpT"/>
-                            <constraint firstItem="eDg-LU-gt3" firstAttribute="centerX" secondItem="jsl-48-TY3" secondAttribute="centerX" id="FmD-Zc-hBP"/>
-                            <constraint firstItem="HKx-mf-YeQ" firstAttribute="bottom" secondItem="eDg-LU-gt3" secondAttribute="bottom" constant="117" id="IUf-qR-uUl"/>
-                            <constraint firstItem="jsl-48-TY3" firstAttribute="centerX" secondItem="HKx-mf-YeQ" secondAttribute="centerX" id="TfP-IH-Rtd"/>
-                            <constraint firstItem="awG-Tz-nFF" firstAttribute="top" secondItem="HKx-mf-YeQ" secondAttribute="top" constant="41" id="nG0-SC-Vgu"/>
-                            <constraint firstItem="jsl-48-TY3" firstAttribute="top" secondItem="awG-Tz-nFF" secondAttribute="bottom" constant="168.5" id="oMh-PF-ehI"/>
-                            <constraint firstItem="jsl-48-TY3" firstAttribute="centerY" secondItem="HKx-mf-YeQ" secondAttribute="centerY" id="sB2-Za-Efv"/>
+                            <constraint firstItem="eDg-LU-gt3" firstAttribute="centerX" secondItem="jsl-48-TY3" secondAttribute="centerX" id="Ck5-jv-mTB"/>
+                            <constraint firstItem="jsl-48-TY3" firstAttribute="centerY" secondItem="HKx-mf-YeQ" secondAttribute="centerY" id="Ndz-3c-VJ7"/>
+                            <constraint firstItem="eDg-LU-gt3" firstAttribute="top" secondItem="jsl-48-TY3" secondAttribute="bottom" constant="40" id="bDx-48-SSX"/>
+                            <constraint firstItem="jsl-48-TY3" firstAttribute="centerX" secondItem="HKx-mf-YeQ" secondAttribute="centerX" id="jZ4-KB-lVm"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="HKx-mf-YeQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pedido Realizado" id="01e-S4-uP2"/>
                 </viewController>
@@ -68,8 +56,5 @@
     </scenes>
     <resources>
         <image name="14" width="320" height="320"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

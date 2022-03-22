@@ -16,6 +16,7 @@ class HechoViewController: UIViewController {
     var total: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
         pay_cart(accessToken: accessToken!, cartKey: cartKey, paymentMethodKey: paymentMethodKey, total: total)
         // Do any additional setup after loading the view.
     }
